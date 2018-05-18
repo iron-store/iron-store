@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Category = require('../models/category');
 
+console.log("Daniel Add")
+
 router.get('/', (req, res, next) => {
     Category.find()
     .then( categories => res.json(categories) )
