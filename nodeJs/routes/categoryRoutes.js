@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Category = require('../models/category');
 
-console.log("Daniel Add")
-
 router.get('/', (req, res, next) => {
     Category.find()
     .then( categories => res.json(categories) )
@@ -16,7 +14,7 @@ router.get('/:id', (req, res, next) => {
     .catch( err => res.json(err) );
 })
 
-router.post('/new-category', (req, res, next) => {
+router.post('/new', (req, res, next) => {
     Category.create(req.body)
     .then( createdCategory => res.json(createdCategory) )
     .catch( err => res.json(err) );
