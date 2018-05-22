@@ -1,21 +1,21 @@
 require('dotenv').config();
 
-const bodyParser     = require('body-parser');
-const cookieParser   = require('cookie-parser');
-const express        = require('express');
-const app            = express();
-const favicon        = require('serve-favicon');
-const hbs            = require('hbs');
-const mongoose       = require('mongoose');
-const logger         = require('morgan');
-const path           = require('path');
-const cors           = require('cors');
-const bcrypt         = require("bcryptjs");
-const session        = require("express-session");
-const passport       = require("passport");
-const LocalStrategy  = require("passport-local").Strategy;
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const app = express();
+// const favicon        = require('serve-favicon');
+// const hbs            = require('hbs');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const path = require('path');
+const cors = require('cors');
+const bcrypt = require("bcryptjs");
+const session = require("express-session");
+const passport = require("passport");
+const User = require('./models/user');
+const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
-
 
 mongoose.Promise = Promise;
 mongoose
@@ -43,40 +43,48 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
 
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+app.use(express.static(path.join(__dirname, 'public')));
+// app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+
+
+
+// default value for title local
+app.locals.title = 'App Store';
+
+
+app.use(
+  cors({
+    credentials: true,                 // allow other domains to send cookies
+    origin: ["http://localhost:4200"]  // these are the domains that are allowed
+  })
+);
+
 app.use(session({
   secret: "our-passport-local-strategy-app",
   resave: true,
   saveUninitialized: true
 }));
 
-
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-
-
-
-// default value for title local
-app.locals.title = 'App Store';
-app.use(cors());
-
-//passport config area
 passport.serializeUser((user, cb) => {
+  console.log("serialize: ", user);
   cb(null, user._id);
 });
 
 passport.deserializeUser((id, cb) => {
   User.findById(id, (err, user) => {
-    if (err) { return cb(err); }
+    console.log("deserialize: ", user);
     cb(null, user);
   });
 });
 
 passport.use(new LocalStrategy({
+  usernameField: "email",
   passReqToCallback: true
-  },(req, username, password, next) => {
-  User.findOne({ email: username }, (err, user) => {
+}, (req, email, password, next) => {
+  User.findOne({ email }, (err, user) => {
     if (err) {
       return next(err);
     }
@@ -87,54 +95,25 @@ passport.use(new LocalStrategy({
       return next(null, false, { message: "Incorrect password" });
     }
 
-    return next(null, user);
+    next(null, user);
   });
 }));
-
-
-
-passport.use(new GoogleStrategy({
-  clientID: "client ID here",
-  clientSecret: "client secret here",
-  callbackURL: "/auth/google/callback"
-}, (accessToken, refreshToken, profile, done) => {
-  User.findOne({ googleID: profile.id }, (err, user) => {
-    if (err) {
-      return done(err);
-    }
-    if (user) {
-      return done(null, user);
-    }
-
-    const newUser = new User({
-      googleID: profile.id
-    });
-
-    newUser.save((err) => {
-      if (err) {
-        return done(err);
-      }
-      done(null, newUser);
-    });
-  });
-
-}));
-// end passport config area
-
-
 
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 const index = require('./routes/index');
 const auth = require('./routes/authRoutes');
 const product = require('./routes/productRoutes');
 const category = require('./routes/categoryRoutes');
+const order = require('./routes/orderRoutes');
 app.use('/', index);
 app.use('/', auth);
 app.use('/product', product);
 app.use('/category', category);
+app.use('/order', order);
 
 
 module.exports = app;
