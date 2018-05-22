@@ -2,9 +2,10 @@ const express     = require("express");
 const router      = express.Router();
 const passport    = require("passport");
 const User        = require("../models/user");
-const ensureLogin = require("connect-ensure-login");
 const bcrypt      = require("bcryptjs");
 const bcryptSalt  = 10;
+
+const userIn = false;
 
 router.post("/signup", (req, res, next) => {
     const email = req.body.email;
@@ -43,35 +44,19 @@ router.post("/signup", (req, res, next) => {
                     return;
                 }
 
-                res.status(200).json(req.user);
+                // req.user = user
+                res.status(200).json(newUser);
             })
         });
     });
 });
 
-router.post('/login', (req, res, next) => {
-    passport.authenticate('local', (err, theUser, failureDetails) => {
-        if (err) {
-            res.status(500).json({ message: 'Something went wrong' });
-            return;
-        }
 
-        if (!theUser) {
-            res.status(401).json(failureDetails);
-            return;
-        }
-
-        req.login(theUser, (err) => {
-            if (err) {
-                res.status(500).json({ message: 'Something went wrong' });
-                return;
-            }
-
-            // We are now logged in (notice req.user)
-            res.status(200).json(req.user);
-        });
-    })(req, res, next);
+router.post('/login', passport.authenticate("local"), (req, res) => {
+    console.log(req.user);
+    res.json(req.user);
 });
+
 
 router.post("/logout", (req, res) => {
     req.logout();
@@ -89,7 +74,7 @@ router.get('/loggedin', (req, res, next) => {
 
 router.get('/private', (req, res, next) => {
     if (req.isAuthenticated()) {
-        res.json({ message: 'This is a private message' });
+        res.status(200).json({message: "this is my secret message"});
         return;
     }
 
