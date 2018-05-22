@@ -14,39 +14,29 @@ export class SessionService {
     return Observable.throw(e.json().message);
   }
 
-  currentUser: any; 
+  currentUser: any;
 
   signup(user) {
     return this.http.post(`http://localhost:3000/signup`, user)
-      .map(res => res.json())
+      .map(res => { this.currentUser = res, res.json() })
       .catch(this.handleError);
   }
 
   login(user) {
     return this.http.post(`http://localhost:3000/login`, user)
-      .map(res => res.json())
+      .map(res => { this.currentUser = res, res.json() })
       .catch(this.handleError);
   }
 
   logout() {
     return this.http.post(`http://localhost:3000/logout`, {})
-      .map(res => res.json())
-      .catch(this.handleError);
-  }
-
-  isLoggedIn() {
-    return this.http.get(`http://localhost:3000/loggedin`)
-      .map(res => res.json())
+      .map(res => {this.currentUser = null, res.json()})
       .catch(this.handleError);
   }
 
   getPrivateData() {
     return this.http.get(`http://localhost:3000/private`)
-   
-    // .toPromise()
-    // .then( res => {console.log("heyyyy: ", res), res.json()})
-    // .catch( err => console.log("Inside err: ", err));
-      .map(res => {console.log("heyyyy: ", res), this.currentUser = res,res.json()})
+      .map(res => { console.log("Mi service: ", res), this.currentUser = res, res.json() })
       .catch(this.handleError);
   }
 }

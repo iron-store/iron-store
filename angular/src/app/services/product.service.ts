@@ -9,7 +9,7 @@ export class ProductService {
     constructor (private myHttp: Http) {}
 
     getAllProducts(){
-        return this.myHttp.get('http://localhost:3000/product/')
+        return this.myHttp.get('http://localhost:3000/product')
         .map ( products => products.json() );
     }
 

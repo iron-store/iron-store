@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.myService.login(this.formInfo)
       .subscribe(
-        (user) => this.user = user,
+        (user) => {this.user = JSON.parse(this.myService.currentUser._body)},
         (err) => this.error = err
       );
   }
@@ -41,10 +41,8 @@ export class LoginComponent implements OnInit {
   }
   getPrivateData() {
     this.myService.getPrivateData()
-    .subscribe(user => console.log("====================", JSON.parse(this.myService.currentUser._body).username),
+    .subscribe(() => console.log(this.user.username),
     err => console.log(err))
-    // .then((data) => {this.privateData = data})
-    // .catch(err => console.log(err));
   }
 
 }
