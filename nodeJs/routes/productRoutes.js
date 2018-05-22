@@ -5,7 +5,7 @@ const Category = require('../models/category');
 
 router.get('/', (req, res, next) => {
     Product.find()
-        .then(products => res.json(products))
+        .then(products => {console.log("Products in back-end: ", products), res.json(products)})
         .catch(err => res.json(err));
 })
 

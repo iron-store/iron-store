@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { SessionService } from '../services/auth.service'
+import { SessionService } from '../services/auth.service';
+import { ProductService } from '../services/product.service';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/toPromise'
 
@@ -11,15 +12,16 @@ import 'rxjs/add/operator/toPromise'
 })
 export class ProductComponent implements OnInit {
 
-  constructor (private myService: SessionService, private myRouter: Router) {}
+  constructor (private myService: SessionService, private myRouter: Router, private myProducts: ProductService) {}
 
   ngOnInit() {
-    this.myService.getPrivateData()
-    .subscribe(() => {console.log("Hi sandra, I'm different!!!!!", JSON.parse(this.myService.currentUser._body).username)},
-    err => console.log(err))
-    // .then(user => console.log("====================", user))
-    // .catch( err => { console.log("some error: ",err)
- 
+    this.showProducts();
+  }
+
+  showProducts(){
+    this.myProducts.getAllProducts()
+    .subscribe ( res => console.log("Sandra's heyyyyy: ", res), 
+  err => console.log("We get the err: ", err))
   }
 
 }

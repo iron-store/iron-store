@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
-// const favicon        = require('serve-favicon');
-// const hbs            = require('hbs');
+const favicon = require('serve-favicon');
+const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
@@ -69,13 +69,11 @@ app.use(session({
 }));
 
 passport.serializeUser((user, cb) => {
-  console.log("serialize: ", user);
   cb(null, user._id);
 });
 
 passport.deserializeUser((id, cb) => {
   User.findById(id, (err, user) => {
-    console.log("deserialize: ", user);
     cb(null, user);
   });
 });
