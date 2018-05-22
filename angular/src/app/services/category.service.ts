@@ -18,6 +18,11 @@ export class CategoryService {
         .map( category => category.json() );
     }
 
+    getChildrenCategories(id){
+        return this.myHttp.get(`http://localhost:3000/category/sub-categories/${id}`)
+        .map( subCategories => subCategories.json() );
+    }
+
     createCategory(newcategory){
         return this.myHttp.post(`http://localhost:3000/category/new`, newcategory)
         .map( createdcategory => createdcategory.json() );

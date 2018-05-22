@@ -1,0 +1,12 @@
+<div class="category">
+  <ul *ngFor="let category of categories">
+    <div *ngIf="!category.parent">
+      <button>
+        <li (click)="showSubCategories(category._id)">{{category.name}}</li>
+      </button>
+      <div *ngFor="let child of subCategories">
+        <li style="padding-left: 20px;">{{child.name}}</li>
+      </div>
+    </div>
+  </ul>
+</div>
