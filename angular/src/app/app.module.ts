@@ -14,12 +14,14 @@ import { OrderService } from './services/order.service';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
-  // {path: 'index', component: AppComponent},
+  {path: 'index', component: AppComponent},
   { path: 'product', component: ProductComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'category', component: CategoryComponent}
 ];
 
 
@@ -27,7 +29,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     ProductComponent,
-    LoginComponent
+    LoginComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
