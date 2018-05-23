@@ -10,8 +10,7 @@ import { CategoryService } from '../services/category.service'
 export class CategoryComponent implements OnInit {
 
   categories: [Object];
-  children: [any];
-  subCategories = [];
+
 
   constructor(private myCategories: CategoryService) { }
 
@@ -25,7 +24,7 @@ export class CategoryComponent implements OnInit {
       allCategories => {
         this.addChildren(allCategories),
         this.categories = allCategories,
-        console.log(this.categories)},
+        console.log("Categories: ", this.categories)},
       err => console.log(err)
     )
   }
@@ -34,11 +33,10 @@ export class CategoryComponent implements OnInit {
     for (let i = 0; i < array.length; i++){
       this.myCategories.getChildrenCategories(array[i]._id)
       .subscribe(
-        children => {array[i].children = children, array.clicked = false},
+        children => {array[i].children = children, array[i].clicked = false},
         err => console.log(err)
       );
     };
-    console.log(array);
   }
 
   showSubCategories(category){
