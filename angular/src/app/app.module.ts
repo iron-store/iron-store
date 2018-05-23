@@ -14,7 +14,7 @@ import { OrderService } from './services/order.service';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
-import { CategoryComponent } from './category/category.component';
+import { CategoryComponent } from './components/category/category.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },

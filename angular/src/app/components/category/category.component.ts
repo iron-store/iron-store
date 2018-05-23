@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../services/category.service'
+import { CategoryService } from '../../services/category.service';
 
 
 @Component({
@@ -10,8 +10,6 @@ import { CategoryService } from '../services/category.service'
 export class CategoryComponent implements OnInit {
 
   categories: [Object];
-  children: [any];
-  subCategories = [];
 
   constructor(private myCategories: CategoryService) { }
 
@@ -19,29 +17,29 @@ export class CategoryComponent implements OnInit {
     this.showCategories();
   }
 
-  showCategories(){
+  showCategories() {
     this.myCategories.getAllCategory()
     .subscribe(
       allCategories => {
-        this.addChildren(allCategories),
-        this.categories = allCategories,
-        console.log(this.categories)},
+        this.addChildren(allCategories);
+        this.categories = allCategories;
+        console.log(this.categories); },
       err => console.log(err)
-    )
+    );
   }
 
-  addChildren(array){
-    for (let i = 0; i < array.length; i++){
+  addChildren(array) {
+    for (let i = 0; i < array.length; i++) {
       this.myCategories.getChildrenCategories(array[i]._id)
       .subscribe(
-        children => {array[i].children = children, array.clicked = false},
+        children => { array[i].children = children, array[i].clicked = false; },
         err => console.log(err)
       );
-    };
+    }
     console.log(array);
   }
 
-  showSubCategories(category){
+  showSubCategories(category) {
     category.clicked = !category.clicked;
   }
 
