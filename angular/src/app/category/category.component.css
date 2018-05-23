@@ -1,0 +1,8 @@
+li {
+    list-style-type: none;
+}
+
+.child {
+    padding-top: 10px;
+    padding-left: 25px;
+}

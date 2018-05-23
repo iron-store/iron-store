@@ -11,7 +11,7 @@ export class CategoryComponent implements OnInit {
 
   categories: [Object];
   children: [any];
-  subCategories: [Object];
+  subCategories = [];
 
   constructor(private myCategories: CategoryService) { }
 
@@ -22,18 +22,27 @@ export class CategoryComponent implements OnInit {
   showCategories(){
     this.myCategories.getAllCategory()
     .subscribe(
-      allCategories => {this.categories = allCategories, console.log(this.categories)},
+      allCategories => {
+        this.addChildren(allCategories),
+        this.categories = allCategories,
+        console.log(this.categories)},
       err => console.log(err)
     )
   }
 
-  showSubCategories(categoryId){
-    console.log(this.children);
-    this.myCategories.getChildrenCategories(categoryId)
-    .subscribe(
-      res => {this.subCategories = res, console.log("Categories Array: ", this.subCategories)},
-      err => console.log(err)
-    )
+  addChildren(array){
+    for (let i = 0; i < array.length; i++){
+      this.myCategories.getChildrenCategories(array[i]._id)
+      .subscribe(
+        children => {array[i].children = children, array.clicked = false},
+        err => console.log(err)
+      );
+    };
+    console.log(array);
+  }
+
+  showSubCategories(category){
+    category.clicked = !category.clicked;
   }
 
 }
