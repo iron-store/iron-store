@@ -16,6 +16,7 @@ import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductsComponent } from './products/products.component';
+import { OrderComponent } from './order/order.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'product', component: ProductComponent },
   { path: 'login', component: LoginComponent },
   { path: 'category', component: CategoryComponent},
-  { path: 'products', component: ProductsComponent}
+  { path: 'products', component: ProductsComponent},
+  { path: 'order', component: OrderService}
 ]
 
 
@@ -33,7 +35,8 @@ const routes: Routes = [
     ProductComponent,
     LoginComponent,
     CategoryComponent,
-    ProductsComponent
+    ProductsComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
