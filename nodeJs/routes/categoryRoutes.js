@@ -9,8 +9,14 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-    Category.findById(req.params.id)
+    Category.findOne({_id: req.params.id})
     .then( theCategory => res.json(theCategory) )
+    .catch( err => res.json(err) );
+})
+
+router.get('/sub-categories/:id', (req, res, next) => {
+    Category.find({parent: req.params.id})
+    .then( theSubCategories => res.json(theSubCategories) )
     .catch( err => res.json(err) );
 })
 
