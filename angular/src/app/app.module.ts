@@ -14,23 +14,29 @@ import { OrderService } from './services/order.service';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
+
 import { CategoryComponent } from './components/category/category.component';
+import { ProductsComponent } from './products/products.component';
+import { OrderComponent } from './order/order.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
   {path: 'index', component: AppComponent},
   { path: 'product', component: ProductComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'category', component: CategoryComponent}
+  { path: 'category', component: CategoryComponent},
+  { path: 'products', component: ProductsComponent},
+  { path: 'order', component: OrderService}
 ];
-
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
     LoginComponent,
-    CategoryComponent
+    CategoryComponent,
+    ProductsComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

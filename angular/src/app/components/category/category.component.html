@@ -9,8 +9,15 @@
           <li class="child">
             <button type="button" class="btn btn-primary">{{child.name}}</button>
           </li>
+          <div *ngFor="let child of category.children">
+            <div *ngIf="category.clicked">
+              <li class="child">
+                <button type="button" class="btn btn-primary">{{child.name}}</button>
+              </li>
+            </div>
+          </div>
         </div>
-      </div>
+      </ul>
     </div>
   </ul>
 </div>
