@@ -3,7 +3,7 @@ const Schema   = mongoose.Schema;
 
 const orderSchema = new Schema({
     userId: String,
-    products: [Object],
+    products: [],
     tax: Number,
     subtotal: Number,
     total: Number
