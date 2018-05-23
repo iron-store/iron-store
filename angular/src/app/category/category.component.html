@@ -1,16 +1,21 @@
-<div class="category">
-  <ul *ngFor="let category of categories">
-    <div *ngIf="!category.parent">
-      <li (click)="showSubCategories(category)">
-        <button type="button" class="btn btn-primary">{{category.name}}Primary</button>
-      </li>
-      <div *ngFor="let child of category.children">
-        <div *ngIf="category.clicked">
-          <li class="child">
-            <button type="button" class="btn btn-primary">{{child.name}}Primary</button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <ul *ngFor="let category of categories">
+        <div *ngIf="!category.parent">
+          <li (click)="showSubCategories(category)">
+            <button type="button" class="btn btn-primary">{{category.name}}</button>
           </li>
+          <div *ngFor="let child of category.children">
+            <div *ngIf="category.clicked">
+              <li class="child">
+                <button type="button" class="btn btn-primary">{{child.name}}</button>
+              </li>
+            </div>
+          </div>
         </div>
-      </div>
+      </ul>
     </div>
-  </ul>
+    <app-products class="col-md-8"></app-products>
+  </div>
 </div>

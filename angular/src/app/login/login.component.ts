@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { SessionService } from '../services/auth.service'
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/toPromise';
-
 
 @Component({
   selector: 'app-login',

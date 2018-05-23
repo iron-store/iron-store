@@ -1,0 +1,9 @@
+<div class="row">
+  <div *ngFor="let singleProduct of products" class="col-md-5">
+    <div class="card">
+      <h4>{{singleProduct.name}}</h4>
+      <img [src]="singleProduct.picturePath">
+      <strong>{{singleProduct.price}}</strong>
+    </div>
+  </div>
+</div>
