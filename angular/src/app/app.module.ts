@@ -26,8 +26,7 @@ const routes: Routes = [
   { path: 'category', component: CategoryComponent},
   { path: 'products', component: ProductsComponent},
   { path: 'order', component: OrderService}
-]
-
+];
 
 @NgModule({
   declarations: [
