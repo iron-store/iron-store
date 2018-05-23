@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { SessionService } from '../services/auth.service';
+import { SessionService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
