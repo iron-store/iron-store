@@ -1,0 +1,9 @@
+<div *ngIf="!cartProducts">
+    <h2>You don't have products in your cart :)</h2>
+  </div>
+  
+  <div *ngIf="cartProducts">
+    <div *ngFor="let product of cartProducts">
+      <h2>{{product.name}}</h2>
+    </div>
+  </div>

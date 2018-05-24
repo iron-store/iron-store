@@ -11,6 +11,7 @@ export class CategoryComponent implements OnInit {
 
   categories: [Object];
 
+
   constructor(private myCategories: CategoryService) { }
 
   ngOnInit() {
@@ -21,9 +22,9 @@ export class CategoryComponent implements OnInit {
     this.myCategories.getAllCategory()
     .subscribe(
       allCategories => {
-        this.addChildren(allCategories);
-        this.categories = allCategories;
-        console.log(this.categories); },
+        this.addChildren(allCategories),
+        this.categories = allCategories,
+        console.log('Categories: ', this.categories); },
       err => console.log(err)
     );
   }
@@ -32,11 +33,10 @@ export class CategoryComponent implements OnInit {
     for (let i = 0; i < array.length; i++) {
       this.myCategories.getChildrenCategories(array[i]._id)
       .subscribe(
-        children => { array[i].children = children, array[i].clicked = false; },
+        children => {array[i].children = children, array[i].clicked = false; },
         err => console.log(err)
       );
     }
-    console.log(array);
   }
 
   showSubCategories(category) {

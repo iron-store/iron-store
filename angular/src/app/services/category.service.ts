@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable ()
 
 export class CategoryService {
+
     constructor (private myHttp: Http) {}
 
     getAllCategory() {
@@ -37,4 +38,5 @@ export class CategoryService {
         return this.myHttp.post(`http://localhost:3000/category/update/${id}`, updates)
         .map( beforeUptcategory => beforeUptcategory.json() );
     }
+
 }

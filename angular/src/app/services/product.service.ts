@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable ()
 
 export class ProductService {
+
     constructor (private myHttp: Http) {}
 
     getAllProducts() {
@@ -32,4 +33,5 @@ export class ProductService {
         return this.myHttp.post(`http://localhost:3000/product/update/${id}`, updates)
         .map( beforeUptProduct => beforeUptProduct.json() );
     }
+
 }

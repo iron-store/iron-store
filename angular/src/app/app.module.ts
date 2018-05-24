@@ -10,24 +10,27 @@ import { SessionService } from './services/auth.service';
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
 import { OrderService } from './services/order.service';
+import { CookieService } from './services/cookie.service';
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import { LoginComponent } from './components/login/login.component';
-
 import { CategoryComponent } from './components/category/category.component';
 import { ProductsComponent } from './components/products/products.component';
 import { OrderComponent } from './components/order/order.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
-  { path: 'index', component: AppComponent },
+  {path: 'index', component: AppComponent},
   { path: 'product', component: ProductComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'category', component: CategoryComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'order', component: OrderService }
+  { path: 'category', component: CategoryComponent},
+  { path: 'products', component: ProductsComponent},
+  { path: 'order', component: OrderComponent},
+  { path: 'cart', component: CartComponent}
 ];
+
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ const routes: Routes = [
     LoginComponent,
     CategoryComponent,
     ProductsComponent,
-    OrderComponent
+    OrderComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ const routes: Routes = [
     SessionService,
     ProductService,
     CategoryService,
-    OrderService
+    OrderService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

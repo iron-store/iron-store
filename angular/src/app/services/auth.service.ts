@@ -16,6 +16,7 @@ export class SessionService {
     return Observable.throw(e.json().message);
   }
 
+
   signup(user) {
     return this.http.post(`http://localhost:3000/signup`, user)
       .map(res => { this.currentUser = res, res.json(); })
@@ -39,4 +40,5 @@ export class SessionService {
       .map(res => { console.log('Mi service: ', res), this.currentUser = res, res.json(); })
       .catch(this.handleError);
   }
+
 }

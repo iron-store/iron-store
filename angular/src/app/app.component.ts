@@ -9,6 +9,7 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   formInfo: any = {username: '', password: '', email: ''};
 
   user:  any;
@@ -24,7 +25,6 @@ export class AppComponent {
   //       (err) => this.error = err
   //     );
   // }
-
   signup() {
     this.myService.signup(this.formInfo)
       .subscribe(
@@ -40,7 +40,5 @@ export class AppComponent {
         (err) => this.error = err
       );
   }
-
-
 
 }
