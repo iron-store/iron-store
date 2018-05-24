@@ -26,13 +26,17 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
-  {path: 'index', component: AppComponent},
+  { path: 'index', component: AppComponent},
   { path: 'product', component: ProductComponent },
   { path: 'login', component: LoginComponent },
   { path: 'category', component: CategoryComponent},
   { path: 'products', component: ProductsComponent},
   { path: 'order', component: OrderComponent},
-  { path: 'cart', component: CartComponent}
+  { path: 'cart', component: CartComponent},
+  { path: 'user', component: UserDetailsComponent},
+  { path: 'history', component: PurchaseHistoryComponent},
+  { path: 'admin', component: AdminAreaComponent},
+  { path: 'navegation', component: NavigationComponent}
 ];
 
 
