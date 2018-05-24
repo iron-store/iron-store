@@ -30,7 +30,6 @@ export class OrderComponent implements OnInit {
     this.order.products.push(product);
     console.log('this is my order before create: ', this.order);
     this.newOrder(this.order);
-    // this.order.products = [];
   }
 
   newOrder(order) {

@@ -1,10 +1,13 @@
+
 <div class="row">
-  <div *ngFor="let singleProduct of products" class="col-md-5">
-    <div class="card">
-      <h4>{{singleProduct.name}}</h4>
-      <img [src]="singleProduct.picturePath">
-      <strong>{{singleProduct.price}}</strong>
-      <app-order></app-order>
+    <div *ngFor="let singleProduct of products" class="col-md-5">
+      <div class="card">
+        <h4>{{singleProduct.name}}</h4>
+        <img [src]="singleProduct.picturePath">
+        <strong>{{singleProduct.price}}</strong>
+        <button (click)="addCookie(singleProduct)">Add to Cart</button>
+        <app-order></app-order>
+      </div>
     </div>
   </div>
-</div>
+  <a [routerLink]></a>
