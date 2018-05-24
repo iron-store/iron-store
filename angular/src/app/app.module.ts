@@ -22,7 +22,7 @@ import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
-  {path: 'index', component: AppComponent},
+  { path: 'index', component: AppComponent },
   { path: 'product', component: ProductComponent },
   { path: 'login', component: LoginComponent },
   { path: 'category', component: CategoryComponent},
