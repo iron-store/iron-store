@@ -12,12 +12,12 @@ import { CategoryService } from './services/category.service';
 import { OrderService } from './services/order.service';
 
 import { AppComponent } from './app.component';
-import { ProductComponent } from './product/product.component';
+import { ProductComponent } from './components/product/product.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { CategoryComponent } from './components/category/category.component';
 import { ProductsComponent } from './products/products.component';
-import { OrderComponent } from './order/order.component';
+import { OrderComponent } from './components/order/order.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },

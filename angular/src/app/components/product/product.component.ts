@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { SessionService } from '../services/auth.service';
-import { ProductService } from '../services/product.service';
+import { SessionService } from '../../services/auth.service';
+import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/toPromise'
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-product',
