@@ -12,9 +12,7 @@ export class LoginComponent implements OnInit {
 
   formInfo: any = {username: '', password: '', email: ''};
 
-  user:  any;
   error: any;
-  privateData: any;
 
   constructor (private myService: SessionService, private myRouter: Router) {}
 
@@ -25,7 +23,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.myService.login(this.formInfo)
       .subscribe(
-        (user) => {this.user = JSON.parse(this.myService.currentUser._body), console.log(JSON.parse(this.myService.currentUser._body))},
+        () => console.log("login"),
         (err) => this.error = err
       );
   }
@@ -33,13 +31,13 @@ export class LoginComponent implements OnInit {
   logout() {
     this.myService.logout()
       .subscribe(
-        () => this.user = null,
+        () => console.log("logout"),
         (err) => this.error = err
       );
   }
   getPrivateData() {
     this.myService.getPrivateData()
-    .subscribe(() => console.log(this.user.username),
+    .subscribe(() => console.log("private data"),
     err => console.log(err));
   }
 

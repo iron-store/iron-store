@@ -18,11 +18,11 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     if (this.myCookie.getCookie("user"))
-      console.log(JSON.parse(this.myCookie.getCookie('user')));
+      console.log(this.myCookie.getCookie('user'));
   }
 
   newOrder() {
-    const products = JSON.parse(this.myCookie.getCookie("browser__settings"));
+    const products = this.myCookie.getCookie("browser__settings");
     let subtotal = 0;
     let tax = 6;
 
@@ -31,7 +31,7 @@ export class OrderComponent implements OnInit {
     })
 
     const order = {
-      userId: JSON.parse(this.myCookie.getCookie("user"))._id,
+      userId: this.myCookie.getCookie("user")._id,
       products: products,
       tax: tax,
       subtotal: subtotal,
