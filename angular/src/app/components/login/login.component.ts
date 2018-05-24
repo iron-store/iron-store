@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.myService.login(this.formInfo)
       .subscribe(
-        (user) => {this.user = JSON.parse(this.myService.currentUser._body)},
+        (user) => {this.user = JSON.parse(this.myService.currentUser._body); },
         (err) => this.error = err
       );
   }
