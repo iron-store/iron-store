@@ -13,8 +13,9 @@ import { OrderService } from './services/order.service';
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
-import { LoginComponent } from './login/login.component';
-import { CategoryComponent } from './category/category.component';
+import { LoginComponent } from './components/login/login.component';
+
+import { CategoryComponent } from './components/category/category.component';
 import { ProductsComponent } from './products/products.component';
 import { OrderComponent } from './order/order.component';
 
@@ -26,8 +27,7 @@ const routes: Routes = [
   { path: 'category', component: CategoryComponent},
   { path: 'products', component: ProductsComponent},
   { path: 'order', component: OrderService}
-]
-
+];
 
 @NgModule({
   declarations: [

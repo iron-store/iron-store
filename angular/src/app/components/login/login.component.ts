@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { SessionService } from '../services/auth.service'
+import { SessionService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  formInfo: any = {username: "", password: "", email: ""};
+  formInfo: any = {username: '', password: '', email: ''};
 
   user:  any;
   error: any;
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   getPrivateData() {
     this.myService.getPrivateData()
     .subscribe(() => console.log(this.user.username),
-    err => console.log(err))
+    err => console.log(err));
   }
 
 }

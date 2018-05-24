@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { SessionService } from './services/auth.service'
-import 'rxjs/add/operator/toPromise'
+import { SessionService } from './services/auth.service';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  formInfo: any = {username: "", password: "", email: ""};
+  formInfo: any = {username: '', password: '', email: ''};
 
   user:  any;
   error: any;
@@ -28,7 +28,7 @@ export class AppComponent {
   signup() {
     this.myService.signup(this.formInfo)
       .subscribe(
-        (user) => {this.user = user},
+        (user) => {this.user = user; },
         (err) => this.error = err
       );
   }
@@ -40,7 +40,7 @@ export class AppComponent {
         (err) => this.error = err
       );
   }
-  
-  
-  
+
+
+
 }
