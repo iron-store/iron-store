@@ -16,7 +16,7 @@ import { ProductComponent } from './components/product/product.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { CategoryComponent } from './components/category/category.component';
-import { ProductsComponent } from './products/products.component';
+import { ProductsComponent } from './components/products/products.component';
 import { OrderComponent } from './components/order/order.component';
 
 const routes: Routes = [
