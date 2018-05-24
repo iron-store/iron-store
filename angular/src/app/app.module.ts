@@ -19,6 +19,10 @@ import { CategoryComponent } from './components/category/category.component';
 import { ProductsComponent } from './components/products/products.component';
 import { OrderComponent } from './components/order/order.component';
 import { CartComponent } from './components/cart/cart.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { PurchaseHistoryComponent } from './components/purchase-history/purchase-history.component';
+import { AdminAreaComponent } from './components/admin-area/admin-area.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -40,7 +44,11 @@ const routes: Routes = [
     CategoryComponent,
     ProductsComponent,
     OrderComponent,
-    CartComponent
+    CartComponent,
+    UserDetailsComponent,
+    PurchaseHistoryComponent,
+    AdminAreaComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
