@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../services/order.service';
+import { CookieService } from '../../services/cookie.service';
+import { SessionService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-order',
@@ -8,36 +10,39 @@ import { OrderService } from '../../services/order.service';
 })
 export class OrderComponent implements OnInit {
 
-  productOrder: [Object];
-  order = {userId: 'skdlfwlkej3f9202', products: [], tax: 6, subtotal: 100, total: 106};
-
-  constructor(private myOrders: OrderService) { }
+  constructor(
+    private myOrders: OrderService,
+    private myCookie: CookieService,
+    private mySession: SessionService
+  ) { }
 
   ngOnInit() {
-    // this.getAllOders();
+    if (this.myCookie.getCookie("user"))
+      console.log(JSON.parse(this.myCookie.getCookie('user')));
   }
 
-  getAllOders(): void {
-    this.myOrders.getAllOrders()
-    .subscribe(
-      orders => console.log(orders),
-      err => console.log(err)
-    );
-  }
+  newOrder() {
+    const products = JSON.parse(this.myCookie.getCookie("browser__settings"));
+    let subtotal = 0;
+    let tax = 6;
 
-  addProduct(product) {
-    console.log('Product: ', product);
-    this.order.products.push(product);
-    console.log('this is my order before create: ', this.order);
-    this.newOrder(this.order);
-  }
+    products.forEach( singleProduct => {
+      subtotal += singleProduct.price;
+    })
 
-  newOrder(order) {
+    const order = {
+      userId: JSON.parse(this.myCookie.getCookie("user"))._id,
+      products: products,
+      tax: tax,
+      subtotal: subtotal,
+      total: (subtotal * tax) / 100
+    }
+
     this.myOrders.createOrder(order)
-    .subscribe(
-      order => console.log(order),
-      err => console.log(err)
-    );
+      .subscribe(
+        order => console.log(order),
+        err => console.log(err)
+      );
   }
 
 }
