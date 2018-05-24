@@ -8,27 +8,27 @@ import 'rxjs/add/operator/map';
 export class OrderService {
     constructor (private myHttp: Http) {}
 
-    getAllOrders(){
+    getAllOrders() {
         return this.myHttp.get('http://localhost:3000/order/')
         .map ( orders => orders.json() );
     }
 
-    getOneOrder(id){
+    getOneOrder(id) {
         return this.myHttp.get(`http://localhost:3000/order/${id}`)
         .map( order => order.json() );
     }
 
-    createOrder(newOrder){
+    createOrder(newOrder) {
         return this.myHttp.post(`http://localhost:3000/order/new`, newOrder)
         .map( createdorder => createdorder.json() );
     }
 
-    deleteOrder(id){
+    deleteOrder(id) {
         return this.myHttp.post(`http://localhost:3000/order/delete/${id}`, {})
         .map( deletedorder => deletedorder.json() );
     }
 
-    updateOrder(id, updates){
+    updateOrder(id, updates) {
         return this.myHttp.post(`http://localhost:3000/order/update/${id}`, updates)
         .map( beforeUptorder => beforeUptorder.json() );
     }

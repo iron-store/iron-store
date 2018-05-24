@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service'
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -15,12 +15,12 @@ export class ProductsComponent implements OnInit {
     this.getAllProducts();
   }
 
-  getAllProducts(){
+  getAllProducts() {
     this.myProducts.getAllProducts()
     .subscribe(
-      products => {this.products = products, console.log("products: ", this.products)},
+      products => {this.products = products, console.log('products: ', this.products); },
       err => console.log(err)
-    )
+    );
   }
 
 }

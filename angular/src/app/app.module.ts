@@ -21,12 +21,12 @@ import { OrderComponent } from './components/order/order.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
-  {path: 'index', component: AppComponent},
+  { path: 'index', component: AppComponent },
   { path: 'product', component: ProductComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'category', component: CategoryComponent},
-  { path: 'products', component: ProductsComponent},
-  { path: 'order', component: OrderService}
+  { path: 'category', component: CategoryComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'order', component: OrderService }
 ];
 
 @NgModule({
@@ -46,7 +46,11 @@ const routes: Routes = [
   ],
   providers: [
     { provide: BrowserXhr, useClass: CustExtBrowserXhr },
-    SessionService, ProductService, CategoryService, OrderService],
+    SessionService,
+    ProductService,
+    CategoryService,
+    OrderService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

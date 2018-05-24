@@ -18,10 +18,10 @@ export class ProductComponent implements OnInit {
     this.showProducts();
   }
 
-  showProducts(){
+  showProducts() {
     this.myProducts.getAllProducts()
-    .subscribe ( res => console.log("Sandra's heyyyyy: ", res), 
-  err => console.log("We get the err: ", err))
+    .subscribe ( res => console.log('Sandra\'s heyyyyy: ', res),
+  err => console.log('We get the err: ', err));
   }
 
 }

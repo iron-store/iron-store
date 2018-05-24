@@ -8,32 +8,32 @@ import 'rxjs/add/operator/map';
 export class CategoryService {
     constructor (private myHttp: Http) {}
 
-    getAllCategory(){
+    getAllCategory() {
         return this.myHttp.get('http://localhost:3000/category/')
         .map ( categories => categories.json() );
     }
 
-    getOneCategory(id){
+    getOneCategory(id) {
         return this.myHttp.get(`http://localhost:3000/category/${id}`)
         .map( category => category.json() );
     }
 
-    getChildrenCategories(id){
+    getChildrenCategories(id) {
         return this.myHttp.get(`http://localhost:3000/category/sub-categories/${id}`)
         .map( subCategories => subCategories.json() );
     }
 
-    createCategory(newcategory){
+    createCategory(newcategory) {
         return this.myHttp.post(`http://localhost:3000/category/new`, newcategory)
         .map( createdcategory => createdcategory.json() );
     }
 
-    deleteCategory(id){
+    deleteCategory(id) {
         return this.myHttp.post(`http://localhost:3000/category/delete/${id}`, {})
         .map( deletedcategory => deletedcategory.json() );
     }
 
-    updateCategory(id, updates){
+    updateCategory(id, updates) {
         return this.myHttp.post(`http://localhost:3000/category/update/${id}`, updates)
         .map( beforeUptcategory => beforeUptcategory.json() );
     }
