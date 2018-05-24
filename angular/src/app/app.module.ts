@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'user', component: UserDetailsComponent},
   { path: 'history', component: PurchaseHistoryComponent},
   { path: 'admin', component: AdminAreaComponent},
-  { path: 'navegation', component: NavigationComponent}
+  { path: 'navigation', component: NavigationComponent}
 ];
 
 
