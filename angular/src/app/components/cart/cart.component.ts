@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
 
   showCart(): void {
     if (this.myCookie.getCookie('browser__settings')) {
-      this.cartProducts = JSON.parse(this.myCookie.getCookie('browser__settings'));
+      this.cartProducts = this.myCookie.getCookie('browser__settings');
     }
   }
 
