@@ -23,9 +23,11 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { PurchaseHistoryComponent } from './components/purchase-history/purchase-history.component';
 import { AdminAreaComponent } from './components/admin-area/admin-area.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'index', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent},
   { path: 'index', component: AppComponent},
   { path: 'product', component: ProductComponent },
   { path: 'login', component: LoginComponent },
@@ -52,7 +54,8 @@ const routes: Routes = [
     UserDetailsComponent,
     PurchaseHistoryComponent,
     AdminAreaComponent,
-    NavigationComponent
+    NavigationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
