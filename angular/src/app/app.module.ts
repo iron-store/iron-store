@@ -23,16 +23,22 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { PurchaseHistoryComponent } from './components/purchase-history/purchase-history.component';
 import { AdminAreaComponent } from './components/admin-area/admin-area.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'index', pathMatch: 'full' },
-  { path: 'index', component: AppComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent},
+  { path: 'index', component: AppComponent},
   { path: 'product', component: ProductComponent },
   { path: 'login', component: LoginComponent },
   { path: 'category', component: CategoryComponent},
   { path: 'products', component: ProductsComponent},
   { path: 'order', component: OrderComponent},
-  { path: 'cart', component: CartComponent}
+  { path: 'cart', component: CartComponent},
+  { path: 'user', component: UserDetailsComponent},
+  { path: 'history', component: PurchaseHistoryComponent},
+  { path: 'admin', component: AdminAreaComponent},
+  { path: 'navigation', component: NavigationComponent}
 ];
 
 
@@ -48,7 +54,8 @@ const routes: Routes = [
     UserDetailsComponent,
     PurchaseHistoryComponent,
     AdminAreaComponent,
-    NavigationComponent
+    NavigationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
