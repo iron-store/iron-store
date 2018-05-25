@@ -8,6 +8,12 @@ router.get('/', (req, res, next) => {
     .catch( err => res.json(err) );
 })
 
+router.get('/user/:id', (req, res, next) => {
+    Order.find({userId: req.params.id})
+    .then( orders => res.json(orders) )
+    .catch( err => res.json(err) );
+})
+
 router.get('/:id', (req, res, next) => {
     Order.findById(req.params.id)
     .then( order => res.json(order) )

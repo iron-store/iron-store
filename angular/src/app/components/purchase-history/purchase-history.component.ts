@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {} from '../../services/order.service'
+import { OrderService } from '../../services/order.service';
+import { CookieService } from '../../services/cookie.service';
 
 @Component({
   selector: 'app-purchase-history',
@@ -8,9 +9,20 @@ import {} from '../../services/order.service'
 })
 export class PurchaseHistoryComponent implements OnInit {
 
-  constructor() { }
+  history: [any];
+
+  constructor(private myOrder: OrderService, private myCookies: CookieService) { }
 
   ngOnInit() {
+    this.getFullHistory()
+  }
+
+  getFullHistory() {
+    this.myOrder.getAllUserOrders(this.myCookies.getCookie("user")._id)
+      .subscribe(
+        orders => {this.history = orders, console.log(this.history)},
+        err => console.log(err)
+      )
   }
 
 }
