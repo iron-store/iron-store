@@ -15,11 +15,11 @@ export class SessionService {
     return Observable.throw(e.json().message);
   }
 
-  saveUserCookie(user){
-    this.myUserCookie.setCookie("user", user._body, 1)
+  saveUserCookie(user) {
+    this.myUserCookie.setCookie("user", user._body, 1);
   }
 
-  deleteUserCookie(){
+  deleteUserCookie() {
     this.myUserCookie.deleteCookie("user");
   }
 
@@ -37,7 +37,7 @@ export class SessionService {
 
   logout() {
     return this.http.post(`http://localhost:3000/logout`, {})
-      .map(res => {this.deleteUserCookie() ,res.json(); })
+      .map(res => {this.deleteUserCookie() , res.json(); })
       .catch(this.handleError);
   }
 

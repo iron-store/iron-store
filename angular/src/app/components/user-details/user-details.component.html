@@ -1,3 +1,19 @@
-<p>
-  user-details works!
-</p>
+
+<!-- <div *ngIf="theUserName !== ''"> -->
+  <h2>Welcome {{ theUserName }}</h2>
+  <h3>Your email on records is: {{ theEmail }}</h3>
+<!-- </div> -->
+
+<form>
+  <h4> Edit username or email </h4>
+  <br>
+  <label> Username </label>
+  <input type="text" [(ngModel)]="formInfo.username" name="username" [placeholder]="theUserName" >
+  <br>
+  <label> Email </label>
+  <input type="text" [(ngModel)]="formInfo.email" name="email" [placeholder]="theEmail" />
+  <br>
+
+  <button (click)="editUser()"> Edit User </button>
+</form>
+<p class="error"> {{ error }} </p>

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.myService.login(this.formInfo)
       .subscribe(
-        () => console.log("login"),
+        () => console.log('login'),
         (err) => this.error = err
       );
   }
@@ -31,13 +31,13 @@ export class LoginComponent implements OnInit {
   logout() {
     this.myService.logout()
       .subscribe(
-        () => console.log("logout"),
+        () => console.log('logout'),
         (err) => this.error = err
       );
   }
   getPrivateData() {
     this.myService.getPrivateData()
-    .subscribe(() => console.log("private data"),
+    .subscribe(() => console.log('private data'),
     err => console.log(err));
   }
 
