@@ -6,6 +6,7 @@ const orderSchema = new Schema({
     products: [],
     tax: Number,
     subtotal: Number,
+    taxAmount: Number,  
     total: Number
 },
     {

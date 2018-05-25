@@ -27,7 +27,7 @@ export class OrderComponent implements OnInit {
     let tax = 6;
 
     products.forEach( singleProduct => {
-      subtotal += singleProduct.price;
+      subtotal += singleProduct.price * singleProduct.repeat;
     })
 
     const order = {
@@ -35,7 +35,8 @@ export class OrderComponent implements OnInit {
       products: products,
       tax: tax,
       subtotal: subtotal,
-      total: (subtotal * tax) / 100
+      taxAmount: subtotal * tax / 100,
+      total: subtotal + (subtotal * tax / 100)
     }
 
     this.myOrders.createOrder(order)
@@ -43,6 +44,8 @@ export class OrderComponent implements OnInit {
         order => console.log(order),
         err => console.log(err)
       );
+
+    this.myCookie.deleteCookie("browser__settings");
   }
 
 }

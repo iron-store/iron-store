@@ -14,6 +14,11 @@ export class OrderService {
         .map ( orders => orders.json() );
     }
 
+    getAllUserOrders(userId) {
+        return this.myHttp.get(`http://localhost:3000/order/user/${userId}`)
+        .map ( orders => orders.json() );
+    }
+
     getOneOrder(id) {
         return this.myHttp.get(`http://localhost:3000/order/${id}`)
         .map( order => order.json() );
