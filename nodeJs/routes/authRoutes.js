@@ -52,6 +52,27 @@ router.post("/signup", (req, res, next) => {
 });
 
 
+router.post("/edit-user", (req, res, next) => {
+
+    const theEmail = req.body.email;
+    const theUsername = req.body.username;
+    const theId = req.body._id;
+
+    if (theUsername === "" || theEmail === "" || theId === "") {
+        res.status(400).json({ message: 'Missing username, email, or id' });
+        return;
+    }
+
+    User.findOneAndUpdate(
+        { _id: theId },
+        { $set: { email: theEmail, username: theUsername } }
+    )
+    .then(response => res.json(response))
+    .catch(err => res.json(err))
+
+});
+
+
 router.post('/login', passport.authenticate("local"), (req, res) => {
     console.log(req.user);
     res.json(req.user);
