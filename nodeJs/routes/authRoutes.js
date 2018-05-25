@@ -67,7 +67,18 @@ router.post("/edit-user", (req, res, next) => {
         { _id: theId },
         { $set: { email: theEmail, username: theUsername } }
     )
-    .then(response => res.json(response))
+    .then(oldUser => {
+
+        const newId = oldUser._id;
+
+        User.findOne(
+            { _id: newId }
+        )
+        .then(newUser => {
+            res.json(newUser)
+        })
+        .catch(err => res.json(err))
+    })
     .catch(err => res.json(err))
 
 });
