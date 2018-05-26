@@ -11,11 +11,14 @@ import { NgForm } from '@angular/forms';
 })
 export class UserDetailsComponent implements OnInit {
 
-  theUserName: string = '';
-  theEmail: string = '';
-  formInfo: any = {username: '', email: ''};
   error: any;
-  newUser: any = {username: '', email: '', _id: ''};
+
+  theUserName: string = this.cookieService.getCookie('user').username;
+  theEmail: string = this.cookieService.getCookie('user').email;
+  theId: string = this.cookieService.getCookie('user')._id;
+
+  formInfo: any = {username: '', email: ''};
+  newUser: any = {username: '', email: '', _id: this.theId};
 
 
   constructor(
@@ -24,9 +27,6 @@ export class UserDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.theUserName = this.cookieService.getCookie('user').username;
-    this.theEmail = this.cookieService.getCookie('user').email;
-    this.newUser._id = this.cookieService.getCookie('user')._id;
   }
 
   editUser() {
