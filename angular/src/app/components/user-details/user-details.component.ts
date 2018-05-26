@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from '../../services/cookie.service';
+import { SessionService } from '../../services/auth.service';
 import { NgForm } from '@angular/forms';
 
 
@@ -14,36 +15,42 @@ export class UserDetailsComponent implements OnInit {
   theEmail: string = '';
   formInfo: any = {username: '', email: ''};
   error: any;
-  newUserName: string;
-  newEmail: string;
+  newUser: any = {username: '', email: '', _id: ''};
 
 
-  constructor(private cookieService: CookieService) { }
+  constructor(
+    private cookieService: CookieService,
+    private sessionService: SessionService,
+  ) { }
 
   ngOnInit() {
     this.theUserName = this.cookieService.getCookie('user').username;
     this.theEmail = this.cookieService.getCookie('user').email;
+    this.newUser._id = this.cookieService.getCookie('user')._id;
   }
 
   editUser() {
-    console.log('editusercalled');
+
+    if (this.formInfo.username === '' && this.formInfo.email === '') {
+      return;
+    }
     if (this.formInfo.username === '') {
-      this.newUserName = this.theUserName;
-      console.log('noname');
+      this.newUser.username = this.theUserName;
     }
     else {
-      this.newUserName = this.formInfo.username;
-      console.log('this.newUserName: ', this.newUserName);
+      this.newUser.username = this.formInfo.username;
     }
     if (this.formInfo.email === '') {
-      this.newEmail = this.theEmail;
-      console.log('noemail');
+      this.newUser.email = this.theEmail;
     }
     else {
-      this.newEmail = this.formInfo.email;
-      console.log('this.newEmail: ', this.newEmail);
+      this.newUser.email = this.formInfo.email;
     }
 
+    this.sessionService.editUser(this.newUser)
+      .subscribe(
+        (err) => this.error = err
+      );
 
   }
 
