@@ -19,21 +19,22 @@ export class OrderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.myCookie.getCookie("user"))
+    if (this.myCookie.getCookie('user')) {
       console.log(this.myCookie.getCookie('user'));
+    }
   }
 
   newOrder() {
-    const products = this.myCookie.getCookie("browser__settings");
+    const products = this.myCookie.getCookie('browser__settings');
     let subtotal = 0;
     let tax = 6;
 
     products.forEach( singleProduct => {
       subtotal += singleProduct.price * singleProduct.repeat;
-    })
+    });
 
     const order = {
-      userId: this.myCookie.getCookie("user")._id,
+      userId: this.myCookie.getCookie('user')._id,
       products: products,
       tax: tax,
       subtotal: subtotal,
@@ -47,7 +48,7 @@ export class OrderComponent implements OnInit {
         err => console.log(err)
       );
 
-    this.myCookie.deleteCookie("browser__settings");
+    this.myCookie.deleteCookie('browser__settings');
   }
 
 }
