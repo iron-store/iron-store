@@ -49,7 +49,8 @@ export class UserDetailsComponent implements OnInit {
 
     this.sessionService.editUser(this.newUser)
       .subscribe(
-        (err) => this.error = err
+        () => {},
+        err => this.error = err
       );
 
   }
