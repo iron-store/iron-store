@@ -21,7 +21,7 @@ export class CategoryService {
 
     getChildrenCategories(id) {
         return this.myHttp.get(`http://localhost:3000/category/sub-categories/${id}`)
-        .map( subCategories => subCategories.json() );
+        .map( subCategories =>  subCategories.json() );
     }
 
     createCategory(newcategory) {
@@ -30,6 +30,7 @@ export class CategoryService {
     }
 
     deleteCategory(id) {
+        console.log("Service for delete this: ", id);
         return this.myHttp.post(`http://localhost:3000/category/delete/${id}`, {})
         .map( deletedcategory => deletedcategory.json() );
     }

@@ -84,25 +84,4 @@ export class ProductsComponent implements OnInit {
         err => console.log(err)
       )
   }
-
-  deleteCategory(categoryId: string): void {
-    this.myCategories.deleteCategory(categoryId)
-      .subscribe(
-        deletedCategory => {this.deleteProductsByCategory(deletedCategory.name), this.getAllProducts},
-        err => console.log(err)
-      )
-  }
-
-  deleteProductsByCategory(categoryName: string): void {
-    this.myProducts.getOneProduct(categoryName)
-      .subscribe(
-        products => {
-          products.forEach(singleProduct => {
-            this.myProducts.deleteProduct(singleProduct._id)
-          })
-        },
-        err => console.log(err)
-      )
-  }
-
 }
