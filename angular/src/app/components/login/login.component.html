@@ -1,82 +1,36 @@
-<h1> Authentication Sample </h1>
-<form>
-  <h2> Login or Signup </h2>
-  <br>
-  <label> Email </label>
-  <input type="text" [(ngModel)]="formInfo.email" name="email" />
-  <br>
-  <label> Password </label>
-  <input type="password" [(ngModel)]="formInfo.password" name="password" />
-
-  <button (click)="login()"> login </button>
-</form>
-<p class="error"> {{ error }} </p>
-
-
-
-<!-- <div *ngIf="user">
-  <h2> You are now logged in as {{ user.username }}!! </h2>
-  <p> Here's the user object </p>
-  <pre> {{ user | json }} </pre>
-
-  <p *ngIf="privateData"> Here's some data fetched from a protected API </p>
-  <pre> {{ privateData | json }} </pre>
-
-  <button (click)="logout()"> logout </button>
-  <button (click)="getPrivateData()"> Get private data </button>
-</div> -->
-
-
-
-
-
 
 <div class="container">
 
     <div class="row">
-        <div class="offset-xs-4 col-xs-4 offset-md-3 col-md-6">
+        <div class="offset-xs-4 col-xs-4 offset-md-3 col-md-6 my-5">
 
-          <h2> Authentication Sample </h2>
+            <h2> Welcome! </h2>
+            <h3> Please Login </h3>
 
-          <!-- FORM START -->
-          <form>
-            <h3> Login </h3>
-            <div class="form-group">
-              <label for="email"> Email </label>
-              <input type="email" [(ngModel)]="formInfo.email" class="form-control" name="email" [placeholder]="theEmail">
-            </div>
-
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-          
-            <button (click)="editUser()" class="btn btn-primary"> Edit User </button>
-            <p class="error"> {{ error }} </p>
-          </form>
-          <!-- FORM END -->
         </div>
     </div>
 
-    <!-- IS THIS BLOCK EVEN NECESSARY??? -->
-    <div class="row">
-      <div class="offset-xs-4 col-xs-4 offset-md-3 col-md-6 my-5">
+  <div class="row">
+    <div class="offset-xs-4 col-xs-4 offset-md-3 col-md-6">
 
-        <div *ngIf="user">
-          <h2> You are now logged in as {{ user.username }}!! </h2>
-          <p> Here's the user object </p>
-          <pre> {{ user | json }} </pre>
-        
-          <p *ngIf="privateData"> Here's some data fetched from a protected API </p>
-          <pre> {{ privateData | json }} </pre>
-        
-          <button (click)="logout()"> logout </button>
-          <button (click)="getPrivateData()"> Get private data </button>
+      <!-- FORM START -->
+      <form>
+        <div class="form-group">
+          <label for="email"> Email </label>
+          <input type="email" [(ngModel)]="formInfo.email" class="form-control" name="email" placeholder="example@email.com">
         </div>
 
-      </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1"> Password </label>
+          <input type="password" [(ngModel)]="formInfo.password" class="form-control" name="password" placeholder="enter your password">
+        </div>
+      
+        <button (click)="login()" class="btn btn-primary"> login </button>
+        <p class="error"> {{ error }} </p>
+      </form>
+      <!-- FORM END -->
+
     </div>
-
-
+  </div>
 
 </div>
