@@ -5,7 +5,7 @@ const Category = require('../models/category');
 
 router.get('/', (req, res, next) => {
     Product.find()
-        .then(products => { console.log("Products in back-end: ", products), res.json(products) })
+        .then(products => res.json(products) )
         .catch(err => res.json(err));
 })
 
@@ -15,7 +15,7 @@ router.get('/:id', (req, res, next) => {
         .catch(err => console.log(err));
 });
 
-router.get('/:categoryName', (req, res, next) => {
+router.get('/category-name/:categoryName', (req, res, next) => {
     Product.find({ category: req.params.categoryName })
         .then(products => res.json(products))
         .catch(err => console.log(err))
