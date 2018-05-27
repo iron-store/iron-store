@@ -16,11 +16,11 @@ export class SessionService {
   }
 
   saveUserCookie(user) {
-    this.myUserCookie.setCookie("user", user._body, 1);
+    this.myUserCookie.setCookie('user', user._body, 1);
   }
 
   deleteUserCookie() {
-    this.myUserCookie.deleteCookie("user");
+    this.myUserCookie.deleteCookie('user');
   }
 
   signup(user) {
@@ -38,6 +38,13 @@ export class SessionService {
   logout() {
     return this.http.post(`http://localhost:3000/logout`, {})
       .map(res => {this.deleteUserCookie() , res.json(); })
+      .catch(this.handleError);
+  }
+
+  editUser(user) {
+    console.log('Your new user credentials: ', user);
+    return this.http.post(`http://localhost:3000/edit-user`, user)
+      .map(res => { this.saveUserCookie(res), res.json(); })
       .catch(this.handleError);
   }
 
