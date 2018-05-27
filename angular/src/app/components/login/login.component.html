@@ -1,46 +1,36 @@
-<h1> Authentication Sample </h1>
-<form>
-  <h2> Login or Signup </h2>
-  <br>
-  <label> Email </label>
-  <input type="text" [(ngModel)]="formInfo.email" name="email" />
-  <br>
-  <label> Password </label>
-  <input type="password" [(ngModel)]="formInfo.password" name="password" />
+<div class="container">
 
-  <button (click)="login()"> login </button>
-</form>
-<p class="error"> {{ error }} </p>
+    <div class="row">
+        <div class="offset-xs-4 col-xs-4 offset-md-3 col-md-6 my-5">
 
+            <h2> Welcome! </h2>
+            <h3> Please Login </h3>
 
-
-
-
-<!-- <div class="container">
+        </div>
+    </div>
 
   <div class="row">
     <div class="offset-xs-4 col-xs-4 offset-md-3 col-md-6">
 
-      <h2> Authentication Sample </h2>
-
+      <!-- FORM START -->
       <form>
-        <h3> Login </h3>
         <div class="form-group">
           <label for="email"> Email </label>
-          <input type="email" [(ngModel)]="formInfo.email" class="form-control" name="email" [placeholder]="theEmail">
+          <input type="email" [(ngModel)]="formInfo.email" class="form-control" name="email" placeholder="example@email.com">
         </div>
 
         <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <label for="exampleInputPassword1"> Password </label>
+          <input type="password" [(ngModel)]="formInfo.password" class="form-control" name="password" placeholder="enter your password">
         </div>
-
-        <button (click)="editUser()" class="btn btn-primary"> Edit User </button>
+      
+        <button (click)="login()" class="btn btn-primary"> login </button>
         <p class="error"> {{ error }} </p>
       </form>
+      <!-- FORM END -->
+
     </div>
   </div>
 
-</div> -->
-
+</div>
 

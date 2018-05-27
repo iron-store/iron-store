@@ -24,6 +24,7 @@ import { PurchaseHistoryComponent } from './components/purchase-history/purchase
 import { AdminAreaComponent } from './components/admin-area/admin-area.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HomeComponent } from './components/home/home.component';
+import { PaypallButtonsComponent } from './components/paypall-buttons/paypall-buttons.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -38,7 +39,8 @@ const routes: Routes = [
   { path: 'user', component: UserDetailsComponent},
   { path: 'history', component: PurchaseHistoryComponent},
   { path: 'admin', component: AdminAreaComponent},
-  { path: 'navigation', component: NavigationComponent}
+  { path: 'navigation', component: NavigationComponent},
+  { path: 'paypall-buttons', component: PaypallButtonsComponent},
 ];
 
 
@@ -55,7 +57,8 @@ const routes: Routes = [
     PurchaseHistoryComponent,
     AdminAreaComponent,
     NavigationComponent,
-    HomeComponent
+    HomeComponent,
+    PaypallButtonsComponent
   ],
   imports: [
     BrowserModule,
