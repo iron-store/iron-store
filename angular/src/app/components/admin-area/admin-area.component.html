@@ -1,3 +1,70 @@
-<p>
-  admin-area works!
-</p>
+<br>
+<button (click)="showCategory()">Create Category</button>
+<button (click)="showProduct()">Create Product</button>
+<button>Users Info</button>
+
+<div class="container">
+  <div class="row">
+    <div *ngIf="categorySeccion">
+      <form>
+        <div class="form-group">
+          <label for="name"> *Category Name: </label>
+          <input type="email" ng-minlength="2" [(ngModel)]="newCategory.name" class="form-control" name="category" placeholder="Category Name">
+        </div>
+
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Select Parent
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div *ngFor="let category of subCategoriesArray">
+              <a class="dropdown-item" (click)="newCategory.parent = category._id">{{category.name}}</a>
+            </div>
+          </div>
+        </div>
+
+        <button (click)="addCategory()" class="btn btn-primary"> Add Category </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div *ngIf="productSeccion">
+      <form name="myForm">
+        <div class="form-group">
+          <label for="name"> *Product Name: </label>
+          <input type="email" ng-model="myInput" ng-minlength="2" [(ngModel)]="newProduct.name" class="form-control" name="category"
+            placeholder="Product Name">
+          <!-- <h1 ng-if="!myForm.category.$valid">The value is too short</h1> later -->
+        </div>
+
+        <div class="form-group">
+          <label for="price"> *Product Price: </label>
+          <input type="number" [(ngModel)]="newProduct.price" class="form-control" name="price" placeholder="Product Price">
+        </div>
+
+        <div class="form-group">
+          <label for="price"> *Product Description: </label>
+          <textarea rows="4" cols="50" [(ngModel)]="newProduct.description" class="form-control" name="description" placeholder="Product Description"></textarea>
+        </div>
+
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Select Category
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div *ngFor="let category of mainCategoriesArray">
+              <a class="dropdown-item" (click)="newProduct.category = category.name">{{category.name}}</a>
+            </div>
+          </div>
+        </div>
+
+        <button (click)="addProduct()" class="btn btn-primary"> Add Product </button>
+      </form>
+    </div>
+  </div>
+</div>
