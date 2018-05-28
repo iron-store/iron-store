@@ -27,6 +27,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { HomeComponent } from './components/home/home.component';
 import { UsersInfoComponent } from './components/users-info/users-info.component';
 
+import { SearchPipe } from './pipe/search.pipe'
+
 // may need to delete
 import { PaypallButtonsComponent } from './components/paypall-buttons/paypall-buttons.component';
 
@@ -65,7 +67,8 @@ const routes: Routes = [
     HomeComponent,
     PaypallButtonsComponent,
     UsersInfoComponent,
-    SignupComponent
+    SignupComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

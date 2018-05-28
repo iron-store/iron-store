@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
   modalInfo: Object = {};
   updateInfo: Object = {};
   updateCategoryInfo: Object = {};
+  filter: string;
 
   constructor(
     private myProducts: ProductService,
