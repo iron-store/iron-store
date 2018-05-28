@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 
 const Category = require('../models/category');
 const Product = require('../models/product');
-const User = require('../models/user');
+// const User = require('../models/user');
 
 const dbName = 'iron-store';
 mongoose.connect(`mongodb://localhost/${dbName}`);
 
 Category.collection.drop();
-User.collection.drop();
+// User.collection.drop();
 Product.collection.drop();
 
 
@@ -476,37 +476,37 @@ setTimeout(() => {
 
 
 
-
+// RECREATING THE USERS EVERY TIME ORPHANS THE USER HSTORY BECAUSE 
+// THE USER HISTORY IS ASSOCIATED BY ID.
 // USER SEEDS
-const users = [
-  {
-    username: 'admin',
-    // password: 123,
-    password: '$2a$10$1TAgPLkU2Dv36eltB3veRuUzLo.Ln.XcGTW87S5PZYUWLMHCNj51u',
-    email: 'admin@admin.com',
-    // role of admin must be manualy changed in the database
-    // role: 'ADMIN'
-  },
-  {
-    username: 'user',
-    // password: 123,
-    password: '$2a$10$rRZi5rZN5kjEOCvpt02Ez.Cm09YVx46wNQ5Ab76PrEs4oAeAudRx6',
-    email: 'user@user.com',
-  },
-  {
-    username: '11',
-    // password: 11,
-    password: '$2a$10$rr4iIdIjBUYtnSQ4Tc7GL.AR8f3k9Q7BsSYXaqOH1Zjlx/kLuJZT2',
-    email: '11@11.com',
-  },
-]
+// const users = [
+//   {
+//     username: 'admin',
+//     // password: 123,
+//     password: '$2a$10$1TAgPLkU2Dv36eltB3veRuUzLo.Ln.XcGTW87S5PZYUWLMHCNj51u',
+//     email: 'admin@admin.com',
+//     role: 'ADMIN'
+//   },
+//   {
+//     username: 'user',
+//     // password: 123,
+//     password: '$2a$10$rRZi5rZN5kjEOCvpt02Ez.Cm09YVx46wNQ5Ab76PrEs4oAeAudRx6',
+//     email: 'user@user.com',
+//   },
+//   {
+//     username: '11',
+//     // password: 11,
+//     password: '$2a$10$rr4iIdIjBUYtnSQ4Tc7GL.AR8f3k9Q7BsSYXaqOH1Zjlx/kLuJZT2',
+//     email: '11@11.com',
+//   },
+// ]
 
-setTimeout(() => {
-  User.create(users, (err) => {
-    if (err) { throw(err) }
-    console.log(`Created ${users.length} users`)
-  });
-}, 1000);
+// setTimeout(() => {
+//   User.create(users, (err) => {
+//     if (err) { throw(err) }
+//     console.log(`Created ${users.length} users`)
+//   });
+// }, 1000);
 
 // END USER SEEDS
 
