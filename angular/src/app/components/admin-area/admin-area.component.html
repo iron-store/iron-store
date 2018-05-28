@@ -53,6 +53,7 @@
             Select Parent
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" (click)="newCategory.parent = null">No Parent</a>
             <div *ngFor="let category of subCategoriesArray">
               <a class="dropdown-item" (click)="newCategory.parent = category._id">{{category.name}}</a>
             </div>
