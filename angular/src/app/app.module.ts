@@ -25,6 +25,7 @@ import { AdminAreaComponent } from './components/admin-area/admin-area.component
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HomeComponent } from './components/home/home.component';
 import { PaypallButtonsComponent } from './components/paypall-buttons/paypall-buttons.component';
+import { UsersInfoComponent } from './components/users-info/users-info.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -58,7 +59,8 @@ const routes: Routes = [
     AdminAreaComponent,
     NavigationComponent,
     HomeComponent,
-    PaypallButtonsComponent
+    PaypallButtonsComponent,
+    UsersInfoComponent
   ],
   imports: [
     BrowserModule,
