@@ -75,9 +75,12 @@ export class AdminAreaComponent implements OnInit {
   addCategory() {
     this.myCategories.createCategory(this.newCategory)
       .subscribe(
-        newCat => console.log(newCat),
+        newCat => {
+          console.log(newCat);
+          this.subCategories();
+        },
         err => console.log(err)
-      )
+      );
   }
 
   mainCategories() {
