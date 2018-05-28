@@ -1,6 +1,31 @@
-<div *ngFor="let user of users">
-  <h2>{{user.username}}</h2>
-  <span>{{user.email}}</span>
-  <button type="button" class="btn btn-danger" (click)="deleteUser(user._id)">Delete</button>
-  <hr>
+<div *ngIf="usersSeccion">
+  <div *ngFor="let user of users">
+    <h2>{{user.username}}</h2>
+    <span>{{user.email}}</span>
+    <button type="button" class="btn btn-primary" (click)="userHistory(user._id)">User History</button>
+    <button type="button" class="btn btn-danger" (click)="deleteUser(user._id)">Delete</button>
+    <hr>
+  </div>
+</div>
+
+<div *ngIf="userHistorySeccion">
+  <div *ngIf="userHistoryArray.length === 0">
+    <h2>You'r history is empty :)</h2>
+   </div>
+   
+   <div *ngFor="let order of userHistoryArray">
+       <h3>{{order.created_at | date:'fullDate'}}</h3>
+     <div *ngFor="let product of order.products">
+       <h1>Name: {{product.name}}</h1>
+       <h4>Count: {{product.repeat}}</h4>
+       <p>Description: {{product.description}}</p>
+       <strong>Price: {{product.price}}</strong>
+     </div>
+     <br>
+     <h5>Subtotal: ${{order.subtotal}}.00</h5>
+     <h5>Tax-percentage: {{order.tax}}%</h5>
+     <h5>Tax-amount: {{order.taxAmount}}</h5>
+     <h5>Total: ${{order.total}}</h5>
+     <hr style="height: 5px; background-color: black;">
+   </div>
 </div>

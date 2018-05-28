@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
+import { CookieService } from '../../services/cookie.service';
 
 @Component({
   selector: 'app-category',
@@ -10,14 +11,17 @@ import { ProductService } from '../../services/product.service';
 export class CategoryComponent implements OnInit {
 
   categories: [Object];
-
+  user: Object;
+  updateForm: Object = {name: ""}
 
   constructor(
     private myCategories: CategoryService,
-    private myProductsService: ProductService) { }
+    private myProductsService: ProductService,
+    private myCookies: CookieService) { }
 
   ngOnInit() {
     this.showCategories();
+    this.user = this.myCookies.getCookie("user");
   }
 
   showCategories() {
@@ -87,6 +91,14 @@ export class CategoryComponent implements OnInit {
           err => console.log(err)
         }
       )
+  }
+
+  updateCategory(updatedCategory){
+    this.myCategories.updateCategory(updatedCategory._id, updatedCategory)
+    .subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    )
   }
 
 }
