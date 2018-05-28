@@ -23,17 +23,17 @@ export class SessionService {
     this.myUserCookie.deleteCookie('user');
   }
 
-  getUserById(id){
+  getUserById(id) {
     return this.http.get(`http://localhost:3000/user-id/${id}`)
     .map( user => user.json());
   }
 
-  getAllUsers(){
+  getAllUsers() {
     return this.http.get(`http://localhost:3000/users`)
     .map( users => users.json());
   }
 
-  deleteUser(id){
+  deleteUser(id) {
     return this.http.post(`http://localhost:3000/delete-user/${id}`, {})
     .map( deletedUser => deletedUser.json());
   }

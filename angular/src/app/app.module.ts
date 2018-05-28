@@ -14,6 +14,7 @@ import { CookieService } from './services/cookie.service';
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ProductsComponent } from './components/products/products.component';
@@ -24,23 +25,26 @@ import { PurchaseHistoryComponent } from './components/purchase-history/purchase
 import { AdminAreaComponent } from './components/admin-area/admin-area.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HomeComponent } from './components/home/home.component';
-import { PaypallButtonsComponent } from './components/paypall-buttons/paypall-buttons.component';
 import { UsersInfoComponent } from './components/users-info/users-info.component';
+
+// may need to delete
+import { PaypallButtonsComponent } from './components/paypall-buttons/paypall-buttons.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent},
   { path: 'index', component: AppComponent},
   { path: 'product', component: ProductComponent },
+  { path: 'signup', component: SignupComponent},
   { path: 'login', component: LoginComponent },
   { path: 'category', component: CategoryComponent},
   { path: 'products', component: ProductsComponent},
-  { path: 'order', component: OrderComponent},
   { path: 'cart', component: CartComponent},
   { path: 'user', component: UserDetailsComponent},
   { path: 'history', component: PurchaseHistoryComponent},
   { path: 'admin', component: AdminAreaComponent},
   { path: 'navigation', component: NavigationComponent},
+  // may need to delete
   { path: 'paypall-buttons', component: PaypallButtonsComponent},
 ];
 
@@ -60,7 +64,8 @@ const routes: Routes = [
     NavigationComponent,
     HomeComponent,
     PaypallButtonsComponent,
-    UsersInfoComponent
+    UsersInfoComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
