@@ -5,7 +5,23 @@ const User        = require("../models/user");
 const bcrypt      = require("bcryptjs");
 const bcryptSalt  = 10;
 
-const userIn = false;
+router.get('/users', (req, res, next) => {
+    User.find()
+    .then( users => res.json(users))
+    .catch( err => console.log(err));
+})
+
+router.get('/user-id/:id', (req, res, next) => {
+    User.findById(req.params.id)
+    .then( user => res.json(user))
+    .catch( err => console.log(err));
+})
+
+router.post('/delete-user/:id', (req, res, next) => {
+    User.findByIdAndRemove(req.params.id)
+    .then( deletedUser => res.status(200).json(deletedUser))
+    .catch( err => console.log(err));
+})
 
 router.post("/signup", (req, res, next) => {
     const email = req.body.email;
@@ -98,25 +114,6 @@ router.post("/logout", (req, res) => {
     req.logout();
     res.status(200).json({ message: 'Success' });
 });
-
-router.get('/loggedin', (req, res, next) => {
-    if (req.isAuthenticated()) {
-        res.status(200).json(req.user);
-        return;
-    }
-
-    res.status(403).json({ message: 'Unauthorized' });
-});
-
-router.get('/private', (req, res, next) => {
-    if (req.isAuthenticated()) {
-        res.status(200).json({message: "this is my secret message"});
-        return;
-    }
-
-    res.status(403).json({ message: 'Unauthorized' });
-});
-
 
 router.get("/auth/google", passport.authenticate("google", {
     scope: ["https://www.googleapis.com/auth/plus.login",

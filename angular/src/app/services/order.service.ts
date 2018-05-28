@@ -10,7 +10,8 @@ export class OrderService {
     constructor (private myHttp: Http) {}
 
     getAllOrders() {
-        return this.myHttp.get('http://localhost:3000/order/')
+        console.log("Orders services")
+        return this.myHttp.get(`http://localhost:3000/order`)
         .map ( orders => orders.json() );
     }
 

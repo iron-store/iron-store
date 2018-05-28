@@ -47,6 +47,7 @@ export class ProductsComponent implements OnInit {
     }
 
     else {
+      console.log(this.myCookies.getCookie('browser__settings'))
       const newCookieValue = this.myCookies.getCookie('browser__settings');
       for (let i = 0; i < newCookieValue.length; i++) {
         if (product._id === newCookieValue[i]._id) {
