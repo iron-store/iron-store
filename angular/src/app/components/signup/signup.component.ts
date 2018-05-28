@@ -20,15 +20,12 @@ export class SignupComponent implements OnInit {
 
   }
 
-  login() {
-    this.myService.login(this.formInfo)
+  signUp() {
+    this.myService.signup(this.formInfo)
       .subscribe(
         () => console.log('login'),
         (err) => this.error = err
       );
   }
-
-
-
 
 }
