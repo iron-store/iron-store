@@ -12,7 +12,7 @@ export class CategoryComponent implements OnInit {
 
   categories: [Object];
   user: Object;
-  updateForm: Object = {name: ""}
+  updateForm: Object = {name: ""};
 
   constructor(
     private myCategories: CategoryService,
