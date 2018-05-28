@@ -13,11 +13,11 @@
           <button type="button" class="btn btn-primary" (click)="updateCount({name: product.name, count: count.value})">Update</button>
         </form>
         <button type="button" class="btn btn-danger" (click)="deleteProduct(product.name)">Delete</button>
-        <app-order></app-order>
         <hr>
       </div>
     </div>
   </div>
+  <app-order></app-order>
   <div>
       <h3>Subtotal: ${{orderInfo.subtotal}}</h3>
       <h4>Tax Amount: ${{orderInfo.taxAmount}}</h4>
