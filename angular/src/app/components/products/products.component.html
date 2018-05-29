@@ -9,7 +9,7 @@
     <div class="card">
       <h4>{{singleProduct.name}}</h4>
       <h5>{{singleProduct.category}}</h5>
-      <img [src]="singleProduct.picturePath">
+      <img class="image" [src]="singleProduct.picturePath">
       <strong>{{singleProduct.price}}</strong>
       <button (click)="addCookie(singleProduct)">Add to Cart</button>
       <h2>{{role}}</h2>
