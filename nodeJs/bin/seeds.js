@@ -84,7 +84,7 @@ const childCategories = [
   },
   {
     // Movies
-    name: 'ScyFy'
+    name: 'SciFi'
   },
   {
     // Books
@@ -151,41 +151,47 @@ const products = [
     price: 2000,
     description: '4k 50 inches',
     category: 'TVs',
+    picturePath: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5947/5947110_sd.jpg;maxHeight=640;maxWidth=550',
   },
   {
     // TVs
-    name: 'Sanwa TV',
+    name: 'LG TV',
     price: 100,
     description: 'Used, in working condition',
     category: 'TVs',
+    picturePath: 'https://brain-images-ssl.cdn.dixons.com/4/9/10161494/l_10161494_002.jpg',
   },
   {
     // TVs
-    name: 'Panasonic',
+    name: 'Panasonic tv',
     price: 600,
     description: '32 inches 1080p',
     category: 'TVs',
+    picturePath: 'https://www.tuneskit.com/images/resource/panasonic-tv.jpg',
   },
   {
     // Video Game Consoles
     name: 'Nintendo Switch',
     price: 300,
-    description: 'Kiddy',
+    description: 'Ostensibly for kids',
     category: 'Video Game Consoles',
+    picturePath: 'https://metrouk2.files.wordpress.com/2017/01/hacs_001_imgebr_p_01_r_ad-0_lr.jpg?w=748&h=437&crop=1',
   },
   {
     // Video Game Consoles
     name: 'XBox One',
     price: 400,
-    description: 'GrimDark',
+    description: 'Sports Games and Halo!',
     category: 'Video Game Consoles',
+    picturePath: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/4334/4334012_sd.jpg;maxHeight=640;maxWidth=550',
   },
   {
     // Video Game Consoles
     name: 'PS4',
     price: 600,
-    description: 'Too Expensive',
+    description: 'Too Expensive Right Now',
     category: 'Video Game Consoles',
+    picturePath: 'https://s.aolcdn.com/hss/storage/midas/1fb1acfed25846aa74eeb755f5e9b6ef/204297761/ps4-pro-screen-03.jpg',
   },
   {
     // Cellphones
@@ -193,6 +199,7 @@ const products = [
     price: 1000,
     description: 'Why is it so expensive?',
     category: 'Cellphones',
+    picturePath: 'http://www.three.co.uk/static/images/device_pages/MobileVersion/Apple/iPhone_X/Space_Grey/desktop/1.jpg',
   },
   {
     // Cellphones
@@ -200,6 +207,7 @@ const products = [
     price: 70,
     description: 'Cheap',
     category: 'Cellphones',
+    picturePath: 'http://home.bt.com/images/samsung-galaxy-j3-black-slant-view-136414588491403901-170209170631.jpg',
   },
   {
     // Cellphones
@@ -207,6 +215,7 @@ const products = [
     price: 120,
     description: '2nd generation unlocked',
     category: 'Cellphones',
+    picturePath: 'https://i2.wp.com/gsminsider.com/wp-content/uploads/2015/07/Moto-G-20151.jpg',
   },
   {
     // Fruits
@@ -214,6 +223,7 @@ const products = [
     price: 1,
     description: 'One single pear',
     category: 'Fruits',
+    // picturePath: '',
   },
   {
     // Fruits
@@ -221,6 +231,7 @@ const products = [
     price: 5,
     description: '1 pound of Fuji Apples',
     category: 'Fruits',
+    // picturePath: '',
   },
   {
     // Fruits
@@ -228,6 +239,7 @@ const products = [
     price: .69,
     description: 'Daylight coming, me wan go home',
     category: 'Fruits',
+    // picturePath: '',
   },
   {
     // Snacks
@@ -235,6 +247,7 @@ const products = [
     price: 1,
     description: 'The spicy kind',
     category: 'Snacks',
+    // picturePath: '',
   },
   {
     // Snacks
@@ -242,6 +255,7 @@ const products = [
     price: 2,
     description: 'you better get some salsa',
     category: 'Snacks',
+    // picturePath: '',
   },
   {
     // Snacks
@@ -249,6 +263,7 @@ const products = [
     price: 6,
     description: 'Whole, seasalted, fancy cashews',
     category: 'Snacks',
+    // picturePath: '',
   },
   {
     // Meat
@@ -256,6 +271,7 @@ const products = [
     price: 10,
     description: '5 filets',
     category: 'Meat',
+    // picturePath: '',
   },
   {
     // Meat
@@ -263,6 +279,7 @@ const products = [
     price: 4,
     description: 'One pound t-bone steak',
     category: 'Meat',
+    // picturePath: '',
   },
   {
     // Meat
@@ -270,6 +287,7 @@ const products = [
     price: 3,
     description: '2 pounds of pre-sliced sirloin steaks',
     category: 'Meat',
+    // picturePath: '',
   },
   {
     // Shirts
@@ -277,6 +295,7 @@ const products = [
     price: 12,
     description: 'No Iron',
     category: 'Shirts',
+    // picturePath: '',
   },
   {
     // Shirts
@@ -284,6 +303,7 @@ const products = [
     price: 60,
     description: 'Fancy. Hand-wash only',
     category: 'Shirts',
+    // picturePath: '',
   },
   {
     // Shirts
@@ -291,6 +311,7 @@ const products = [
     price: 25,
     description: 'Limited edition collectors item',
     category: 'Shirts',
+    // picturePath: '',
   },
   {
     // Pants
@@ -298,6 +319,7 @@ const products = [
     price: 40,
     description: 'No iron',
     category: 'Pants',
+    // picturePath: '',
   },
   {
     // Pants
@@ -305,6 +327,7 @@ const products = [
     price: 20,
     description: 'Do they really count as pants?',
     category: 'Pants',
+    // picturePath: '',
   },
   {
     // Pants
@@ -312,6 +335,7 @@ const products = [
     price: 45,
     description: 'Pre-ripped through authentic wear and tear',
     category: 'Pants',
+    // picturePath: '',
   },
   {
     // Underwear
@@ -319,6 +343,7 @@ const products = [
     price: 15,
     description: 'Assorted colors',
     category: 'Underwear',
+    // picturePath: '',
   },
   {
     // Underwear
@@ -326,6 +351,7 @@ const products = [
     price: 0,
     description: 'It seems these are still a thing',
     category: 'Underwear',
+    // picturePath: '',
   },
   {
     // Underwear
@@ -333,6 +359,7 @@ const products = [
     price: 50,
     description: 'Lacy, confortable (not really)',
     category: 'Underwear',
+    // picturePath: '',
   },
   {
     // Romance
@@ -340,6 +367,7 @@ const products = [
     price: 10,
     description: '1970s movie could not get more on the nose with the title',
     category: 'Romance',
+    // picturePath: '',
   },
   {
     // Romance
@@ -347,6 +375,7 @@ const products = [
     price: 10,
     description: 'Remastered classic (?)',
     category: 'Romance',
+    // picturePath: '',
   },
   {
     // Romance
@@ -354,6 +383,7 @@ const products = [
     price: 12,
     description: 'This is a romance movie? I thought it was a comedy.',
     category: 'Romance',
+    // picturePath: '',
   },
   {
     // Horror
@@ -361,6 +391,7 @@ const products = [
     price: 13,
     description: 'Remake of the classic',
     category: 'Horror',
+    // picturePath: '',
   },
   {
     // Horror
@@ -368,6 +399,7 @@ const products = [
     price: 11,
     description: 'I thought that in this post Harry Potter world, you needed something besides a plain witch to be scary.',
     category: 'Horror',
+    // picturePath: '',
   },
   {
     // Horror
@@ -375,6 +407,7 @@ const products = [
     price: 10,
     description: 'Acupuncture Gone Wrong',
     category: 'Horror',
+    // picturePath: '',
   },
   {
     // SciFi
@@ -382,6 +415,7 @@ const products = [
     price: 11,
     description: 'Where are my flying cars?',
     category: 'SciFi',
+    // picturePath: '',
   },
   {
     // SciFi
@@ -389,6 +423,7 @@ const products = [
     price: 11,
     description: 'Don\'get exited, It\'s one of the prequels.',
     category: 'SciFi',
+    // picturePath: '',
   },
   {
     // SciFi
@@ -396,6 +431,7 @@ const products = [
     price: 11,
     description: 'The one with time travel and whales.',
     category: 'SciFi',
+    // picturePath: '',
   },
   {
     // Biographies
@@ -403,6 +439,7 @@ const products = [
     price: 14,
     description: 'Life of the Romantic writer. Note: not romance',
     category: 'Biographies',
+    // picturePath: '',
   },
   {
     // Biographies
@@ -410,6 +447,7 @@ const products = [
     price: 15,
     description: 'Life of the dring pilot and the mystery surrounding her death',
     category: 'Biographies',
+    // picturePath: '',
   },
   {
     // Biographies
@@ -417,6 +455,7 @@ const products = [
     price: 20,
     description: 'Feeling patriotic yet?',
     category: 'Biographies',
+    // picturePath: '',
   },
   {
     // Fiction
@@ -424,6 +463,7 @@ const products = [
     price: 20,
     description: 'First book of the acclaimed series. Even crazier than the show if you can believe that.',
     category: 'Fiction',
+    // picturePath: '',
   },
   {
     // Fiction
@@ -431,6 +471,7 @@ const products = [
     price: 22,
     description: 'Get ready for a lot of singing and poetry if you have only seen the movies.',
     category: 'Fiction',
+    // picturePath: '',
   },
   {
     // Fiction
@@ -438,6 +479,7 @@ const products = [
     price: 21,
     description: 'Last book in the Lord of the Rings trilogy.',
     category: 'Fiction',
+    // picturePath: '',
   },
   {
     // Mystery
@@ -445,6 +487,7 @@ const products = [
     price: 13,
     description: 'By Agatha Christie',
     category: 'Mystery',
+    // picturePath: '',
   },
   {
     // Mystery
@@ -452,6 +495,7 @@ const products = [
     price: 11,
     description: 'By Agatha Christie',
     category: 'Mystery',
+    // picturePath: '',
   },
   {
     // Mystery
@@ -459,6 +503,7 @@ const products = [
     price: 14,
     description: 'By Stephen King',
     category: 'Mystery',
+    // picturePath: '',
   },
 
 ]

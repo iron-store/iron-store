@@ -8,7 +8,7 @@
   <div *ngFor="let singleProduct of products | searchByName: filter" class="col-md-5">
     <div class="card">
       <h4>{{singleProduct.name}}</h4>
-      <img [src]="singleProduct.picturePath">
+      <img class="image" [src]="singleProduct.picturePath">
       <strong>{{singleProduct.price}}</strong>
       <button (click)="addCookie(singleProduct)">Add to Cart</button>
       <h2>{{role}}</h2>
