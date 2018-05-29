@@ -13,6 +13,10 @@ import { Router } from '@angular/router';
 })
 export class OrderComponent implements OnInit {
 
+  myOrder: any;
+  orderInfo: any = [];
+  user: any;
+
   constructor(
     private myOrders: OrderService,
     private myCookie: CookieService,
@@ -23,36 +27,36 @@ export class OrderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.myCookie.getCookie('user')) {
-      console.log(this.myCookie.getCookie('user'));
-    }
+    this.myOrder = this.myCookie.getCookie('browser__settings');
+    this.user = this.myCookie.getCookie('user');
   }
 
   newOrder() {
-    const products= this.myCookie.getCookie('browser__settings');
+    console.log("Products in order: ", this.myOrder)
     let subtotal = 0;
     let tax = 6; 
 
-    products.forEach( singleProduct => {
+    this.myOrder.forEach( singleProduct => {
       subtotal += singleProduct.price * singleProduct.repeat;
     });
 
     const order = {
       userId: this.myCookie.getCookie('user')._id,
-      products: products,
+      products: this.myOrder,
       tax: tax,
       subtotal: subtotal,
       taxAmount: subtotal * tax / 100,
       total: subtotal + (subtotal * tax / 100)
     }
 
+    console.log("Order: ", order)
+
     this.myOrders.createOrder(order)
       .subscribe(
-        order => {this.myRouter.navigate(["history"]), this.myCart.showCart()},
+        order => {this.myCart.showCart(), this.orderInfo = order, this.myCookie.deleteCookie('browser__settings');},
         err => console.log(err)
       );
-
-    this.myCookie.deleteCookie('browser__settings');
   }
+    // this.myRouter.navigate(["category"])
 
 }
