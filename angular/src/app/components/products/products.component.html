@@ -7,17 +7,19 @@
 <div class="row">
   <div *ngFor="let singleProduct of products | searchByCategory: categoryFromParent |searchByName: filter" class="col-md-5">
     <div class="card">
-      <h4>{{singleProduct.name}}</h4>
-      <h5>{{singleProduct.category}}</h5>
-      <img class="image" [src]="singleProduct.picturePath">
-      <strong>{{singleProduct.price}}</strong>
+      <div (click)="singleProductView(singleProduct)" data-toggle="modal" data-target="#singleProductModal">
+        <h4>{{singleProduct.name}}</h4>
+        <h5>{{singleProduct.category}}</h5>
+        <img class="image" [src]="singleProduct.picturePath">
+        <strong>{{singleProduct.price}}</strong>
+      </div>
       <button (click)="addCookie(singleProduct)">Add to Cart</button>
-      <h2>{{role}}</h2>
       <div *ngIf="user.role === 'ADMIN'">
         <button (click)="deleteProduct(singleProduct._id)">Delete</button>
-        <button type="button" (click)="fillForm(singleProduct._id)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Update</button>
+        <button type="button" (click)="fillForm(singleProduct)" class="btn btn-primary" data-toggle="modal" data-target="#updateProductModal">Update</button>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Update Modal Start -->
+        <div class="modal fade" id="updateProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -53,6 +55,33 @@
             </div>
           </div>
         </div>
+        <!-- Update Modal End -->
+
+        <div class="modal fade" id="singleProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabelForProduct">{{productInfoForModal.name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h2>{{productInfoForModal.name}}</h2>
+                <img class="image" [src]="productInfoForModal.picturePath">
+                <strong>Price: ${{productInfoForModal.price}}</strong>
+                <h4>Description:</h4>
+                <p>{{productInfoForModal.description}}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addCookie(singleProduct)">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Product View Modal Start -->
       </div>
     </div>
   </div>
