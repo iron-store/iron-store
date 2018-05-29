@@ -14,6 +14,7 @@ export class CookieService {
     for (let i: number = 0; i < caLen; i += 1) {
       c = ca[i].replace(/^\s+/g, '');
       if (c.indexOf(cookieName) === 0) {
+        console.log("from the cookie file: ", JSON.parse(c.substring(cookieName.length, c.length)))
         return JSON.parse(c.substring(cookieName.length, c.length));
       }
     }
