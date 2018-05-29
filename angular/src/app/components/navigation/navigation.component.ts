@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/auth.service';
+import { CookieService } from '../../services/cookie.service';
 
 @Component({
   selector: 'app-navigation',
@@ -8,8 +9,11 @@ import { SessionService } from '../../services/auth.service';
 })
 export class NavigationComponent implements OnInit {
 
+  user: Object = {role: ""};
+
   constructor(
     private mySession: SessionService,
+    private myCookies: CookieService
   ) { }
 
   logOut() {
@@ -17,6 +21,7 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.myCookies.getCookie("user");
   }
 
 }

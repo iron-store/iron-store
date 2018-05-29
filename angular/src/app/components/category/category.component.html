@@ -3,16 +3,17 @@
     <div class="col-md-4">
       <ul>
         <li>
-          <button (click)="passCategory('')" type="button" class="btn btn-link">All Products</button>
+          <button (click)="passCategory('')" type="button" >All Products</button>
         </li>
         <div *ngFor="let category of categories">
           <div *ngIf="!category.parent">
             <li>
-              <button (click)="showSubCategories(category)" type="button" class="btn btn-link">{{category.name}}
+              <button (click)="showSubCategories(category)" type="button">{{category.name}}
                 <i class="fas fa-angle-down"></i>
               </button>
-              <button *ngIf="user.role === 'ADMIN'" type="button" class="btn btn-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+              <button *ngIf="user.role === 'ADMIN'" type="button" class="btn btn-link  dropdown-toggle-split" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-angle-double-down"></i>
                 <span class="sr-only">Toggle Dropright</span>
               </button>
               <div class="dropdown-menu">
@@ -23,9 +24,10 @@
             <div *ngFor="let child of category.children">
               <div *ngIf="category.clicked">
                 <li class="child">
-                  <button type="button" class="btn btn-link" (click)="passCategory(child.name)">{{child.name}}</button>
-                  <button *ngIf="user.role === 'ADMIN'" type="button" class="btn btn-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                  <button type="button"  (click)="passCategory(child.name)">{{child.name}}</button>
+                  <button *ngIf="user.role === 'ADMIN'" type="button" class="btn btn-link  dropdown-toggle-split" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-angle-double-down"></i>
                     <span class="sr-only">Toggle Dropright</span>
                   </button>
                   <div class="dropdown-menu">

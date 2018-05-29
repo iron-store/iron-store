@@ -2,6 +2,16 @@ li {
     list-style-type: none;
 }
 
+button {
+    color: #333333;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
 .child {
     padding-top: 10px;
     padding-left: 25px;
