@@ -104,7 +104,10 @@ export class CategoryComponent implements OnInit {
   }
 
   passCategory(categoryName) {
-    this.category = categoryName;
+    if (categoryName === "")
+      this.category = ""
+    else
+      this.category = categoryName;
   }
 
 }
