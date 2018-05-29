@@ -13,10 +13,10 @@
         <img class="image" [src]="singleProduct.picturePath">
         <strong>{{singleProduct.price}}</strong>
       </div>
-      <button (click)="addCookie(singleProduct)">Add to Cart</button>
+      <button (click)="addCookie(singleProduct)" >Add to Cart</button>
       <div *ngIf="user.role === 'ADMIN'">
-        <button (click)="deleteProduct(singleProduct._id)">Delete</button>
-        <button type="button" (click)="fillForm(singleProduct)" class="btn btn-primary" data-toggle="modal" data-target="#updateProductModal">Update</button>
+        <button (click)="deleteProduct(singleProduct._id)" type="button" class="btn btn-danger">Delete</button>
+        <button (click)="fillForm(singleProduct)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateProductModal">Update</button>
 
         <!-- Update Modal Start -->
         <div class="modal fade" id="updateProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
