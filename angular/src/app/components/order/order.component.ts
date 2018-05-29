@@ -3,6 +3,7 @@ import { OrderService } from '../../services/order.service';
 import { CookieService } from '../../services/cookie.service';
 import { SessionService } from '../../services/auth.service';
 import { CartComponent } from '../cart/cart.component';
+import {  ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +18,7 @@ export class OrderComponent implements OnInit {
     private myCookie: CookieService,
     private mySession: SessionService,
     private myCart: CartComponent,
+    private myProducts: ProductService,
     private myRouter: Router
   ) { }
 
@@ -27,9 +29,9 @@ export class OrderComponent implements OnInit {
   }
 
   newOrder() {
-    const products = this.myCookie.getCookie('browser__settings');
+    const products= this.myCookie.getCookie('browser__settings');
     let subtotal = 0;
-    let tax = 6;
+    let tax = 6; 
 
     products.forEach( singleProduct => {
       subtotal += singleProduct.price * singleProduct.repeat;

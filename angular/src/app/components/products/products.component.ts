@@ -42,18 +42,17 @@ export class ProductsComponent implements OnInit {
       );
   }
 
-  addCookie(product: any): void {
-    console.log('product: ', product);
+  addCookie(passProduct: any): void {
     // browser__setttings??? You must think you're so cute
-
+    let product = Object.assign({}, passProduct);
+    delete product.picturePath;
     if (!this.myCookies.getCookie('browser__settings')) {
       product.repeat = 1;
       this.myCookies.setCookie('browser__settings', [product], 1)
     }
 
     else {
-      console.log(this.myCookies.getCookie('browser__settings'))
-      const newCookieValue = this.myCookies.getCookie('browser__settings');
+      let newCookieValue = this.myCookies.getCookie('browser__settings');
       for (let i = 0; i < newCookieValue.length; i++) {
         if (product._id === newCookieValue[i]._id) {
           newCookieValue[i].repeat++;
@@ -64,6 +63,7 @@ export class ProductsComponent implements OnInit {
       product.repeat = 1;
       newCookieValue.push(product);
       this.myCookies.setCookie('browser__settings', newCookieValue, 1);
+      this.getProducts()
       console.log(this.myCookies.getCookie('browser__settings'));
     }
   }
