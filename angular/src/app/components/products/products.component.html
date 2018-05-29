@@ -3,11 +3,12 @@
   <input type="text" [(ngModel)]="filter">
 </div>
 <br>
-
+<h2>{{categoryFromParent}}</h2>
 <div class="row">
-  <div *ngFor="let singleProduct of products | searchByName: filter" class="col-md-5">
+  <div *ngFor="let singleProduct of products | searchByCategory: categoryFromParent |searchByName: filter" class="col-md-5">
     <div class="card">
       <h4>{{singleProduct.name}}</h4>
+      <h5>{{singleProduct.category}}</h5>
       <img class="image" [src]="singleProduct.picturePath">
       <strong>{{singleProduct.price}}</strong>
       <button (click)="addCookie(singleProduct)">Add to Cart</button>

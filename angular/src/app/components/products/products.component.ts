@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ProductService } from '../../services/product.service';
 import { CategoryService } from '../../services/category.service';
@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
   updateInfo: Object = {};
   updateCategoryInfo: Object = {};
   filter: string;
+  @Input() categoryFromParent: string = "";
 
   constructor(
     private myProducts: ProductService,
@@ -26,18 +27,30 @@ export class ProductsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.getAllProducts();
+    this.getProducts();
     if (!this.myCookies.getCookie("user"))
       this.router.navigate(["login"]);
     this.user = this.myCookies.getCookie("user");
   }
 
-  getAllProducts(): void {
-    this.myProducts.getAllProducts()
-      .subscribe(
-        products => { this.products = products; },
-        err => console.log(err)
-      );
+  getProducts(): void {
+    console.log("Inside of getProducts");
+    if (!this.categoryFromParent) {
+      console.log("no category pass: ", this.categoryFromParent);
+      this.myProducts.getAllProducts()
+        .subscribe(
+          products => { this.products = products; },
+          err => console.log(err)
+        );
+    }
+    else {
+      console.log("category pass: ", this.categoryFromParent);
+      this.myProducts.getProductsByCategory(this.categoryFromParent)
+        .subscribe(
+          products => { this.products = products; },
+          err => console.log(err)
+        )
+    }
   }
 
   addCookie(product: any): void {
@@ -67,7 +80,7 @@ export class ProductsComponent implements OnInit {
   deleteProduct(productId: string): void {
     this.myProducts.deleteProduct(productId)
       .subscribe(
-        deletedProduct => this.getAllProducts(),
+        deletedProduct => this.getProducts(),
         err => console.log(err)
       )
   }
@@ -75,7 +88,7 @@ export class ProductsComponent implements OnInit {
   updateProduct(productId: string): void {
     this.myProducts.updateProduct(productId, this.updateInfo)
       .subscribe(
-        res => { this.getAllProducts(), this.modalInfo = {} },
+        res => { this.getProducts(), this.modalInfo = {} },
         err => console.log(err)
       )
   }
