@@ -58,11 +58,11 @@ export class CartComponent implements OnInit {
 
     this.myCookie.getCookie('browser__settings').forEach(product => {
       subtotal += product.price * product.repeat;
-    })
+    });
     taxAmount = subtotal * tax / 100;
     total = subtotal + taxAmount;
 
-    this.orderInfo = {subtotal, tax, taxAmount, total}
+    this.orderInfo = {subtotal, tax, taxAmount, total};
   }
 
 }

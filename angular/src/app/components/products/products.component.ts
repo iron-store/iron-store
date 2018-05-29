@@ -43,7 +43,9 @@ export class ProductsComponent implements OnInit {
   }
 
   addCookie(product: any): void {
+    console.log('product: ', product);
     // browser__setttings??? You must think you're so cute
+
     if (!this.myCookies.getCookie('browser__settings')) {
       product.repeat = 1;
       this.myCookies.setCookie('browser__settings', [product], 1)
