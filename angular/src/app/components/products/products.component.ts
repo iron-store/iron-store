@@ -29,8 +29,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-    if (!this.myCookies.getCookie("user"))
-      this.router.navigate(["login"]);
     this.user = this.myCookies.getCookie("user");
   }
 
