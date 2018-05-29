@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
 import { CookieService } from '../../services/cookie.service';
+import { ProductsComponent } from '../products/products.component';
 
 @Component({
   selector: 'app-category',
@@ -12,12 +13,14 @@ export class CategoryComponent implements OnInit {
 
   categories: [Object];
   user: Object;
-  updateForm: Object = {name: ""};
+  updateForm: Object = { name: "" };
+  category: string = "";
 
   constructor(
     private myCategories: CategoryService,
     private myProductsService: ProductService,
-    private myCookies: CookieService) { }
+    private myCookies: CookieService,
+    private myProductsComponent: ProductsComponent) { }
 
   ngOnInit() {
     this.showCategories();
@@ -29,8 +32,7 @@ export class CategoryComponent implements OnInit {
       .subscribe(
         allCategories => {
           this.addChildren(allCategories),
-            this.categories = allCategories,
-            console.log('Categories: ', this.categories);
+            this.categories = allCategories
         },
         err => console.log(err)
       );
@@ -93,12 +95,16 @@ export class CategoryComponent implements OnInit {
       )
   }
 
-  updateCategory(updatedCategory){
+  updateCategory(updatedCategory) {
     this.myCategories.updateCategory(updatedCategory._id, updatedCategory)
-    .subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    )
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      )
+  }
+
+  passCategory(categoryName) {
+    this.category = categoryName;
   }
 
 }

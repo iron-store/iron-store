@@ -28,6 +28,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersInfoComponent } from './components/users-info/users-info.component';
 
 import { SearchPipe } from './pipe/search.pipe'
+import { FilterByCategoryPipe } from './pipe/categoryFilter.pipe';
 
 // may need to delete
 import { PaypallButtonsComponent } from './components/paypall-buttons/paypall-buttons.component';
@@ -68,7 +69,8 @@ const routes: Routes = [
     PaypallButtonsComponent,
     UsersInfoComponent,
     SignupComponent,
-    SearchPipe
+    SearchPipe,
+    FilterByCategoryPipe
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,8 @@ const routes: Routes = [
     ProductService,
     CategoryService,
     OrderService,
-    CookieService
+    CookieService,
+    ProductsComponent
   ],
   bootstrap: [AppComponent]
 })

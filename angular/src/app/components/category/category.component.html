@@ -17,7 +17,7 @@
           <div *ngFor="let child of category.children">
             <div *ngIf="category.clicked">
               <li class="child">
-                <button type="button" class="btn btn-primary">{{child.name}}</button>
+                <button type="button" class="btn btn-primary" (click)="passCategory(child.name)">{{child.name}}</button>
                 <button *ngIf="user.role === 'ADMIN'" type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span class="sr-only">Toggle Dropright</span>
@@ -60,6 +60,6 @@
 
       </ul>
     </div>
-    <app-products class="col-md-8"></app-products>
+    <app-products class="col-md-8"  categoryFromParent={{category}}></app-products>
   </div>
 </div>
