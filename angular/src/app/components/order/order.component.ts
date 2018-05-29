@@ -3,6 +3,7 @@ import { OrderService } from '../../services/order.service';
 import { CookieService } from '../../services/cookie.service';
 import { SessionService } from '../../services/auth.service';
 import { CartComponent } from '../cart/cart.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -15,7 +16,8 @@ export class OrderComponent implements OnInit {
     private myOrders: OrderService,
     private myCookie: CookieService,
     private mySession: SessionService,
-    private myCart: CartComponent
+    private myCart: CartComponent,
+    private myRouter: Router
   ) { }
 
   ngOnInit() {
@@ -44,7 +46,7 @@ export class OrderComponent implements OnInit {
 
     this.myOrders.createOrder(order)
       .subscribe(
-        order => this.myCart.showCart(),
+        order => {this.myRouter.navigate(["history"]), this.myCart.showCart()},
         err => console.log(err)
       );
 
