@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
   updateInfo: Object = {};
   updateCategoryInfo: Object = {};
   filter: string;
+  productInfoForModal: Object = {name: "", price: 0, picturePath: "", description: ""};
   @Input() categoryFromParent: string = "";
 
   constructor(
@@ -34,23 +35,11 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts(): void {
-    console.log("Inside of getProducts");
-    if (!this.categoryFromParent) {
-      console.log("no category pass: ", this.categoryFromParent);
-      this.myProducts.getAllProducts()
-        .subscribe(
-          products => { this.products = products; },
-          err => console.log(err)
-        );
-    }
-    else {
-      console.log("category pass: ", this.categoryFromParent);
-      this.myProducts.getProductsByCategory(this.categoryFromParent)
-        .subscribe(
-          products => { this.products = products; },
-          err => console.log(err)
-        )
-    }
+    this.myProducts.getAllProducts()
+      .subscribe(
+        products => { this.products = products; },
+        err => console.log(err)
+      );
   }
 
   addCookie(product: any): void {
@@ -93,11 +82,12 @@ export class ProductsComponent implements OnInit {
       )
   }
 
-  fillForm(productId: string): void {
-    this.myProducts.getOneProduct(productId)
-      .subscribe(
-        product => this.modalInfo = product,
-        err => console.log(err)
-      )
+  fillForm(product: Object): void {
+    this.modalInfo = product;
+  }
+
+  singleProductView(product: Object){
+    this.productInfoForModal = product;
+    console.log(this.productInfoForModal);
   }
 }
