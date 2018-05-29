@@ -1,65 +1,72 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4">
-      <ul *ngFor="let category of categories">
-        <div *ngIf="!category.parent">
-          <li>
-            <button (click)="showSubCategories(category)" type="button" class="btn btn-primary">{{category.name}}</button>
-            <button *ngIf="user.role === 'ADMIN'" type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <span class="sr-only">Toggle Dropright</span>
-            </button>
-            <div class="dropdown-menu">
-              <a (click)="updateForm = category" class="dropdown-item" data-toggle="modal" data-target="#updateModal">Update</a>
-              <a (click)="deleteCategory(category._id)" class="dropdown-item">Delete</a>
-            </div>
-          </li>
-          <div *ngFor="let child of category.children">
-            <div *ngIf="category.clicked">
-              <li class="child">
-                <button type="button" class="btn btn-primary" (click)="passCategory(child.name)">{{child.name}}</button>
-                <button *ngIf="user.role === 'ADMIN'" type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <span class="sr-only">Toggle Dropright</span>
-                </button>
-                <div class="dropdown-menu">
-                  <a (click)="updateForm = child" class="dropdown-item" data-toggle="modal" data-target="#updateModal">Update</a>
-                  <a (click)="deleteCategory(child._id)" class="dropdown-item">Delete</a>
-                </div>
-              </li>
-            </div>
-          </div>
-        </div>
-
-        <!-- Update Modal Start-->
-        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Update Category</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+      <ul>
+        <li>
+          <button (click)="passCategory('')" type="button" class="btn btn-link">All Products</button>
+        </li>
+        <div *ngFor="let category of categories">
+          <div *ngIf="!category.parent">
+            <li>
+              <button (click)="showSubCategories(category)" type="button" class="btn btn-link">{{category.name}}
+                <i class="fas fa-angle-down"></i>
+              </button>
+              <button *ngIf="user.role === 'ADMIN'" type="button" class="btn btn-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropright</span>
+              </button>
+              <div class="dropdown-menu">
+                <a (click)="updateForm = category" class="dropdown-item" data-toggle="modal" data-target="#updateModal">Update</a>
+                <a (click)="deleteCategory(category._id)" class="dropdown-item">Delete</a>
               </div>
-              <div class="modal-body">
-                <form>
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Name:</label>
-                    <input type="text" class="form-control" name="name" [(ngModel)]="updateForm.name" [value]="updateForm.name">
+            </li>
+            <div *ngFor="let child of category.children">
+              <div *ngIf="category.clicked">
+                <li class="child">
+                  <button type="button" class="btn btn-link" (click)="passCategory(child.name)">{{child.name}}</button>
+                  <button *ngIf="user.role === 'ADMIN'" type="button" class="btn btn-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropright</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a (click)="updateForm = child" class="dropdown-item" data-toggle="modal" data-target="#updateModal">Update</a>
+                    <a (click)="deleteCategory(child._id)" class="dropdown-item">Delete</a>
                   </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateCategory(updateForm)">Update</button>
+                </li>
               </div>
             </div>
           </div>
-        </div>
-        <!-- Update Modal End -->
 
+          <!-- Update Modal Start-->
+          <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalLabel">Update Category</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Name:</label>
+                      <input type="text" class="form-control" name="name" [(ngModel)]="updateForm.name" [value]="updateForm.name">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateCategory(updateForm)">Update</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Update Modal End -->
+
+        </div>
       </ul>
     </div>
-    <app-products class="col-md-8"  categoryFromParent={{category}}></app-products>
+    <app-products class="col-md-8" categoryFromParent={{category}}></app-products>
   </div>
 </div>
