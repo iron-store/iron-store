@@ -44,6 +44,10 @@ export class ProductsComponent implements OnInit {
     // browser__setttings??? You must think you're so cute
     let product = Object.assign({}, passProduct);
     delete product.picturePath;
+    delete product.updated_at;
+    delete product.created_at;
+    delete product._id;
+    delete product.__v;
     if (!this.myCookies.getCookie('browser__settings')) {
       product.repeat = 1;
       this.myCookies.setCookie('browser__settings', [product], 1)
@@ -52,7 +56,7 @@ export class ProductsComponent implements OnInit {
     else {
       let newCookieValue = this.myCookies.getCookie('browser__settings');
       for (let i = 0; i < newCookieValue.length; i++) {
-        if (product._id === newCookieValue[i]._id) {
+        if (product === newCookieValue[i]) {
           newCookieValue[i].repeat++;
           this.myCookies.setCookie('browser__settings', newCookieValue, 1);
           return;
