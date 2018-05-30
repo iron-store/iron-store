@@ -1,19 +1,89 @@
-<div *ngIf="!history">
- <h2>You'r history is empty :)</h2>
+
+
+
+
+<!-- otton testing form -->
+<h1 class="text-center">Order History</h1>
+<hr style="height: 1px; background-color: #eee;">
+<br><br>
+<h2>Hello {{username}}</h2>
+
+<div *ngIf="history === undefined || history.length === 0">
+  <h2>Your history is empty :)</h2>
 </div>
 
+
 <div *ngFor="let order of history">
-    <h3>{{order.created_at | date:'fullDate'}}</h3>
-  <div *ngFor="let product of order.products">
-    <h1>Name: {{product.name}}</h1>
-    <h4>Count: {{product.repeat}}</h4>
-    <p>Description: {{product.description}}</p>
-    <strong>Price: {{product.price}}</strong>
+
+  <div class="container">
+    <div class="row">
+      
+      <div class="receipt-main col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+        <div class="row">
+          <div class="col-xs-4 col-sm-4 col-md-4">
+            <h2>Receipt</h2>
+          </div>
+        </div>
+    
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of order.products">
+                  <td class="col-md-9">{{product.name}} <span class="light-grey"> x {{product.repeat}}</span></td>
+                  <td class="col-md-3"> {{product.price}} </td>
+              </tr>
+
+              <tr>
+                <td class="text-right">
+                  <p>
+                    <strong>Subtotal: </strong>
+                  </p>
+                  <p>
+                    <strong>Tax-percentage: </strong>
+                  </p>
+                  <p>
+                    <strong>Tax-amount: </strong>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    <strong> ${{order.subtotal}}.00</strong>
+                  </p>
+                  <p>
+                    <strong> {{order.tax}}%</strong>
+                  </p>
+                  <p>
+                    <strong> {{order.taxAmount}}</strong>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-right"><h2><strong>Total: </strong></h2></td>
+                <td class="text-left"><h2><strong> ${{order.total}}</strong></h2></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    
+        <div class="row">
+          <div class="receipt-header receipt-header-mid receipt-footer">
+            <div class="col-xs-8 col-sm-8 col-md-8 text-left">
+              <div class="receipt-right">
+                <p><b>Date :</b> {{order.created_at | date:'fullDate'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+      </div>    
+    </div>
+    <hr style="height: 1px; background-color: #eee;">
   </div>
-  <br>
-  <h5>Subtotal: ${{order.subtotal}}.00</h5>
-  <h5>Tax-percentage: {{order.tax}}%</h5>
-  <h5>Tax-amount: {{order.taxAmount}}</h5>
-  <h5>Total: ${{order.total}}</h5>
-  <hr style="height: 5px; background-color: black;">
+
 </div>

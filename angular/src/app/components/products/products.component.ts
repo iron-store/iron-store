@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { ProductService } from '../../services/product.service';
 import { CategoryService } from '../../services/category.service';
 import { CookieService } from '../../services/cookie.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -86,7 +86,7 @@ export class ProductsComponent implements OnInit {
     this.modalInfo = product;
   }
 
-  singleProductView(product: Object){
+  singleProductView(product: Object) {
     this.productInfoForModal = product;
     console.log(this.productInfoForModal);
   }
