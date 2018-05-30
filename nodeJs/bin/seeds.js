@@ -275,9 +275,9 @@ const products = [
   },
   {
     // Meat
-    name: 't-bone',
+    name: 'T-bone',
     price: 4,
-    description: 'One pound t-bone steak',
+    description: 'One pound T-bone steak',
     category: 'Meat',
     picturePath: 'https://res.cloudinary.com/ddibftjux/image/upload/v1527609458/T-Bone.jpg',
   },
