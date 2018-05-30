@@ -15,15 +15,21 @@ export class NavigationComponent implements OnInit {
   constructor(
     private mySession: SessionService,
     private myCookies: CookieService
-  ) { }
+  ) { } 
 
   logOut() {
     this.mySession.logout().subscribe();
   }
 
   ngOnInit() {
-    this.user = this.myCookies.getCookie("user");
-    this.numberofItems = this.myCookies.getCookie('browser__settings').length;
+    this.myCookies.userCookie
+    .subscribe(
+      res => { if (res !== {}){this.user = res, console.log("Nav User", this.user)}}
+    )
+    this.myCookies.productCookie
+    .subscribe(
+      res => {this.numberofItems = res, console.log("Nav Product", this.numberofItems)}
+    )
   }
 
 }
