@@ -39,8 +39,8 @@ export class CookieService {
     else if ( name === 'browser__settings')
     this.productCookie.next(value);
 
-    console.log("User in service: ", this.userCookie.value);
-    console.log("Products in service: ",this.productCookie.value.length);
+    console.log("User in service: ", this.userCookie);
+    console.log("Products in service: ",this.productCookie);
 
     if (typeof (value) !== "string")
       value = JSON.stringify(value);
