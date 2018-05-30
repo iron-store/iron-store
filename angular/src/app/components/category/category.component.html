@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3 categories">
       <ul>
         <li>
-          <button (click)="passCategory('')" type="button" >All Products</button>
+          <button (click)="passCategory('')" type="button" id="all-products-button">All Products</button>
         </li>
         <div *ngFor="let category of categories">
           <div *ngIf="!category.parent">
             <li>
-              <button (click)="showSubCategories(category)" type="button">{{category.name}}
+              <button (click)="showSubCategories(category)" type="button" class="single-category">{{category.name}}
                 <i class="fas fa-angle-down"></i>
               </button>
               <button *ngIf="user.role === 'ADMIN'" type="button" class="btn btn-link  dropdown-toggle-split" data-toggle="dropdown"
@@ -69,6 +69,6 @@
         </div>
       </ul>
     </div>
-    <app-products class="col-md-8" categoryFromParent={{category}}></app-products>
+    <app-products class="col-md-9" categoryFromParent={{category}}></app-products>
   </div>
 </div>

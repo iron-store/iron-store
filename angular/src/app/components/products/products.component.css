@@ -5,3 +5,26 @@ card {
     height: 20vw;
     width: 100%;
 }
+
+.card{
+    -moz-box-shadow:    0px 0px 3px 4px #ccc;
+    -webkit-box-shadow: 0px 0px 3px 4px #ccc;
+    box-shadow:         0px 0px 3px 4px #ccc;
+    margin-bottom: 5vh; 
+}
+
+.light-grey{
+    color: #aaa;
+}
+
+.info{
+    padding: 5px; 
+}
+
+.add-product{
+    width: 100%;
+}
+.admin-buttons{
+    width: 48%;
+    margin: 5% 1%;
+}

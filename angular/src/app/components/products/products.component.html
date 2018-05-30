@@ -1,22 +1,27 @@
-<div>
-  <h3>Search:</h3>
-  <input type="text" [(ngModel)]="filter">
+<div class="offset-md-3 col-md-5">
+  <h3 class="offset-md-4">Search:</h3>
+  <input type="text" class="form-control" [(ngModel)]="filter">
 </div>
 <br>
 <h2>{{categoryFromParent}}</h2>
 <div class="row">
-  <div *ngFor="let singleProduct of products | searchByCategory: categoryFromParent |searchByName: filter" class="col-md-5">
+  <div *ngFor="let singleProduct of products | searchByCategory: categoryFromParent |searchByName: filter" class="col-xm-3 col-sm-5 col-md-4">
     <div class="card">
       <div (click)="singleProductView(singleProduct)" data-toggle="modal" data-target="#singleProductModal">
-        <h4>{{singleProduct.name}}</h4>
-        <h5>{{singleProduct.category}}</h5>
         <img class="image" [src]="singleProduct.picturePath">
-        <strong>{{singleProduct.price}}</strong>
-      </div>
-      <button (click)="addCookie(singleProduct)">Add to Cart</button>
-      <div *ngIf="user.role === 'ADMIN'">
-        <button (click)="deleteProduct(singleProduct._id)" type="button" class="btn btn-danger">Delete</button>
-        <button (click)="fillForm(singleProduct)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateProductModal">Update</button>
+        <div class="info">
+          <h5>{{singleProduct.name}}</h5>
+          <h6 class="light-grey">{{singleProduct.category}}</h6>
+          <p class="light-grey">${{singleProduct.price}}</p>
+          <button (click)="addCookie(singleProduct)" type="button" class="btn btn-secondary add-product">Add to Cart
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+          <!-- <a (click)="addCookie(singleProduct)"><i class="fas fa-shopping-cart"></i>Add to Cart</a> -->
+          <div *ngIf="user.role === 'ADMIN'">
+            <button (click)="deleteProduct(singleProduct._id)" type="button" class="btn btn-danger admin-buttons">Delete</button>
+            <button (click)="fillForm(singleProduct)" type="button" class="btn btn-primary admin-buttons" data-toggle="modal" data-target="#updateProductModal">Update</button>
+          </div>
+        </div>
       </div>
       <!-- Update Modal Start -->
       <div class="modal fade" id="updateProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,7 +67,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabelForProduct">{{productInfoForModal.name}}</h5>
+              <h5 class="modal-title" id="exampleModalLabelForProduct">Details</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -70,13 +75,15 @@
             <div class="modal-body">
               <h2>{{productInfoForModal.name}}</h2>
               <img class="image" [src]="productInfoForModal.picturePath">
-              <strong>Price: ${{productInfoForModal.price}}</strong>
+              <h6>Price: ${{productInfoForModal.price}}</h6>
               <h4>Description:</h4>
               <p>{{productInfoForModal.description}}</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addCookie(productInfoForModal)">Add to Cart</button>
+              <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="addCookie(productInfoForModal)">Add to Cart
+                <i class="fas fa-shopping-cart"></i>
+              </button>
             </div>
           </div>
         </div>
