@@ -7,20 +7,20 @@ const bcryptSalt  = 10;
 
 router.get('/users', (req, res, next) => {
     User.find()
-    .then( users => res.json(users))
-    .catch( err => console.log(err));
+    .then( users => res.status(200).json(users))
+    .catch( err => res.status(500).json(err));
 })
 
 router.get('/user-id/:id', (req, res, next) => {
     User.findById(req.params.id)
-    .then( user => res.json(user))
-    .catch( err => console.log(err));
+    .then( user => res.status(200).json(user))
+    .catch( err => res.status(500).json(err));
 })
 
 router.post('/delete-user/:id', (req, res, next) => {
     User.findByIdAndRemove(req.params.id)
     .then( deletedUser => res.status(200).json(deletedUser))
-    .catch( err => console.log(err));
+    .catch( err => res.status(500).json(err));
 })
 
 router.post("/signup", (req, res, next) => {

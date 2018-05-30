@@ -102,7 +102,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req,res,next) => {
-  res.sendfile(__dirname + 'public/iron-store/index.html')
+  res.sendfile(__dirname + '/public/index.html')
 })
 
 
