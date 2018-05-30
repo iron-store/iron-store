@@ -32,9 +32,9 @@ export class OrderComponent implements OnInit {
   }
 
   newOrder() {
-    console.log("Products in order: ", this.myOrder)
+    console.log('Products in order: ', this.myOrder);
     let subtotal = 0;
-    let tax = 6; 
+    let tax = 6;
 
     this.myOrder.forEach( singleProduct => {
       subtotal += singleProduct.price * singleProduct.repeat;
@@ -49,11 +49,11 @@ export class OrderComponent implements OnInit {
       total: subtotal + (subtotal * tax / 100)
     }
 
-    console.log("Order: ", order)
+    console.log('Order: ', order);
 
     this.myOrders.createOrder(order)
       .subscribe(
-        order => {this.myCart.showCart(), this.orderInfo = order, this.myCookie.deleteCookie('browser__settings');},
+        order => {this.myCart.showCart(), this.orderInfo = order, this.myCookie.deleteCookie('browser__settings'); },
         err => console.log(err)
       );
   }
