@@ -421,7 +421,7 @@ const products = [
     // SciFi
     name: 'Star Wars',
     price: 11,
-    description: 'Don\'get exited, It\'s one of the prequels.',
+    description: 'Don\'t get exited, It\'s one of the prequels.',
     category: 'SciFi',
     picturePath: 'https://res.cloudinary.com/ddibftjux/image/upload/v1527610752/Star_Wars.jpg',
   },
