@@ -9,13 +9,13 @@ import { CookieService } from '../../services/cookie.service';
 })
 export class NavigationComponent implements OnInit {
 
-  user: Object = {role: ""};
-  numberofItems: number;
-
   constructor(
     private mySession: SessionService,
     private myCookies: CookieService
   ) { } 
+
+  user: any = this.myCookies.getCookie('user');
+  numberofItems: any = this.myCookies.getCookie('browser__settings').length;
 
   logOut() {
     this.mySession.logout().subscribe();
@@ -24,11 +24,11 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     this.myCookies.userCookie
     .subscribe(
-      res => { if (res !== {}){this.user = res, console.log("Nav User", this.user)}}
+      res => { this.user = res, console.log("Nav User", this.user)}
     )
     this.myCookies.productCookie
     .subscribe(
-      res => {this.numberofItems = res, console.log("Nav Product", this.numberofItems)}
+      res => {this.numberofItems = res.length, console.log("Nav Product", this.numberofItems)}
     )
   }
 
