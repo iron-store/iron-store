@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core'
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
     name: 'searchByName'
@@ -6,13 +6,14 @@ import { Pipe, PipeTransform } from '@angular/core'
 
 export class SearchPipe implements PipeTransform {
     transform(input: Array<any>, searchText: string, arg: any[]): any {
-        if (!searchText)
+        if (!searchText) {
             return input;
+        }
 
         searchText = searchText.toLowerCase();
 
         return input.filter(found => {
             return found.name.toLowerCase().includes(searchText);
-        })
+        });
     }
 }
