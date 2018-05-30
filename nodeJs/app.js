@@ -101,6 +101,10 @@ passport.use(new LocalStrategy({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req,res,next) => {
+  res.sendfile(__dirname + 'public/iron-store/index.html')
+})
+
 
 const index = require('./routes/index');
 const auth = require('./routes/authRoutes');
@@ -114,9 +118,6 @@ app.use('/category', category);
 app.use('/order', order);
 
 
-app.use((req,res,next) => {
-  res.sendfile(__dirname + './public/iron-store/index.html')
-})
 
 
 module.exports = app;
