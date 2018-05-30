@@ -10,6 +10,7 @@ import { CookieService } from '../../services/cookie.service';
 export class NavigationComponent implements OnInit {
 
   user: Object = {role: ""};
+  numberofItems: number;
 
   constructor(
     private mySession: SessionService,
@@ -22,6 +23,7 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.myCookies.getCookie("user");
+    this.numberofItems = this.myCookies.getCookie('browser__settings').length;
   }
 
 }
