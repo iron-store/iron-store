@@ -85,6 +85,7 @@ const routes: Routes = [
     CategoryService,
     OrderService,
     CookieService,
+    NavigationComponent,
     ProductsComponent
   ],
   bootstrap: [AppComponent]

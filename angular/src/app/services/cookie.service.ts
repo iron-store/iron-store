@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class CookieService {
+
+  userCookie: BehaviorSubject<any> = new BehaviorSubject({});
+  productCookie: BehaviorSubject<any> = new BehaviorSubject({});
 
   constructor() { }
 
@@ -21,11 +25,24 @@ export class CookieService {
   }
 
   public deleteCookie(name) {
+    if (name === 'user')
+      this.userCookie.next({});
+    else
+      this.productCookie.next({});
     this.setCookie(name, '', -1);
   }
 
   public setCookie(name: string, value: any, expireDays: number, path: string = '') {
-    if ( typeof(value) !== "string")
+    if (name === 'user')
+      this.userCookie.next(value);
+    
+    else if ( name === 'browser__settings')
+    this.productCookie.next(value);
+
+    console.log("User in service: ", this.userCookie.value);
+    console.log("Products in service: ",this.productCookie.value.length);
+
+    if (typeof (value) !== "string")
       value = JSON.stringify(value);
     let d: Date = new Date();
     d.setTime(d.getTime() + expireDays * 24 * 60 * 60 * 1000);
