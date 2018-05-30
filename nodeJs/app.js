@@ -19,7 +19,8 @@ const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/iron-store', { useMongoClient: true })
+  // .connect('mongodb://localhost/iron-store', { useMongoClient: true })
+  .connect('process.env.MONGODB_URI', { useMongoClient: true })
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -101,6 +102,9 @@ passport.use(new LocalStrategy({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req,res,next) => {
+  res.sendfile(__dirname + 'public/iron-store/index.html')
+})
 
 const index = require('./routes/index');
 const auth = require('./routes/authRoutes');
