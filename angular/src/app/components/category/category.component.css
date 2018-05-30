@@ -12,6 +12,18 @@ button {
     outline:none;
 }
 
+.single-category{
+    margin-top: 10%; 
+}
+
+.categories{
+    margin-top: 3%;
+}
+
+#all-products-button{
+    padding-left: 0;
+}
+
 .child {
     padding-top: 10px;
     padding-left: 25px;
