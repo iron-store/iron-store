@@ -13,7 +13,7 @@ export class ProductService {
     constructor(private myHttp: Http) { }
 
     getAllProducts() {
-        return this.myHttp.get('${environment.backendUrl}/product')
+        return this.myHttp.get(`${environment.backendUrl}/product`)
             .map(products => products.json());
     }
 

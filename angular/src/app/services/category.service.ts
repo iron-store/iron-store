@@ -13,7 +13,7 @@ export class CategoryService {
     constructor (private myHttp: Http) {}
 
     getAllCategory() {
-        return this.myHttp.get('${environment.backendUrl}/category/')
+        return this.myHttp.get(`${environment.backendUrl}/category/`)
         .map ( categories => categories.json() );
     }
 
