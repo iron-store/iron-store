@@ -1,26 +1,41 @@
-<div *ngIf="!cartProducts">
-  <h2>You don't have products in your cart :)</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+          <div *ngIf="!cartProducts">
+            <h2>You don't have products in your cart :)</h2>
+          </div>
+          <h1>Shopping Cart:</h1>
+          <br>
+        </div>
+    </div>
 </div>
+
+
 
 <div *ngIf="cartProducts">
   <div *ngFor="let product of cartProducts" class="container">
     <div class="row">
-      <div class="col-md-6">
-        <h2>{{product.repeat}} X {{product.name}} </h2>
-        <h3>Price: {{product.price * product.repeat | currency}}</h3>
-        <form>
-          <input type="number" class="form-control" name="repeat" [value]="product.repeat" #count>
-          <button type="button" class="btn btn-primary" (click)="updateCount({name: product.name, count: count.value})">Update</button>
-        </form>
-        <button type="button" class="btn btn-danger" (click)="deleteProduct(product.name)">Delete</button>
+      <div class="offset-md-1 col-md-6">
+        <h3>{{product.repeat}} X {{product.name}} </h3>
+        <h4>Price: {{product.price * product.repeat | currency}}</h4>
+          <div class="input-group">
+            <input type="number" class="form-control" name="repeat" [value]="product.repeat" #count>
+            <button type="button" class="btn btn-info" (click)="updateCount({name: product.name, count: count.value})">Update</button>
+            <button type="button" class="btn btn-danger float-right" (click)="deleteProduct(product.name)">Remove All</button>
+          </div>
         <hr>
       </div>
     </div>
   </div>
-  <app-order></app-order>
-  <div>
-      <h3>Subtotal: {{orderInfo.subtotal | currency}}</h3>
-      <h4>Tax Amount: {{orderInfo.taxAmount | currency}}</h4>
-      <h4>Total: {{orderInfo.total | currency}}</h4>
+  <div class="container">
+    <div class="row">
+      <div class="offset-md-1 col-md-6">
+        <h3>Subtotal: {{orderInfo.subtotal | currency}}</h3>
+        <h4>Tax Amount: {{orderInfo.taxAmount | currency}}</h4>
+        <h4>Total: {{orderInfo.total | currency}}</h4>
+        <app-order></app-order>
+        <br><br><br>
+      </div>
     </div>
+  </div>
 </div>
