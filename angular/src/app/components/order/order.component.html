@@ -22,7 +22,7 @@
                 <div *ngFor="let oneProduct of myOrder">
                     <h2>{{oneProduct.name}}</h2>
                     <h4>Number of items: {{oneProduct.repeat}}</h4>
-                    <strong>Price: ${{oneProduct.price}}</strong>
+                    <strong>Price: {{oneProduct.price | currency}}</strong>
                     <hr>
                 </div>
             </div>
@@ -48,9 +48,9 @@
             <div class="modal-body">
                 <h2>Thanks for buying!!!</h2>
                 <hr>
-                <h3>Tax Amount: {{orderInfo.taxAmount}}</h3>
-                <h3>Subtotal: {{orderInfo.subtotal}}</h3>
-                <h3>Total: {{orderInfo.total}}</h3>
+                <h3>Tax Amount: {{orderInfo.taxAmount | currency}}</h3>
+                <h3>Subtotal: {{orderInfo.subtotal | currency}}</h3>
+                <h3>Total: {{orderInfo.total | currency}}</h3>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal" data-target="#reciptModal" [routerLink]="['../category']">Keep Shopping!</button>
