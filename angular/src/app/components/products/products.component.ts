@@ -6,7 +6,6 @@ import { CategoryService } from '../../services/category.service';
 import { SessionService } from '../../services/auth.service';
 import { CookieService } from '../../services/cookie.service';
 import { Router } from '@angular/router';
-import { NavigationComponent } from '../navigation/navigation.component';
 
 @Component({
   selector: 'app-products',
@@ -38,7 +37,18 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-    this.user = this.myCookies.getCookie("user");
+    this.myCookies.userCookie
+      .subscribe(
+        res => {
+          if (!res.username){
+            this.user = this.myCookies.getCookie("user");
+          }
+          else{
+            this.user = res;
+          }
+        },
+        err => console.log(err)
+      )
   }
 
   getProducts(): void {
@@ -51,7 +61,6 @@ export class ProductsComponent implements OnInit {
 
   addCookie(passProduct: any): void {
     // browser__setttings??? You must think you're so cute
-    let navBar = new NavigationComponent(this.mySession, this.myCookies)
 
     let product = Object.assign({}, passProduct);
     delete product.picturePath;
