@@ -26,11 +26,10 @@ export class NavigationComponent implements OnInit {
       .subscribe(
         res => {
           if (!Array.isArray(res)){
-            console.log("empty products", this.myCookies.getCookie('browser__settings').length);
             this.numberofItems = this.myCookies.getCookie('browser__settings').length;}
-          else
+          else{
           console.log("with products", res.length);
-            this.numberofItems = res.length;
+            this.numberofItems = res.length;}
         },
         err => console.log(err)
       )
@@ -39,7 +38,7 @@ export class NavigationComponent implements OnInit {
       .subscribe(
         res => {
           if (!res.username){
-            this.user = this.myCookies.getCookie("browser__settings");
+            this.user = this.myCookies.getCookie("user");
           }
           else{
             this.user = res;
