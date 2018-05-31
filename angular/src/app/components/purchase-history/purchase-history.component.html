@@ -1,11 +1,7 @@
 
-
-
-
-<!-- otton testing form -->
 <h1 class="text-center">Order History</h1>
 <hr style="height: 1px; background-color: #eee;">
-<br><br>
+<br>
 <h2 class="text-center">Hello {{username}}</h2>
 
 <div *ngIf="history === undefined || history.length === 0" class="text-center">
@@ -13,8 +9,15 @@
   <h3>Your history is empty :)</h3>
 </div>
 
+<div class="container">
+  <div class="row">
+    <div class="receipt-main col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
 
-<div *ngFor="let order of history">
+<div *ngFor="let order of history | paginate: { itemsPerPage: 3, currentPage: p }">
 
   <div class="container">
     <div class="row">
@@ -37,7 +40,7 @@
             <tbody>
               <tr *ngFor="let product of order.products">
                   <td class="col-md-9">{{product.name}} <span class="light-grey"> x {{product.repeat}}</span></td>
-                  <td class="col-md-3"> {{product.price}} </td>
+                  <td class="col-md-3"> {{product.price * product.repeat | currency}} </td>
               </tr>
 
               <tr>
@@ -54,19 +57,19 @@
                 </td>
                 <td>
                   <p>
-                    <strong> ${{order.subtotal}}.00</strong>
+                    <strong> {{order.subtotal | currency}}</strong>
                   </p>
                   <p>
                     <strong> {{order.tax}}%</strong>
                   </p>
                   <p>
-                    <strong> {{order.taxAmount}}</strong>
+                    <strong> {{order.taxAmount | currency}}</strong>
                   </p>
                 </td>
               </tr>
               <tr>
                 <td class="text-right"><h2><strong>Total: </strong></h2></td>
-                <td class="text-left"><h2><strong> ${{order.total}}</strong></h2></td>
+                <td class="text-left"><h2><strong> {{order.total | currency}}</strong></h2></td>
               </tr>
             </tbody>
           </table>

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { BrowserXhr } from '@angular/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { CustExtBrowserXhr } from './cust-ext-browser-xhr';
 
 import { SessionService } from './services/auth.service';
@@ -75,6 +76,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
+    NgxPaginationModule,
     FormsModule,
     RouterModule.forRoot(routes)
   ],

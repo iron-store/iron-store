@@ -1,14 +1,15 @@
 <div *ngIf="usersSeccion">
+  <h1>Users:</h1>
   <div *ngFor="let user of users">
     <h2>{{user.username}}</h2>
-    <span>{{user.email}}</span>
-    <button type="button" class="btn btn-primary" (click)="userHistory(user._id)">User History</button>
-    <button type="button" class="btn btn-danger" (click)="deleteUser(user._id)">Delete</button>
+    <span>{{user.email}} </span>
+    <button type="button" class="btn btn-info" (click)="userHistory(user._id)" (click)="setUserInfo(user.username, user.email)">User History</button>
+    <!-- <button type="button" class="btn btn-danger" (click)="deleteUser(user._id)">Delete</button> -->
     <hr>
   </div>
 </div>
 
-<div *ngIf="userHistorySeccion">
+<!-- <div *ngIf="userHistorySeccion">
   <div *ngIf="userHistoryArray.length === 0">
     <h2>You'r history is empty :)</h2>
    </div>
@@ -28,4 +29,101 @@
      <h5>Total: ${{order.total}}</h5>
      <hr style="height: 5px; background-color: black;">
    </div>
+</div> -->
+
+
+<div *ngIf="userHistorySeccion">
+  <br>
+  <div *ngIf="userHistoryArray.length === 0">
+    <h2>This user has not purchased anything yet.</h2>
+  </div>
+
+  <div *ngIf="userHistoryArray.length !== 0">
+    <div class="container">
+      <div class="row">
+        <div class="receipt-main col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+          <h2 class="text-center">Full purchase history for:</h2>
+          <h2 class="text-center">{{theUserName}}</h2>
+          <p class="text-center light-grey">{{theEmail}}</p>
+          <br>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let order of userHistoryArray | paginate: { itemsPerPage: 3, currentPage: p }">
+
+    <div class="container">
+      <div class="row">
+        
+        <div class="receipt-main col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+          <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4">
+              <h2>Receipt</h2>
+            </div>
+          </div>
+      
+          <div>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of order.products">
+                    <td class="col-md-9">{{product.name}} <span class="light-grey"> x {{product.repeat}}</span></td>
+                    <td class="col-md-3"> {{product.price * product.repeat | currency}} </td>
+                </tr>
+
+                <tr>
+                  <td class="text-right">
+                    <p>
+                      <strong>Subtotal: </strong>
+                    </p>
+                    <p>
+                      <strong>Tax-percentage: </strong>
+                    </p>
+                    <p>
+                      <strong>Tax-amount: </strong>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      <strong> {{order.subtotal | currency}}</strong>
+                    </p>
+                    <p>
+                      <strong> {{order.tax}}%</strong>
+                    </p>
+                    <p>
+                      <strong> {{order.taxAmount | currency}}</strong>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-right"><h2><strong>Total: </strong></h2></td>
+                  <td class="text-left"><h2><strong> {{order.total | currency}}</strong></h2></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      
+          <div class="row">
+            <div class="receipt-header receipt-header-mid receipt-footer">
+              <div class="col-xs-8 col-sm-8 col-md-8 text-left">
+                <div class="receipt-right">
+                  <p><b>Date :</b> {{order.created_at | date:'fullDate'}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+        </div>    
+      </div>
+      <hr style="height: 1px; background-color: #eee;">
+    </div>
+
+  </div>
 </div>

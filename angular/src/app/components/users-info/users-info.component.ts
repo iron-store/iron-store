@@ -9,6 +9,12 @@ import { OrderService } from '../../services/order.service';
 })
 export class UsersInfoComponent implements OnInit {
 
+  p: number = 1;
+
+  theUserName: string;
+  theEmail: string;
+
+
   users: [Object];
   usersSeccion: boolean = true;
   userHistorySeccion: boolean = false;
@@ -47,6 +53,11 @@ export class UsersInfoComponent implements OnInit {
         orders => this.userHistoryArray = orders,
         err => console.log(err)
       )
+  }
+
+  setUserInfo(aUserName, anEmail): void {
+    this.theUserName = aUserName;
+    this.theEmail = anEmail;
   }
 
 }
