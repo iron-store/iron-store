@@ -18,7 +18,7 @@ export class SessionService {
   }
 
   saveUserCookie(user) {
-    this.myUserCookie.setCookie('user', user._body, 1);
+    this.myUserCookie.setCookie('user', JSON.parse(user._body), 1);
   }
 
   deleteUserCookie() {
