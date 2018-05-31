@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
 
+  p: number = 1;
+
+
   products: [Object];
   user: Object;
   modalInfo: Object = {};

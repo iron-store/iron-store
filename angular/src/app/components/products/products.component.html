@@ -5,7 +5,12 @@
 <br>
 <h2>{{categoryFromParent}}</h2>
 <div class="row">
-  <div *ngFor="let singleProduct of products | searchByCategory: categoryFromParent |searchByName: filter" class="col-xm-3 col-sm-5 col-md-4">
+  <div class="col-md-10 text-center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <br>
+  </div>
+
+  <div *ngFor="let singleProduct of products | searchByCategory: categoryFromParent |searchByName: filter | paginate: { itemsPerPage: 9, currentPage: p }" class="col-xm-3 col-sm-5 col-md-4">
     <div class="card">
       <div (click)="singleProductView(singleProduct)" data-toggle="modal" data-target="#singleProductModal">
         <img class="image" [src]="singleProduct.picturePath">
@@ -90,4 +95,9 @@
     </div>
     <!-- Single Product View Modal End -->
   </div>
+
+    <div class="col-md-10 text-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        <br>
+    </div>
 </div>
