@@ -1,8 +1,18 @@
 <br>
-<button (click)="showCategory()">Create Category</button>
-<button (click)="showProduct()">Create Product</button>
-<button (click)="showUserInfo()">Users Info</button>
-<button (click)="showHistory()">History</button>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link {{categorySeccion}}" (click)="showCategory()">Create Category</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{productSeccion}}" (click)="showProduct()">Create Product</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{userSeccion}}" (click)="showUserInfo()">Users Info</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{historySeccion}}" (click)="showHistory()">History</a>
+  </li>
+</ul>
 
 <div class="container">
   <div class="row">
@@ -53,7 +63,7 @@
             Select Parent
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" (click)="newCategory.parent = null">This will be a Parent</a>
+            <a class="dropdown-item" (click)="newCategory.parent = null">This will be a Parent</a>
             <div *ngFor="let category of subCategoriesArray">
               <a class="dropdown-item" (click)="newCategory.parent = category._id">{{category.name}}</a>
             </div>
