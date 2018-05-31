@@ -9,44 +9,21 @@ import { CookieService } from '../../services/cookie.service';
 })
 export class NavigationComponent implements OnInit {
 
+  user: Object = {role: ""};
+  numberofItems: number;
+
   constructor(
     private mySession: SessionService,
     private myCookies: CookieService
   ) { }
 
-  user: any = { role: '' };
-  numberofItems: number;
-
   logOut() {
-    this.mySession.logout().subscribe(
-      () => {},
-      err => console.log(err)
-    );
+    this.mySession.logout().subscribe();
   }
 
   ngOnInit() {
-    this.myCookies.userCookie
-      .subscribe(
-        res => {
-          this.user = res;
-          if (!this.user) {
-            this.user = this.myCookies.getCookie('user')
-          }
-          console.log("User in nav Com: ", typeof(this.user), this.user);
-        }
-      )
-
-    this.myCookies.productCookie
-      .subscribe(
-        res => {
-          this.numberofItems = res.length;
-          if (!this.numberofItems) {
-            this.numberofItems = this.myCookies.getCookie('browser__settings').length;
-            console.log("Else if res: ", this.myCookies.getCookie('browser__settings').length);
-          }
-          console.log("Nav Product", this.numberofItems)
-        }
-      )
+    this.user = this.myCookies.getCookie("user");
+    this.numberofItems = this.myCookies.getCookie('browser__settings').length;
   }
 
 }

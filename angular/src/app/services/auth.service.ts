@@ -25,17 +25,17 @@ export class SessionService {
 
   getUserById(id) {
     return this.http.get(`http://localhost:3000/user-id/${id}`)
-    .map( user => user.json());
+      .map(user => user.json());
   }
 
   getAllUsers() {
     return this.http.get(`http://localhost:3000/users`)
-    .map( users => users.json());
+      .map(users => users.json());
   }
 
   deleteUser(id) {
     return this.http.post(`http://localhost:3000/delete-user/${id}`, {})
-    .map( deletedUser => deletedUser.json());
+      .map(deletedUser => deletedUser.json());
   }
 
 
@@ -53,7 +53,7 @@ export class SessionService {
 
   logout() {
     return this.http.post(`http://localhost:3000/logout`, {})
-      .map(res => {this.deleteUserCookie() , res.json(); })
+      .map(res => { this.deleteUserCookie(), res.json(); })
       .catch(this.handleError);
   }
 
