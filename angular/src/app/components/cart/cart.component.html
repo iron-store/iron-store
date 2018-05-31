@@ -10,8 +10,6 @@
     </div>
 </div>
 
-
-
 <div *ngIf="cartProducts">
   <div *ngFor="let product of cartProducts" class="container">
     <div class="row">
@@ -30,9 +28,9 @@
   <div class="container">
     <div class="row">
       <div class="offset-md-1 col-md-6">
-        <h3>Subtotal: {{orderInfo.subtotal | currency}}</h3>
-        <h4>Tax Amount: {{orderInfo.taxAmount | currency}}</h4>
-        <h4>Total: {{orderInfo.total | currency}}</h4>
+        <h5>Subtotal: {{orderInfo.subtotal | currency}}</h5>
+        <h5>Tax Amount: {{orderInfo.taxAmount | currency}}</h5>
+        <h3>Total: {{orderInfo.total | currency}}</h3>
         <app-order></app-order>
         <br><br><br>
       </div>
