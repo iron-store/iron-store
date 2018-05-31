@@ -50,6 +50,7 @@ export class ProductsComponent implements OnInit {
     if (!this.myCookies.getCookie('browser__settings')) {
       product.repeat = 1;
       this.myCookies.setCookie('browser__settings', [product], 1)
+
     }
 
     else {
@@ -58,6 +59,7 @@ export class ProductsComponent implements OnInit {
         if (product._id === newCookieValue[i]._id) {
           newCookieValue[i].repeat++;
           this.myCookies.setCookie('browser__settings', newCookieValue, 1);
+    
           return;
         }
       }
@@ -66,6 +68,7 @@ export class ProductsComponent implements OnInit {
       this.myCookies.setCookie('browser__settings', newCookieValue, 1);
       this.getProducts()
       console.log(this.myCookies.getCookie('browser__settings'));
+
     }
   }
 

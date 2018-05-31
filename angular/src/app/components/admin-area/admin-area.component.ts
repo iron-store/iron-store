@@ -11,10 +11,10 @@ import { SessionService } from '../../services/auth.service';
 })
 export class AdminAreaComponent implements OnInit {
 
-  productSeccion: boolean = false;
-  categorySeccion: boolean = false;
-  userSeccion: boolean = false;
-  historySeccion: boolean = false;
+  productSeccion: string = '';
+  categorySeccion: string = '';
+  userSeccion: string = '';
+  historySeccion: string = '';
   newCategory: Object = { parent: null };
   newProduct: Object = {};
   subCategoriesArray: any = [];
@@ -33,31 +33,43 @@ export class AdminAreaComponent implements OnInit {
   }
 
   showCategory(): void {
-    this.userSeccion = false;
-    this.productSeccion = false;
-    this.historySeccion = false;
-    this.categorySeccion = !this.categorySeccion;
+    this.userSeccion = '';
+    this.productSeccion = '';
+    this.historySeccion = '';
+    if (this.categorySeccion === '')
+      this.categorySeccion = 'active';
+    else
+      this.categorySeccion = '';
   }
 
   showProduct(): void {
-    this.userSeccion = false;
-    this.historySeccion = false;
-    this.categorySeccion = false;
-    this.productSeccion = !this.productSeccion;
+    this.userSeccion = '';
+    this.historySeccion = '';
+    this.categorySeccion = '';
+    if (this.productSeccion === '')
+      this.productSeccion = 'active';
+    else
+      this.productSeccion = '';
   }
 
   showUserInfo(): void {
-    this.productSeccion = false;
-    this.historySeccion = false;
-    this.categorySeccion = false;
-    this.userSeccion = !this.userSeccion;
+    this.productSeccion = '';
+    this.historySeccion = '';
+    this.categorySeccion = '';
+    if (this.userSeccion === '')
+      this.userSeccion = 'active';
+    else
+      this.userSeccion = '';
   }
 
   showHistory(): void {
-    this.productSeccion = false;
-    this.historySeccion = !this.historySeccion;
-    this.categorySeccion = false;
-    this.userSeccion = false;
+    this.productSeccion = '';
+    this.categorySeccion = '';
+    this.userSeccion = '';
+    if (this.historySeccion === '')
+      this.historySeccion = 'active';
+    else
+      this.historySeccion = '';
   }
 
   subCategories() {
@@ -107,15 +119,16 @@ export class AdminAreaComponent implements OnInit {
     this.myOrders.getAllOrders()
       .subscribe(
         orders => {
-        this.historyArray = orders, this.historyArray.forEach(order => {
-          this.mySession.getUserById(order.userId)
-            .subscribe(
-              user => { console.log("User: ", user); order.userName = user.username; order.userEmail = user.email },
-              err => console.log(err)
-            )
+          this.historyArray = orders, this.historyArray.forEach(order => {
+            this.mySession.getUserById(order.userId)
+              .subscribe(
+                user => { console.log("User: ", user); order.userName = user.username; order.userEmail = user.email },
+                err => console.log(err)
+              )
+          },
+            console.log(this.historyArray)
+          )
         },
-        console.log(this.historyArray)
-        )},
         err => console.log(err)
       )
   }
