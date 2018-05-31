@@ -2,7 +2,7 @@
     <div class="row elements">
         <div class="col-md-4 ">
             <a class="col-md-2" [routerLink]="['category']"> Home </a>
-            <a class="col-md-2" id="cart-number" [routerLink]="['cart']"> {{numberofItems}}
+            <a class="col-md-2" [routerLink]="['cart']"> {{numberofItems}}
                 <i class="fas fa-shopping-cart"></i>
             </a>
             <a class="col-md-2" [routerLink]="['history']"> History </a>
@@ -12,9 +12,9 @@
             <h4>Iron Store</h4>
         </div>
         <div class="col-md-4 ">
-            <a class="col-md-2" *ngIf="user">Hi {{user.username}}</a>
-            <a class="col-md-2" *ngIf="!user" [routerLink]="['signup']"> Signup </a>
-            <a class="col-md-2" *ngIf="!user" [routerLink]="['login']"> Login </a>
+            <a class="col-md-2" *ngIf="user.username">Hello {{user.username}}</a>
+            <a class="col-md-2" *ngIf="!user.username" [routerLink]="['signup']"> Signup </a>
+            <a class="col-md-2" *ngIf="!user.username" [routerLink]="['login']"> Login </a>
             <a class="col-md-2" [routerLink]="['login']" (click)="logOut()">Logout</a>
         </div>
     </div>
