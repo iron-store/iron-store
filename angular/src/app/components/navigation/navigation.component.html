@@ -1,12 +1,9 @@
 <nav class="container-fluid">
     <div class="row elements">
         <div class="col-md-4 ">
-            <a class="col-md-2" [routerLink]="['category']"> Home </a>
-            <a class="col-md-2" [routerLink]="['cart']"> {{numberofItems}}
-                <i class="fas fa-shopping-cart"></i>
-            </a>
-            <a class="col-md-2" [routerLink]="['history']"> History </a>
-            <a class="col-md-2" *ngIf="user.role === 'ADMIN'" [routerLink]="['admin']">Admin</a>
+            <a class="col-md-4" [routerLink]="['category']"> Home </a>
+            <a class="col-md-4" [routerLink]="['history']"> History </a>
+            <a class="col-md-4" *ngIf="user.role === 'ADMIN'" [routerLink]="['admin']">Admin</a>
         </div>
         <div class="col-md-4 ">
             <h4>Iron Store</h4>
@@ -15,7 +12,10 @@
             <a class="col-md-2" *ngIf="user.username">Hello {{user.username}}</a>
             <a class="col-md-2" *ngIf="!user.username" [routerLink]="['signup']"> Signup </a>
             <a class="col-md-2" *ngIf="!user.username" [routerLink]="['login']"> Login </a>
-            <a class="col-md-2" [routerLink]="['login']" (click)="logOut()">Logout</a>
+            <a class="col-md-2" *ngIf="user.username" [routerLink]="['login']" (click)="logOut()">Logout</a>
+            <a class="col-md-2" [routerLink]="['cart']"> {{numberofItems}}
+                <i class="fas fa-shopping-cart"></i>
+            </a>
         </div>
     </div>
 </nav>

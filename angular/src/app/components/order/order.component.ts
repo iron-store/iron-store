@@ -3,7 +3,7 @@ import { OrderService } from '../../services/order.service';
 import { CookieService } from '../../services/cookie.service';
 import { SessionService } from '../../services/auth.service';
 import { CartComponent } from '../cart/cart.component';
-import {  ProductService } from '../../services/product.service';
+import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,6 +16,10 @@ export class OrderComponent implements OnInit {
   myOrder: any;
   orderInfo: any = [];
   user: any;
+  subtotal: number;
+  totalAmount: number;
+  taxAmount: number;
+  tax: number = 6;
 
   constructor(
     private myOrders: OrderService,
@@ -31,32 +35,35 @@ export class OrderComponent implements OnInit {
     this.user = this.myCookie.getCookie('user');
   }
 
-  newOrder() {
-    console.log('Products in order: ', this.myOrder);
-    let subtotal = 0;
-    let tax = 6;
-
-    this.myOrder.forEach( singleProduct => {
-      subtotal += singleProduct.price * singleProduct.repeat;
+  calTotalandSubtotal() {
+    let localSubTotal = 0;
+    const tax = 6;
+    this.myOrder.forEach(singleProduct => {
+      localSubTotal += singleProduct.price * singleProduct.repeat;
     });
+    let taxAmount = localSubTotal * (tax / 100);
+    let localTotal = localSubTotal + taxAmount;
+    this.subtotal = localSubTotal;
+    this.taxAmount = taxAmount;  
+    this.totalAmount = localTotal;
+  }
+
+  newOrder() {
 
     const order = {
       userId: this.myCookie.getCookie('user')._id,
       products: this.myOrder,
-      tax: tax,
-      subtotal: subtotal,
-      taxAmount: subtotal * tax / 100,
-      total: subtotal + (subtotal * tax / 100)
+      tax: this.tax,
+      subtotal: this.subtotal,
+      taxAmount: this.taxAmount,
+      total: this.totalAmount
     }
-
-    console.log('Order: ', order);
 
     this.myOrders.createOrder(order)
       .subscribe(
-        order => {this.myCart.showCart(), this.orderInfo = order, this.myCookie.deleteCookie('browser__settings'); },
+        order => { this.myCart.showCart(), this.orderInfo = order, this.myCookie.deleteCookie('browser__settings'); },
         err => console.log(err)
       );
   }
-    // this.myRouter.navigate(["category"])
 
 }
