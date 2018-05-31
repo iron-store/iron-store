@@ -6,6 +6,8 @@ import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Rx';
 import { CookieService } from '../services/cookie.service';
 
+import { environment } from '../../environments/environment';
+
 @Injectable()
 export class SessionService {
 
@@ -24,48 +26,48 @@ export class SessionService {
   }
 
   getUserById(id) {
-    return this.http.get(`http://localhost:3000/user-id/${id}`)
-      .map(user => user.json());
+    return this.http.get(`${environment.backendUrl}/user-id/${id}`)
+    .map( user => user.json());
   }
 
   getAllUsers() {
-    return this.http.get(`http://localhost:3000/users`)
-      .map(users => users.json());
+    return this.http.get(`${environment.backendUrl}/users`)
+    .map( users => users.json());
   }
 
   deleteUser(id) {
-    return this.http.post(`http://localhost:3000/delete-user/${id}`, {})
-      .map(deletedUser => deletedUser.json());
+    return this.http.post(`${environment.backendUrl}/delete-user/${id}`, {})
+    .map( deletedUser => deletedUser.json());
   }
 
 
   signup(user) {
-    return this.http.post(`http://localhost:3000/signup`, user)
+    return this.http.post(`${environment.backendUrl}/signup`, user)
       .map(res => { this.saveUserCookie(res), res.json(); })
       .catch(this.handleError);
   }
 
   login(user) {
-    return this.http.post(`http://localhost:3000/login`, user)
+    return this.http.post(`${environment.backendUrl}/login`, user)
       .map(res => { this.saveUserCookie(res), res.json(); })
       .catch(this.handleError);
   }
 
   logout() {
-    return this.http.post(`http://localhost:3000/logout`, {})
-      .map(res => { this.deleteUserCookie(), res.json(); })
+    return this.http.post(`${environment.backendUrl}/logout`, {})
+      .map(res => {this.deleteUserCookie() , res.json(); })
       .catch(this.handleError);
   }
 
   editUser(user) {
     console.log('Your new user credentials: ', user);
-    return this.http.post(`http://localhost:3000/edit-user`, user)
+    return this.http.post(`${environment.backendUrl}/edit-user`, user)
       .map(res => { this.saveUserCookie(res), res.json(); })
       .catch(this.handleError);
   }
 
   getPrivateData() {
-    return this.http.get(`http://localhost:3000/private`)
+    return this.http.get(`${environment.backendUrl}/private`)
       .map(res => { console.log('Mi service: ', res), res.json(); })
       .catch(this.handleError);
   }
