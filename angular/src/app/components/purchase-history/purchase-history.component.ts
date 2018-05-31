@@ -11,6 +11,8 @@ export class PurchaseHistoryComponent implements OnInit {
 
   history: [any];
 
+  p: number = 1;
+
   username = this.myCookies.getCookie('user').username;
 
   constructor(private myOrder: OrderService, private myCookies: CookieService) { }
