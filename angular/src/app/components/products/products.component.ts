@@ -46,7 +46,6 @@ export class ProductsComponent implements OnInit {
     delete product.picturePath;
     delete product.updated_at;
     delete product.created_at;
-    delete product._id;
     delete product.__v;
     if (!this.myCookies.getCookie('browser__settings')) {
       product.repeat = 1;
@@ -56,7 +55,7 @@ export class ProductsComponent implements OnInit {
     else {
       let newCookieValue = this.myCookies.getCookie('browser__settings');
       for (let i = 0; i < newCookieValue.length; i++) {
-        if (product === newCookieValue[i]) {
+        if (product._id === newCookieValue[i]._id) {
           newCookieValue[i].repeat++;
           this.myCookies.setCookie('browser__settings', newCookieValue, 1);
           return;

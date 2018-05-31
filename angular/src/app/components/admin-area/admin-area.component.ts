@@ -110,7 +110,7 @@ export class AdminAreaComponent implements OnInit {
         this.historyArray = orders, this.historyArray.forEach(order => {
           this.mySession.getUserById(order.userId)
             .subscribe(
-              user => { console.log("User: ", user), order.userName = user.username, order.userEmail = user.email },
+              user => { console.log("User: ", user); order.userName = user.username; order.userEmail = user.email },
               err => console.log(err)
             )
         },
