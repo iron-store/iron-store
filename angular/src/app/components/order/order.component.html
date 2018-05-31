@@ -1,8 +1,10 @@
 <div *ngIf="user">
-<button data-toggle="modal" class="btn btn-primary btn-lg" data-target="#createOrderModal">Buy Now!</button>
+<button data-toggle="modal" class="btn btn-primary btn-lg" data-target="#createOrderModal">Proceed to Checkout</button>
 </div>
 
 <div *ngIf="!user">
+    <br>
+    <hr>
     <h4>Please Login to Buy</h4>
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginModal">Login</button>
 </div>
@@ -12,7 +14,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create Order</h5>
+                <h5 class="modal-title">Checkout</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -22,13 +24,13 @@
                 <div *ngFor="let oneProduct of myOrder">
                     <h2>{{oneProduct.name}}</h2>
                     <h4>Number of items: {{oneProduct.repeat}}</h4>
-                    <strong>Price: {{oneProduct.price | currency}}</strong>
+                    <strong>Total Price: {{oneProduct.price | currency}}</strong>
                     <hr>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#reciptModal" (click)="newOrder()">Confirm</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#reciptModal" (click)="newOrder()">Buy Now</button>
             </div>
         </div>
     </div>
@@ -46,11 +48,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h2>Thanks for buying!!!</h2>
+                <h2 class="text-md-right">Thank You!</h2>
                 <hr>
-                <h3>Tax Amount: {{orderInfo.taxAmount | currency}}</h3>
-                <h3>Subtotal: {{orderInfo.subtotal | currency}}</h3>
-                <h3>Total: {{orderInfo.total | currency}}</h3>
+                <h4 class="text-md-right">Tax Amount: {{orderInfo.taxAmount | currency}}</h4>
+                <h4 class="text-md-right">Subtotal: {{orderInfo.subtotal | currency}}</h4>
+                <h2 class="text-md-right">Total: {{orderInfo.total | currency}}</h2>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal" data-target="#reciptModal" [routerLink]="['../category']">Keep Shopping!</button>
