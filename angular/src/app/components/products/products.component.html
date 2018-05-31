@@ -17,7 +17,7 @@
         <div class="info">
           <h5>{{singleProduct.name}}</h5>
           <h6 class="light-grey">{{singleProduct.category}}</h6>
-          <p class="light-grey">${{singleProduct.price}}</p>
+          <p class="light-grey">{{singleProduct.price | currency}}</p>
         </div>
       </div>
       <button (click)="addCookie(singleProduct)" type="button" class="btn btn-secondary add-product">Add to Cart
@@ -80,7 +80,8 @@
           <div class="modal-body">
             <h2>{{productInfoForModal.name}}</h2>
             <img class="image" [src]="productInfoForModal.picturePath">
-            <h6>Price: ${{productInfoForModal.price}}</h6>
+            <br><br>
+            <h6>Price: {{productInfoForModal.price | currency}}</h6>
             <h4>Description:</h4>
             <p>{{productInfoForModal.description}}</p>
           </div>
