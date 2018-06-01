@@ -17,19 +17,20 @@ import { environment } from '../../../environments/environment';
 export class ProductsComponent implements OnInit {
 
   p: number = 1;
+  idForUpdateImage: string = "";
   products: [Object];
   user: Object;
-  modalInfo: Object = {};
+  modalInfo: any = {};
   updateInfo: any = {};
   updateCategoryInfo: Object = {};
   filter: string;
   productInfoForModal: Object = { name: "", price: 0, picturePath: "", description: "" };
   @Input() categoryFromParent: string = "";
 
-  myUploader = new FileUploader({
-    url: environment.backendUrl + '/product/new',
-    itemAlias: "photo"
-  })
+  // myUploader = new FileUploader({
+  //   url: environment.backendUrl + `/update/${this.modalInfo._id}`,
+  //   itemAlias: "photo"
+  // })
 
   constructor(
     private myProducts: ProductService,
@@ -104,29 +105,40 @@ export class ProductsComponent implements OnInit {
   }
 
   updateProduct(productId: string): void {
-    this.myUploader.onBuildItemForm = (item, form) => {
-      form.append('name', this.updateInfo.name);
-      form.append('price', this.updateInfo.price);
-      form.append('description', this.updateInfo.description);
-      form.append('category', this.updateInfo.category);
-    }
-    this.myUploader.onSuccessItem = (item, response) => {
-      console.log("Item in addProduct: ", item);
-      this.router.navigate(["/category"]);
-      this.getProducts();
-      this.modalInfo = {};
-    }
-    this.myUploader.onErrorItem = (item, response) => {
-      console.log("Error on image upload", item, response);
-    }
-    this.myUploader.uploadAll();
+    // this.myProducts.getOneProduct(productId)
+    // .subscribe(
+    //   res =>{
+
+    //   }
+    // )
+    // this.idForUpdateImage = productId;
+
+    // console.log("Update Form", this.updateInfo)
+    // this.myUploader.onBuildItemForm = (item, form) => {
+    //   console.log("Item: ", item)
+    //   console.log("Form: ", form)
+    //   console.log(this.updateInfo.name)
+    //   form.append('name', this.updateInfo.name);
+    //   form.append('price', this.updateInfo.price);
+    //   form.append('description', this.updateInfo.description);
+    //   form.append('category', this.updateInfo.category);
+    // }
+    // this.myUploader.onSuccessItem = (item, response) => {
+    //   console.log("Item in addProduct: ", item);
+    //   this.getProducts();
+    //   this.modalInfo = {};
+    // }
+    // this.myUploader.onErrorItem = (item, response) => {
+    //   console.log("Error on image upload", item, response);
+    // }
+    // this.myUploader.uploadAll();
 
 
-    // this.myProducts.updateProduct(productId, this.updateInfo)
-    //   .subscribe(
-    //     res => { this.getProducts(), this.modalInfo = {} },
-    //     err => console.log(err)
-    //   )
+    this.myProducts.updateProduct(productId, this.updateInfo)
+      .subscribe(
+        res => { this.getProducts(), this.modalInfo = {} },
+        err => console.log(err)
+      )
   }
 
   fillForm(product: Object): void {

@@ -156,7 +156,7 @@ export class AdminAreaComponent implements OnInit {
     }
     this.myUploader.onSuccessItem = (item, response) => {
       console.log("Item in addProduct: ", item);
-      this.myRouter.navigate(["/category"]);
+      this.myRouter.navigate(["/home"]);
     }
     this.myUploader.onErrorItem = (item, response) => {
       console.log("Error on image upload", item, response);

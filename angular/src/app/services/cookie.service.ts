@@ -47,9 +47,8 @@ export class CookieService {
       this.productsCookie.next(value);
     }
 
+    console.log("Cookie value: ", value);
 
-
-    // console.log("Cookies in service: ", value, typeof (value))
     if (typeof (value) === "object")
       value = JSON.stringify(value);
     let d: Date = new Date();
