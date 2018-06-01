@@ -204,11 +204,11 @@
         <div class="dropdown">
           <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            Select Category
+            {{theCategory}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <div *ngFor="let category of mainCategoriesArray">
-              <a class="dropdown-item" (click)="newProduct.category = category.name">{{category.name}}</a>
+              <a class="dropdown-item" (click)="selectTheCategory(category.name)" (click)="newProduct.category = category.name">{{category.name}}</a>
             </div>
           </div>
         </div>

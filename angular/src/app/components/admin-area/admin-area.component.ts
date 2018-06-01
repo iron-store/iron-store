@@ -53,6 +53,10 @@ export class AdminAreaComponent implements OnInit {
     this.theParent = theOneClicked;
   }
 
+  selectTheCategory(theOneClicked: string) {
+    this.theCategory = theOneClicked;
+  }
+
   showCategory(): void {
     this.userSeccion = '';
     this.productSeccion = '';
@@ -138,7 +142,10 @@ export class AdminAreaComponent implements OnInit {
           this.historyArray = orders, this.historyArray.forEach(order => {
             this.mySession.getUserById(order.userId)
               .subscribe(
-                user => { order.userName = user.username; order.userEmail = user.email },
+                user => {
+                  order.userName = user.username;
+                  order.userEmail = user.email;
+                },
                 err => console.log(err)
               )
           },
