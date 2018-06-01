@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
         () => {
           console.log('this.formInfo: ', this.formInfo);
           this.myRouter.navigate(['/home']);
-
         },
         (err) => {
           console.log('Wrong credentials.');

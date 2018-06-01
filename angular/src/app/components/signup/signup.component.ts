@@ -21,11 +21,44 @@ export class SignupComponent implements OnInit {
   }
 
   signUp() {
+    const shouldContinue: boolean = this.validateSignupForm();
+    if (!shouldContinue) {
+      return;
+    }
     this.myService.signup(this.formInfo)
       .subscribe(
-        () => console.log('login'),
+        () => {
+          console.log('login');
+          this.myRouter.navigate(['/home']);
+        },
         (err) => this.error = err
       );
   }
+
+
+
+
+  validateSignupForm(): boolean {
+    if (this.formInfo.username === '') {
+      console.log('you must provide a username');
+      this.error = 'You must provide an user name.';
+      return false;
+    }
+    if (this.formInfo.email === '') {
+      console.log('you must provide an email');
+      this.error = 'You must provide an email.';
+      return false;
+    }
+    else if (this.formInfo.password === '') {
+      console.log('You must enter a password');
+      this.error = 'You must enter a password.';
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+
 
 }

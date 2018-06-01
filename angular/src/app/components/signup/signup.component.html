@@ -29,8 +29,15 @@
         <input type="password" [(ngModel)]="formInfo.password" class="form-control" name="password" placeholder="enter your password">
       </div>
     
-      <button (click)="signUp()" class="btn btn-primary" [routerLink]="['../home']"> Sign Up </button>
-      <p class="error"> {{ error }} </p>
+      <button (click)="signUp()" class="btn btn-primary"> Sign Up </button>
+
+      <div *ngIf="error && error.length !== 0">
+        <br>
+        <div class="alert alert-danger" role="alert">
+          <h6>{{error}}</h6>
+        </div>
+      </div>
+
     </form>
     <!-- FORM END -->
 
