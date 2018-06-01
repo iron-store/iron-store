@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
 
-  user: Object;
+  user: any;
   numberofItems: number;
 
   constructor(
