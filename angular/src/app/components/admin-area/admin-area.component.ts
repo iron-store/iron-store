@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class AdminAreaComponent implements OnInit {
 
   productSeccion: string = '';
-  categorySeccion: string = '';
+  categorySeccion: string = 'active';
   userSeccion: string = '';
   historySeccion: string = '';
   newCategory: Object = { parent: null };
@@ -29,6 +29,13 @@ export class AdminAreaComponent implements OnInit {
     itemAlias: "photo"
   })
 
+  theParent: string = 'This will be a Parent || Select Parent';
+  theCategory: string = 'Select Category';
+
+  theNewCatSuccessMessage: string;
+  theNewProdSuccessMessage: string;
+  theErrorMessage: string;
+
   constructor(private myCategories: CategoryService,
     private myProducts: ProductService,
     private myOrders: OrderService,
@@ -39,6 +46,10 @@ export class AdminAreaComponent implements OnInit {
     this.subCategories();
     this.mainCategories();
     this.history();
+  }
+
+  selectTheParent(theOneClicked: string) {
+    this.theParent = theOneClicked;
   }
 
   showCategory(): void {
@@ -94,11 +105,14 @@ export class AdminAreaComponent implements OnInit {
   }
 
   addCategory() {
+    this.clearMessages();
     this.myCategories.createCategory(this.newCategory)
       .subscribe(
         newCat => {
+          this.setNewCatSuccessMessage(newCat);
           console.log(newCat);
           this.subCategories();
+          this.mainCategories();
         },
         err => console.log(err)
       );
@@ -149,4 +163,30 @@ export class AdminAreaComponent implements OnInit {
     }
     this.myUploader.uploadAll();
   }
+
+  setNewCatSuccessMessage(theCategory) {
+
+    if (theCategory.message) {
+      this.theErrorMessage = 'You must provide a name for your new Category';
+      return;
+    }
+
+    this.theNewCatSuccessMessage = `New Category created with name ${theCategory.name}. `;
+
+    if (theCategory.parent === null) {
+      this.theNewCatSuccessMessage += `It is a Parent Category.`;
+    }
+    else {
+      this.theNewCatSuccessMessage += `Its parent Category is: ${this.theParent}`;
+    }
+    console.log('this.theNewCatSuccessMessage: ', this.theNewCatSuccessMessage);
+
+  }
+
+  clearMessages() {
+    this.theErrorMessage = '';
+    this.theNewCatSuccessMessage = '';
+    this.theNewProdSuccessMessage = '';
+  }
+
 }

@@ -144,12 +144,12 @@
         <div class="dropdown">
           <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            Select Parent
+            {{theParent}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" (click)="newCategory.parent = null">This will be a Parent</a>
+            <a class="dropdown-item" (click)="selectTheParent('This will be a Parent')" (click)="newCategory.parent = null">This will be a Parent Category</a>
             <div *ngFor="let category of subCategoriesArray">
-              <a class="dropdown-item" (click)="newCategory.parent = category._id">{{category.name}}</a>
+              <a class="dropdown-item" (click)="selectTheParent(category.name)" (click)="newCategory.parent = category._id">{{category.name}}</a>
             </div>
           </div>
         </div>
@@ -157,6 +157,20 @@
         <br>
         <button (click)="addCategory()" class="btn btn-info"> Add Category </button>
       </form>
+
+      <div *ngIf="theNewCatSuccessMessage && theNewCatSuccessMessage.length !== 0">
+        <br>
+        <div class="alert alert-success" role="alert">
+          <h6>{{theNewCatSuccessMessage}}</h6>
+        </div>
+      </div>
+      <div *ngIf="theErrorMessage && theErrorMessage.length !== 0">
+        <br>
+        <div class="alert alert-danger" role="alert">
+          <h6>{{theErrorMessage}}</h6>
+        </div>
+      </div>
+        
     </div>
   </div>
 </div>

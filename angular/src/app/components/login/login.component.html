@@ -24,8 +24,8 @@
           <input type="password" [(ngModel)]="formInfo.password" class="form-control" name="password" placeholder="enter your password">
         </div>
       
-        <button (click)="login()" class="btn btn-primary" data-dismiss="modal" [routerLink]="['../category']"> Login </button>
-        <button class="btn btn-link" data-dismiss="modal" [routerLink]="['../signup']"> Signup </button>
+        <button (click)="login()" class="btn btn-primary" data-dismiss="modal" [routerLink]="['../home']"> Login </button>
+        <button class="btn btn-link" data-dismiss="modal" [routerLink]="['../signup']"> Or Signup </button>
         <p class="error"> {{ error }} </p>
       </form>
       <!-- FORM END -->

@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  backendUrl: ''
+  backendUrl: 'https://ironstore.herokuapp.com'
+  // ^^ https://ironstore.herokuapp.com/
 };
