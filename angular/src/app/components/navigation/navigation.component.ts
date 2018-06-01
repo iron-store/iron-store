@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/auth.service';
 import { CookieService } from '../../services/cookie.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -14,11 +15,16 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     private mySession: SessionService,
-    private myCookies: CookieService
+    private myCookies: CookieService,
+    private router: Router,
   ) { }
 
   logOut() {
     this.mySession.logout().subscribe();
+  }
+
+  goHome() {
+    this.router.navigate(['']);
   }
 
   ngOnInit() {
@@ -45,7 +51,7 @@ export class NavigationComponent implements OnInit {
           }
         },
         err => console.log(err)
-      )
+      );
   }
 
 }

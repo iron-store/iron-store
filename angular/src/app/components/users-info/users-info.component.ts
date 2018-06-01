@@ -47,7 +47,7 @@ export class UsersInfoComponent implements OnInit {
 
   userHistory(userId: string): void {
     this.usersSeccion = false;
-    this.userHistorySeccion = !this.userHistorySeccion;
+    this.userHistorySeccion = true;
     this.myOrders.getAllUserOrders(userId)
       .subscribe(
         orders => this.userHistoryArray = orders,
@@ -58,6 +58,12 @@ export class UsersInfoComponent implements OnInit {
   setUserInfo(aUserName, anEmail): void {
     this.theUserName = aUserName;
     this.theEmail = anEmail;
+  }
+
+  backToUsersSection() {
+    this.usersSeccion = true;
+    this.userHistorySeccion = false;
+
   }
 
 }

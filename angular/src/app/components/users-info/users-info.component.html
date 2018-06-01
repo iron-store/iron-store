@@ -36,6 +36,7 @@
   <br>
   <div *ngIf="userHistoryArray.length === 0">
     <h2>This user has not purchased anything yet.</h2>
+    <button type="button" class="btn btn-light float-right" (click)="backToUsersSection()">Go Back</button>
   </div>
 
   <div *ngIf="userHistoryArray.length !== 0">
@@ -47,6 +48,7 @@
           <p class="text-center light-grey">{{theEmail}}</p>
           <br>
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          <button type="button" class="btn btn-light float-right" (click)="backToUsersSection()">Go Back</button>
         </div>
       </div>
     </div>

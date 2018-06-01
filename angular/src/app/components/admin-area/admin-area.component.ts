@@ -12,7 +12,7 @@ import { SessionService } from '../../services/auth.service';
 export class AdminAreaComponent implements OnInit {
 
   productSeccion: string = '';
-  categorySeccion: string = '';
+  categorySeccion: string = 'active';
   userSeccion: string = '';
   historySeccion: string = '';
   newCategory: Object = { parent: null };
@@ -20,6 +20,17 @@ export class AdminAreaComponent implements OnInit {
   subCategoriesArray: any = [];
   mainCategoriesArray: any = [];
   historyArray: any = [];
+
+
+  theParent: string = 'This will be a Parent || Select Parent';
+  theCategory: string = 'Select Category';
+
+  theNewCatSuccessMessage: string;
+  theNewProdSuccessMessage: string;
+  theErrorMessage: string;
+
+
+
 
   constructor(private myCategories: CategoryService,
     private myProducts: ProductService,
@@ -30,6 +41,10 @@ export class AdminAreaComponent implements OnInit {
     this.subCategories();
     this.mainCategories();
     this.history();
+  }
+
+  selectTheParent(theOneClicked: string) {
+    this.theParent = theOneClicked;
   }
 
   showCategory(): void {
@@ -85,9 +100,11 @@ export class AdminAreaComponent implements OnInit {
   }
 
   addCategory() {
+    this.clearMessages();
     this.myCategories.createCategory(this.newCategory)
       .subscribe(
         newCat => {
+          this.setNewCatSuccessMessage(newCat);
           console.log(newCat);
           this.subCategories();
         },
@@ -131,6 +148,36 @@ export class AdminAreaComponent implements OnInit {
         },
         err => console.log(err)
       )
+  }
+
+  setNewCatSuccessMessage(theCategory) {
+
+    if (theCategory.message) {
+      this.theErrorMessage = 'You must provide a name for your new Category';
+      return;
+    }
+
+    this.theNewCatSuccessMessage = `New Category created with name ${theCategory.name}. `;
+
+    if (theCategory.parent === null) {
+      this.theNewCatSuccessMessage += `It is a Parent Category.`;
+    }
+    else {
+      this.theNewCatSuccessMessage += `Its parent Category is: ${this.theParent}`;
+    }
+    console.log('this.theNewCatSuccessMessage: ', this.theNewCatSuccessMessage);
+
+  }
+
+
+
+
+
+
+  clearMessages() {
+    this.theErrorMessage = '';
+    this.theNewCatSuccessMessage = '';
+    this.theNewProdSuccessMessage = '';
   }
 
 }
