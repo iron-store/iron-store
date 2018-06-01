@@ -34,7 +34,8 @@ export class AdminAreaComponent implements OnInit {
 
   theNewCatSuccessMessage: string;
   theNewProdSuccessMessage: string;
-  theErrorMessage: string;
+  theCatErrorMessage: string;
+  theProdErrorMessage: string;
 
   constructor(private myCategories: CategoryService,
     private myProducts: ProductService,
@@ -148,6 +149,11 @@ export class AdminAreaComponent implements OnInit {
   }
 
   addProduct() {
+    this.clearMessages();
+    const shouldContinue = this.handleNewProductValidation();
+    if (!shouldContinue) {
+      return;
+    }
     this.myUploader.onBuildItemForm = (item, form) => {
       form.append('name', this.newProduct.name);
       form.append('price', this.newProduct.price);
@@ -155,8 +161,12 @@ export class AdminAreaComponent implements OnInit {
       form.append('category', this.newProduct.category);
     }
     this.myUploader.onSuccessItem = (item, response) => {
-      console.log("Item in addProduct: ", item);
-      this.myRouter.navigate(["/category"]);
+      console.log('response: ', response);
+      // console.log("Item in addProduct: ", item);
+
+      // this.myRouter.navigate(["/home"]);
+      this.theNewProdSuccessMessage = `${this.newProduct.name} was created with category: ${this.newProduct.category}`;
+
     }
     this.myUploader.onErrorItem = (item, response) => {
       console.log("Error on image upload", item, response);
@@ -164,10 +174,50 @@ export class AdminAreaComponent implements OnInit {
     this.myUploader.uploadAll();
   }
 
+  handleNewProductValidation(): boolean {
+    if (!this.newProduct.name) {
+      console.log('You must provide a name for the new product.');
+      this.theProdErrorMessage = 'You must provide a name for the new product.';
+      return false;
+    }
+    else if (!this.newProduct.price) {
+      console.log('You must provide a price for the new product.');
+      this.theProdErrorMessage = 'You must provide a price for the new product.';
+      return false;
+    }
+    else if (!this.newProduct.image) {
+      console.log('You must provide an image for the new product.');
+      this.theProdErrorMessage = 'You must provide an image for the new product.';
+      return false;
+    }
+    else if (!this.newProduct.description) {
+      console.log('You must provide a description for the new product.');
+      this.theProdErrorMessage = 'You must provide a description for the new product.';
+      return false;
+    }
+    else if (!this.newProduct.category) {
+      console.log('You must select a category for your product.');
+      this.theProdErrorMessage = 'You must select a category for your product.';
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
   setNewCatSuccessMessage(theCategory) {
 
     if (theCategory.message) {
-      this.theErrorMessage = 'You must provide a name for your new Category';
+      this.theCatErrorMessage = 'You must provide a name for your new Category';
       return;
     }
 
@@ -184,7 +234,8 @@ export class AdminAreaComponent implements OnInit {
   }
 
   clearMessages() {
-    this.theErrorMessage = '';
+    this.theCatErrorMessage = '';
+    this.theProdErrorMessage = '';
     this.theNewCatSuccessMessage = '';
     this.theNewProdSuccessMessage = '';
   }
