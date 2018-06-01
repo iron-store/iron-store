@@ -164,10 +164,10 @@
           <h6>{{theNewCatSuccessMessage}}</h6>
         </div>
       </div>
-      <div *ngIf="theErrorMessage && theErrorMessage.length !== 0">
+      <div *ngIf="theCatErrorMessage && theCatErrorMessage.length !== 0">
         <br>
         <div class="alert alert-danger" role="alert">
-          <h6>{{theErrorMessage}}</h6>
+          <h6>{{theCatErrorMessage}}</h6>
         </div>
       </div>
         
@@ -181,7 +181,7 @@
       <form name="myForm">
         <div class="form-group">
           <label for="name"> *Product Name: </label>
-          <input type="email" ng-model="myInput" ng-minlength="2" [(ngModel)]="newProduct.name" class="form-control" name="category"
+          <input type="email" ng-model="myInput" [(ngModel)]="newProduct.name" class="form-control" name="category"
             placeholder="Product Name">
           <!-- <h1 ng-if="!myForm.category.$valid">The value is too short</h1> later -->
         </div>
@@ -193,7 +193,7 @@
 
         <div class="form-group">
           <label for="photo"> *Product Photo: </label>
-          <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="myUploader">
+          <input type="file" [(ngModel)]="newProduct.image" class="form-control" name="photo" ng2FileSelect [uploader]="myUploader">
         </div>
 
         <div class="form-group">
@@ -215,6 +215,19 @@
 
         <br>
         <button (click)="addProduct()" class="btn btn-info"> Add Product </button>
+
+        <div *ngIf="theNewProdSuccessMessage && theNewProdSuccessMessage.length !== 0">
+          <br>
+          <div class="alert alert-success" role="alert">
+            <h6>{{theNewProdSuccessMessage}}</h6>
+          </div>
+        </div>
+        <div *ngIf="theProdErrorMessage && theProdErrorMessage.length !== 0">
+            <br>
+            <div class="alert alert-danger" role="alert">
+              <h6>{{theProdErrorMessage}}</h6>
+            </div>
+          </div>
       </form>
     </div>
   </div>
