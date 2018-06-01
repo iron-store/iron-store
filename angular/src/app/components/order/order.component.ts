@@ -36,6 +36,7 @@ export class OrderComponent implements OnInit {
   }
 
   calTotalandSubtotal() {
+    this.ngOnInit();
     let localSubTotal = 0;
     const tax = 6;
     this.myOrder.forEach(singleProduct => {
