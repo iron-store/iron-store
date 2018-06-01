@@ -53,6 +53,10 @@ export class AdminAreaComponent implements OnInit {
     this.theParent = theOneClicked;
   }
 
+  selectTheCategory(theOneClicked: string) {
+    this.theCategory = theOneClicked;
+  }
+
   showCategory(): void {
     this.userSeccion = '';
     this.productSeccion = '';
