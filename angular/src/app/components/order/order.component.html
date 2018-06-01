@@ -24,7 +24,7 @@
                 <div *ngFor="let oneProduct of myOrder">
                     <h2>{{oneProduct.name}}</h2>
                     <h4>Number of items: {{oneProduct.repeat}}</h4>
-                    <strong>Total Price: {{oneProduct.price | currency}}</strong>
+                    <strong>Total Price: {{oneProduct.price * oneProduct.repeat | currency}}</strong>
                     <hr>
                 </div>
                 <h3>Total Amount: {{totalAmount | currency}}</h3>
