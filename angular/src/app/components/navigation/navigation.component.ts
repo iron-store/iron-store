@@ -31,18 +31,20 @@ export class NavigationComponent implements OnInit {
     this.myCookies.productsCookie
       .subscribe(
         res => {
-          if (!Array.isArray(res)){
+          if (!Array.isArray(res)) {
             let cookie = this.myCookies.getCookie('browser__settings');
             let count = 0;
-            cookie.forEach( prod => {
-              console.log(prod.repeat);
-              count += parseInt(prod.repeat);
-            })
+            if (cookie) {
+              cookie.forEach(prod => {
+                console.log(prod.repeat);
+                count += parseInt(prod.repeat);
+              })
+            }
             this.numberofItems = count;
           }
-          else{
+          else {
             let count = 0;
-            res.forEach( prod => {
+            res.forEach(prod => {
               console.log("prod.repeat: ", prod.repeat);
               count += parseInt(prod.repeat);
             })
@@ -55,10 +57,10 @@ export class NavigationComponent implements OnInit {
     this.myCookies.userCookie
       .subscribe(
         res => {
-          if (!res.username){
+          if (!res.username) {
             this.user = this.myCookies.getCookie("user");
           }
-          else{
+          else {
             this.user = res;
           }
         },
