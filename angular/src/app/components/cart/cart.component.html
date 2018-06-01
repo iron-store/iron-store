@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <div *ngIf="!cartProducts">
+      <div *ngIf="cartProducts.length === 0">
         <br>
         <h2>You don't have products in your cart :)</h2>
       </div>
@@ -10,7 +10,7 @@
   </div>
 </div>
 
-<div *ngIf="cartProducts">
+<div *ngIf="cartProducts.length > 0">
   <h1>Shopping Cart:</h1>
   <div *ngFor="let product of cartProducts" class="container">
     <div class="row">

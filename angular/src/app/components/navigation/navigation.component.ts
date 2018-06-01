@@ -32,10 +32,22 @@ export class NavigationComponent implements OnInit {
       .subscribe(
         res => {
           if (!Array.isArray(res)){
-            this.numberofItems = this.myCookies.getCookie('browser__settings').length;}
+            let cookie = this.myCookies.getCookie('browser__settings');
+            let count = 0;
+            cookie.forEach( prod => {
+              console.log(prod.repeat);
+              count += parseInt(prod.repeat);
+            })
+            this.numberofItems = count;
+          }
           else{
-          console.log("with products", res.length);
-            this.numberofItems = res.length;}
+            let count = 0;
+            res.forEach( prod => {
+              console.log("prod.repeat: ", prod.repeat);
+              count += parseInt(prod.repeat);
+            })
+            this.numberofItems = count;
+          }
         },
         err => console.log(err)
       )

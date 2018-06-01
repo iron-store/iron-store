@@ -14,10 +14,8 @@ export class CartComponent implements OnInit {
   constructor(private myCookie: CookieService) { }
 
   ngOnInit() {
-    if (this.myCookie.getCookie('browser__settings')){
-      this.createOrderInfo();
-      this.showCart();
-    }
+    this.createOrderInfo();
+    this.showCart();
   }
 
   showCart(): void {
@@ -35,8 +33,8 @@ export class CartComponent implements OnInit {
         break;
       }
     }
-    this.showCart();
     this.createOrderInfo();
+    this.showCart();
   }
 
   updateCount(info: any): void {
@@ -48,20 +46,15 @@ export class CartComponent implements OnInit {
         break;
       }
     }
-    this.showCart();
-    this.createOrderInfo();
+    this.ngOnInit();
   }
 
-  createOrderInfo(){
+  createOrderInfo() {
     let cookie = this.myCookie.getCookie('browser__settings');
     let subtotal = 0;
     let tax = 6;
     let taxAmount = 0;
     let total = 0;
-
-    // for (let i = 0; i < cookie.length; i++){
-    //   subtotal += cookie[i].price * cookie.repeat
-    // }
 
     cookie.forEach(product => {
       subtotal += product.price * product.repeat;
@@ -69,7 +62,7 @@ export class CartComponent implements OnInit {
     taxAmount = subtotal * tax / 100;
     total = subtotal + taxAmount;
 
-    this.orderInfo = {subtotal, tax, taxAmount, total};
+    this.orderInfo = { subtotal, tax, taxAmount, total };
   }
 
 }

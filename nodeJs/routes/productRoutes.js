@@ -23,14 +23,14 @@ router.get('/category-name/:categoryName', (req, res, next) => {
 })
 
 router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
-    var newProduct = {
+    let newProduct = {
         name: req.body.name,
         price: req.body.price,
         description: req.body.description,
         category: req.body.category,
         picturePath: req.file.url
     };
-    
+
     Category.findOne({ name: req.body.category })
         .then(query => {
             if (query) {
