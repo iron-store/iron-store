@@ -5,7 +5,6 @@ const userSchema = new Schema({
     username: String,
     password: String,
     email: String,
-    picturePath: {type: String, default: 'https://res.cloudinary.com/ddibftjux/image/upload/v1526028453/Logo_reddit_white.png'},
     role: {
         type : String,
         enum : ['USER', 'ADMIN'],

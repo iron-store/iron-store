@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/product');
 const Category = require('../models/category');
+const uploadCloud = require('../configs/cloudinary');
 
 router.get('/', (req, res, next) => {
     Product.find()
-        .then(products => res.json(products) )
+        .then(products => res.json(products))
         .catch(err => res.json(err));
 })
 
@@ -21,11 +22,20 @@ router.get('/category-name/:categoryName', (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-router.post('/new', (req, res, next) => {
+router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
+    var newProduct = {
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+        category: req.body.category,
+        picturePath: req.file.url
+    };
+    
     Category.findOne({ name: req.body.category })
         .then(query => {
             if (query) {
-                Product.create(req.body)
+                console.log("req.body: ", req.body)
+                Product.create(newProduct)
                     .then(createdProduct => res.json(createdProduct))
                     .catch(err => res.json(err))
             }

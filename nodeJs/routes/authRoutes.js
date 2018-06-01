@@ -69,11 +69,6 @@ router.post("/signup", (req, res, next) => {
 
 
 router.post("/edit-user", (req, res, next) => {
-    console.log('helloo');
-
-
-    console.log('req.body: ', req.body);
-
     const theEmail = req.body.email;
     const theUsername = req.body.username;
     const theId = req.body._id;
@@ -105,7 +100,6 @@ router.post("/edit-user", (req, res, next) => {
 
 
 router.post('/login', passport.authenticate("local"), (req, res) => {
-    console.log(req.user);
     res.json(req.user);
 });
 
