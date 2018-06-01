@@ -2,7 +2,7 @@
     <div class="row elements">
         <div class="col-md-4 ">
             <a class="col-md-4" [routerLink]="['home']"> Home </a>
-            <a class="col-md-4" [routerLink]="['history']"> History </a>
+            <a class="col-md-4" *ngIf="user.username" [routerLink]="['history']"> History </a>
             <a class="col-md-4" *ngIf="user.role === 'ADMIN'" [routerLink]="['admin']">Admin</a>
         </div>
         <div class="col-md-4 ">
