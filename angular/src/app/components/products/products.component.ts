@@ -6,6 +6,8 @@ import { CategoryService } from '../../services/category.service';
 import { SessionService } from '../../services/auth.service';
 import { CookieService } from '../../services/cookie.service';
 import { Router } from '@angular/router';
+import { FileUploader } from 'ng2-file-upload';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-products',
@@ -15,16 +17,19 @@ import { Router } from '@angular/router';
 export class ProductsComponent implements OnInit {
 
   p: number = 1;
-
-
   products: [Object];
   user: Object;
   modalInfo: Object = {};
-  updateInfo: Object = {};
+  updateInfo: any = {};
   updateCategoryInfo: Object = {};
   filter: string;
   productInfoForModal: Object = { name: "", price: 0, picturePath: "", description: "" };
   @Input() categoryFromParent: string = "";
+
+  myUploader = new FileUploader({
+    url: environment.backendUrl + '/product/new',
+    itemAlias: "photo"
+  })
 
   constructor(
     private myProducts: ProductService,
@@ -40,10 +45,10 @@ export class ProductsComponent implements OnInit {
     this.myCookies.userCookie
       .subscribe(
         res => {
-          if (!res.username){
+          if (!res.username) {
             this.user = this.myCookies.getCookie("user");
           }
-          else{
+          else {
             this.user = res;
           }
         },
@@ -99,11 +104,29 @@ export class ProductsComponent implements OnInit {
   }
 
   updateProduct(productId: string): void {
-    this.myProducts.updateProduct(productId, this.updateInfo)
-      .subscribe(
-        res => { this.getProducts(), this.modalInfo = {} },
-        err => console.log(err)
-      )
+    this.myUploader.onBuildItemForm = (item, form) => {
+      form.append('name', this.updateInfo.name);
+      form.append('price', this.updateInfo.price);
+      form.append('description', this.updateInfo.description);
+      form.append('category', this.updateInfo.category);
+    }
+    this.myUploader.onSuccessItem = (item, response) => {
+      console.log("Item in addProduct: ", item);
+      this.router.navigate(["/category"]);
+      this.getProducts();
+      this.modalInfo = {};
+    }
+    this.myUploader.onErrorItem = (item, response) => {
+      console.log("Error on image upload", item, response);
+    }
+    this.myUploader.uploadAll();
+
+
+    // this.myProducts.updateProduct(productId, this.updateInfo)
+    //   .subscribe(
+    //     res => { this.getProducts(), this.modalInfo = {} },
+    //     err => console.log(err)
+    //   )
   }
 
   fillForm(product: Object): void {

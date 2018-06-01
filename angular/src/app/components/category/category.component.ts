@@ -24,7 +24,18 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     this.showCategories();
-    this.user = this.myCookies.getCookie("user");
+    this.myCookies.userCookie
+      .subscribe(
+        res => {
+          if (!res.username) {
+            this.user = this.myCookies.getCookie("user");
+          }
+          else {
+            this.user = res;
+          }
+        },
+        err => console.log(err)
+      )
   }
 
   showCategories() {
