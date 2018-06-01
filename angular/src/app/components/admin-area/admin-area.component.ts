@@ -161,12 +161,7 @@ export class AdminAreaComponent implements OnInit {
       form.append('category', this.newProduct.category);
     }
     this.myUploader.onSuccessItem = (item, response) => {
-      console.log('response: ', response);
-      // console.log("Item in addProduct: ", item);
-
-      // this.myRouter.navigate(["/home"]);
       this.theNewProdSuccessMessage = `${this.newProduct.name} was created with category: ${this.newProduct.category}`;
-
     }
     this.myUploader.onErrorItem = (item, response) => {
       console.log("Error on image upload", item, response);
@@ -204,15 +199,6 @@ export class AdminAreaComponent implements OnInit {
       return true;
     }
   }
-
-
-
-
-
-
-
-
-
 
   setNewCatSuccessMessage(theCategory) {
 
