@@ -12,7 +12,7 @@ import { SessionService } from '../../services/auth.service';
 export class AdminAreaComponent implements OnInit {
 
   productSeccion: string = '';
-  categorySeccion: string = '';
+  categorySeccion: string = 'active';
   userSeccion: string = '';
   historySeccion: string = '';
   newCategory: Object = { parent: null };

@@ -28,7 +28,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { HomeComponent } from './components/home/home.component';
 import { UsersInfoComponent } from './components/users-info/users-info.component';
 
-import { SearchPipe } from './pipe/search.pipe'
+import { SearchPipe } from './pipe/search.pipe';
 import { FilterByCategoryPipe } from './pipe/categoryFilter.pipe';
 
 // may need to delete
@@ -36,20 +36,18 @@ import { PaypallButtonsComponent } from './components/paypall-buttons/paypall-bu
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent},
   { path: 'index', component: AppComponent},
   { path: 'product', component: ProductComponent },
   { path: 'signup', component: SignupComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'category', component: CategoryComponent},
+  { path: 'home', component: CategoryComponent},
   { path: 'products', component: ProductsComponent},
   { path: 'cart', component: CartComponent},
   { path: 'user', component: UserDetailsComponent},
   { path: 'history', component: PurchaseHistoryComponent},
   { path: 'admin', component: AdminAreaComponent},
   { path: 'navigation', component: NavigationComponent},
-  // may need to delete
-  { path: 'paypall-buttons', component: PaypallButtonsComponent},
+  // { path: '**', redirectTo: 'home' }
 ];
 
 
