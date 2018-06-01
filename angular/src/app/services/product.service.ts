@@ -28,6 +28,7 @@ export class ProductService {
     }
 
     createProduct(newProduct) {
+        console.log("newProduct: ", newProduct)
         return this.myHttp.post(`${environment.backendUrl}/product/new`, newProduct)
             .map(createdProduct => createdProduct.json());
     }

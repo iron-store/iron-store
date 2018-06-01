@@ -31,6 +31,8 @@ import { UsersInfoComponent } from './components/users-info/users-info.component
 import { SearchPipe } from './pipe/search.pipe'
 import { FilterByCategoryPipe } from './pipe/categoryFilter.pipe';
 
+import { FileUploadModule } from 'ng2-file-upload';
+
 // may need to delete
 import { PaypallButtonsComponent } from './components/paypall-buttons/paypall-buttons.component';
 
@@ -78,7 +80,8 @@ const routes: Routes = [
     HttpModule,
     NgxPaginationModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FileUploadModule
   ],
   providers: [
     { provide: BrowserXhr, useClass: CustExtBrowserXhr },

@@ -5,7 +5,7 @@ const Order   = require('../models/order');
 router.get('/', (req, res, next) => {
     console.log("Back-end orders start")
     Order.find()
-    .then( orders => {console.log("Back-end orders: ", orders), res.json(orders)} )
+    .then( orders => res.json(orders) )
     .catch( err => res.json(err) );
 })
 

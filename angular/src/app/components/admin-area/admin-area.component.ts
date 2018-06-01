@@ -3,6 +3,9 @@ import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
 import { OrderService } from '../../services/order.service';
 import { SessionService } from '../../services/auth.service';
+import { FileUploader } from 'ng2-file-upload';
+import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-area',
@@ -16,15 +19,21 @@ export class AdminAreaComponent implements OnInit {
   userSeccion: string = '';
   historySeccion: string = '';
   newCategory: Object = { parent: null };
-  newProduct: Object = {};
+  newProduct: any = {};
   subCategoriesArray: any = [];
   mainCategoriesArray: any = [];
   historyArray: any = [];
 
+  myUploader = new FileUploader({
+    url: environment.backendUrl + '/product/new',
+    itemAlias: "photo"
+  })
+
   constructor(private myCategories: CategoryService,
     private myProducts: ProductService,
     private myOrders: OrderService,
-    private mySession: SessionService) { }
+    private mySession: SessionService,
+    private myRouter: Router) { }
 
   ngOnInit() {
     this.subCategories();
@@ -107,14 +116,6 @@ export class AdminAreaComponent implements OnInit {
       )
   }
 
-  addProduct() {
-    this.myProducts.createProduct(this.newProduct)
-      .subscribe(
-        product => console.log(product),
-        err => console.log(err)
-      )
-  }
-
   history() {
     this.myOrders.getAllOrders()
       .subscribe(
@@ -122,15 +123,30 @@ export class AdminAreaComponent implements OnInit {
           this.historyArray = orders, this.historyArray.forEach(order => {
             this.mySession.getUserById(order.userId)
               .subscribe(
-                user => { console.log("User: ", user); order.userName = user.username; order.userEmail = user.email },
+                user => { order.userName = user.username; order.userEmail = user.email },
                 err => console.log(err)
               )
           },
-            console.log(this.historyArray)
           )
         },
         err => console.log(err)
       )
   }
 
+  addProduct() {
+    this.myUploader.onBuildItemForm = (item, form) => {
+      form.append('name', this.newProduct.name);
+      form.append('price', this.newProduct.price);
+      form.append('description', this.newProduct.description);
+      form.append('category', this.newProduct.category);
+    }
+    this.myUploader.onSuccessItem = (item, response) => {
+      console.log("Item in addProduct: ", item);
+      this.myRouter.navigate(["/category"]);
+    }
+    this.myUploader.onErrorItem = (item, response) => {
+      console.log("Error on image upload", item, response);
+    }
+    this.myUploader.uploadAll();
+  }
 }

@@ -31,7 +31,7 @@
       <div *ngIf="historyArray.length === 0">
         <h2>Site history is empty.</h2>
       </div>
-      
+
       <div *ngIf="historyArray.length !== 0">
         <div class="container">
           <div class="row">
@@ -45,77 +45,88 @@
       </div>
       <div *ngFor="let order of historyArray | paginate: { itemsPerPage: 3, currentPage: p }">
 
-          <div class="container">
-            <div class="row">
-              
-              <div class="receipt-main col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
-                <div class="row">
-                  <div class="col-xs-4 col-sm-4 col-md-4">
-                    <h2>Receipt</h2>
-                  </div>
+        <div class="container">
+          <div class="row">
+
+            <div class="receipt-main col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+              <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                  <h2>Receipt</h2>
                 </div>
-            
-                <div>
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Item</th>
-                        <th>Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let product of order.products">
-                          <td class="col-md-9">{{product.name}} <span class="light-grey"> x {{product.repeat}}</span></td>
-                          <td class="col-md-3"> {{product.price * product.repeat | currency}} </td>
-                      </tr>
-      
-                      <tr>
-                        <td class="text-right">
-                          <p>
-                            <strong>Subtotal: </strong>
-                          </p>
-                          <p>
-                            <strong>Tax-percentage: </strong>
-                          </p>
-                          <p>
-                            <strong>Tax-amount: </strong>
-                          </p>
-                        </td>
-                        <td>
-                          <p>
-                            <strong> {{order.subtotal | currency}}</strong>
-                          </p>
-                          <p>
-                            <strong> {{order.tax}}%</strong>
-                          </p>
-                          <p>
-                            <strong> {{order.taxAmount | currency}}</strong>
-                          </p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-right"><h2><strong>Total: </strong></h2></td>
-                        <td class="text-left"><h2><strong> {{order.total | currency}}</strong></h2></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-            
-                <div class="row">
-                  <div class="receipt-header receipt-header-mid receipt-footer">
-                    <div class="col-xs-8 col-sm-8 col-md-8 text-left">
-                      <div class="receipt-right">
-                        <p><b>Date :</b> {{order.created_at | date:'fullDate'}}</p>
-                      </div>
+              </div>
+
+              <div>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Item</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let product of order.products">
+                      <td class="col-md-9">{{product.name}}
+                        <span class="light-grey"> x {{product.repeat}}</span>
+                      </td>
+                      <td class="col-md-3"> {{product.price * product.repeat | currency}} </td>
+                    </tr>
+
+                    <tr>
+                      <td class="text-right">
+                        <p>
+                          <strong>Subtotal: </strong>
+                        </p>
+                        <p>
+                          <strong>Tax-percentage: </strong>
+                        </p>
+                        <p>
+                          <strong>Tax-amount: </strong>
+                        </p>
+                      </td>
+                      <td>
+                        <p>
+                          <strong> {{order.subtotal | currency}}</strong>
+                        </p>
+                        <p>
+                          <strong> {{order.tax}}%</strong>
+                        </p>
+                        <p>
+                          <strong> {{order.taxAmount | currency}}</strong>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-right">
+                        <h2>
+                          <strong>Total: </strong>
+                        </h2>
+                      </td>
+                      <td class="text-left">
+                        <h2>
+                          <strong> {{order.total | currency}}</strong>
+                        </h2>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="row">
+                <div class="receipt-header receipt-header-mid receipt-footer">
+                  <div class="col-xs-8 col-sm-8 col-md-8 text-left">
+                    <div class="receipt-right">
+                      <p>
+                        <b>Date :</b> {{order.created_at | date:'fullDate'}}</p>
                     </div>
                   </div>
                 </div>
-            
-              </div>    
+              </div>
+
             </div>
-            <hr style="height: 1px; background-color: #eee;">
           </div>
-      
+          <hr style="height: 1px; background-color: #eee;">
+        </div>
+
       </div>
     </div>
   </div>
@@ -164,6 +175,11 @@
         <div class="form-group">
           <label for="price"> *Product Price: </label>
           <input type="number" [(ngModel)]="newProduct.price" class="form-control" name="price" placeholder="Product Price">
+        </div>
+
+        <div class="form-group">
+          <label for="photo"> *Product Photo: </label>
+          <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="myUploader">
         </div>
 
         <div class="form-group">
