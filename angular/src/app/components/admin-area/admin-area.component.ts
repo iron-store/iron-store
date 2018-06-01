@@ -107,6 +107,7 @@ export class AdminAreaComponent implements OnInit {
           this.setNewCatSuccessMessage(newCat);
           console.log(newCat);
           this.subCategories();
+          this.mainCategories();
         },
         err => console.log(err)
       );
