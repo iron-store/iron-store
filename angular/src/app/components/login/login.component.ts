@@ -23,7 +23,10 @@ export class LoginComponent implements OnInit {
   login() {
     this.myService.login(this.formInfo)
       .subscribe(
-        () => console.log('login'),
+        (response) => {
+          console.log('response: ', response);
+          console.log('login');
+        }
         (err) => this.error = err
       );
   }
