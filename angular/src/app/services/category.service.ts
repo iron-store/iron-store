@@ -33,7 +33,6 @@ export class CategoryService {
     }
 
     deleteCategory(id) {
-        console.log("Service for delete this: ", id);
         return this.myHttp.post(`${environment.backendUrl}/category/delete/${id}`, {})
         .map( deletedcategory => deletedcategory.json() );
     }

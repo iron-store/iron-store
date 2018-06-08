@@ -24,7 +24,7 @@ export class PurchaseHistoryComponent implements OnInit {
   getFullHistory() {
     this.myOrder.getAllUserOrders(this.myCookies.getCookie('user')._id)
       .subscribe(
-        orders => {this.history = orders, console.log(this.history); },
+        orders => {this.history = orders; },
         err => console.log(err)
       );
   }

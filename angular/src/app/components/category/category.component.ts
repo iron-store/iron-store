@@ -93,7 +93,6 @@ export class CategoryComponent implements OnInit {
       .subscribe(
         subCategories => {
           for (let i = 0; i < subCategories.length; i++) {
-            console.log("Subcategories: ", subCategories[i]);
             this.deleteProductsByCategory(subCategories[i].name),
               this.myCategories.deleteCategory(subCategories[i]._id)
                 .subscribe(

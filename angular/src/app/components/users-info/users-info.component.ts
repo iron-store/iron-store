@@ -30,13 +30,12 @@ export class UsersInfoComponent implements OnInit {
   showAllUsers() {
     this.mySession.getAllUsers()
       .subscribe(
-        users => { this.users = users, console.log(console.log("showAllUsers: ", users)) },
+        users => { this.users = users; },
         err => console.log(err)
       )
   }
 
   deleteUser(userId: string): void {
-    console.log("User Id: ", userId);
     this.mySession.deleteUser(userId)
       .subscribe(
         deletedUser => console.log(deletedUser),

@@ -66,8 +66,6 @@ export class ProductsComponent implements OnInit {
   }
 
   addCookie(passProduct: any): void {
-    // browser__setttings??? You must think you're so cute
-
     let product = Object.assign({}, passProduct);
     delete product.picturePath;
     delete product.updated_at;
@@ -91,7 +89,6 @@ export class ProductsComponent implements OnInit {
       newCookieValue.push(product);
       this.myCookies.setCookie('browser__settings', newCookieValue, 1);
       this.getProducts()
-      console.log(this.myCookies.getCookie('browser__settings'));
 
     }
   }
@@ -105,35 +102,6 @@ export class ProductsComponent implements OnInit {
   }
 
   updateProduct(productId: string): void {
-    // this.myProducts.getOneProduct(productId)
-    // .subscribe(
-    //   res =>{
-
-    //   }
-    // )
-    // this.idForUpdateImage = productId;
-
-    // console.log("Update Form", this.updateInfo)
-    // this.myUploader.onBuildItemForm = (item, form) => {
-    //   console.log("Item: ", item)
-    //   console.log("Form: ", form)
-    //   console.log(this.updateInfo.name)
-    //   form.append('name', this.updateInfo.name);
-    //   form.append('price', this.updateInfo.price);
-    //   form.append('description', this.updateInfo.description);
-    //   form.append('category', this.updateInfo.category);
-    // }
-    // this.myUploader.onSuccessItem = (item, response) => {
-    //   console.log("Item in addProduct: ", item);
-    //   this.getProducts();
-    //   this.modalInfo = {};
-    // }
-    // this.myUploader.onErrorItem = (item, response) => {
-    //   console.log("Error on image upload", item, response);
-    // }
-    // this.myUploader.uploadAll();
-
-
     this.myProducts.updateProduct(productId, this.updateInfo)
       .subscribe(
         res => { this.getProducts(), this.modalInfo = {} },
@@ -147,6 +115,5 @@ export class ProductsComponent implements OnInit {
 
   singleProductView(product: Object) {
     this.productInfoForModal = product;
-    console.log(this.productInfoForModal);
   }
 }
