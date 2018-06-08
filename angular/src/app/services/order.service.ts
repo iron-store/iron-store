@@ -13,7 +13,6 @@ export class OrderService {
     constructor (private myHttp: Http) {}
 
     getAllOrders() {
-        console.log("Orders services")
         return this.myHttp.get(`${environment.backendUrl}/order`)
         .map ( orders => orders.json() );
     }

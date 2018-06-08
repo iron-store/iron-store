@@ -60,7 +60,6 @@ export class SessionService {
   }
 
   editUser(user) {
-    console.log('Your new user credentials: ', user);
     return this.http.post(`${environment.backendUrl}/edit-user`, user)
       .map(res => { this.saveUserCookie(res), res.json(); })
       .catch(this.handleError);
@@ -68,7 +67,7 @@ export class SessionService {
 
   getPrivateData() {
     return this.http.get(`${environment.backendUrl}/private`)
-      .map(res => { console.log('Mi service: ', res), res.json(); })
+      .map(res => { res.json(); })
       .catch(this.handleError);
   }
 

@@ -25,8 +25,6 @@
         </div>
       
         <button (click)="login()" class="btn btn-primary" data-dismiss="modal"> Login </button>
-        <!-- this version redirects home without even checking if the all the fields in the form are empty or not -->
-        <!-- <button (click)="login()" class="btn btn-primary" data-dismiss="modal" [routerLink]="['../home']"> Login </button> -->
         <button class="btn btn-link" data-dismiss="modal" [routerLink]="['../signup']"> Or Signup </button>
 
         <div *ngIf="error && error.length !== 0">

@@ -115,7 +115,6 @@ export class AdminAreaComponent implements OnInit {
       .subscribe(
         newCat => {
           this.setNewCatSuccessMessage(newCat);
-          console.log(newCat);
           this.subCategories();
           this.mainCategories();
         },
@@ -178,27 +177,22 @@ export class AdminAreaComponent implements OnInit {
 
   handleNewProductValidation(): boolean {
     if (!this.newProduct.name) {
-      console.log('You must provide a name for the new product.');
       this.theProdErrorMessage = 'You must provide a name for the new product.';
       return false;
     }
     else if (!this.newProduct.price) {
-      console.log('You must provide a price for the new product.');
       this.theProdErrorMessage = 'You must provide a price for the new product.';
       return false;
     }
     else if (!this.newProduct.image) {
-      console.log('You must provide an image for the new product.');
       this.theProdErrorMessage = 'You must provide an image for the new product.';
       return false;
     }
     else if (!this.newProduct.description) {
-      console.log('You must provide a description for the new product.');
       this.theProdErrorMessage = 'You must provide a description for the new product.';
       return false;
     }
     else if (!this.newProduct.category) {
-      console.log('You must select a category for your product.');
       this.theProdErrorMessage = 'You must select a category for your product.';
       return false;
     }
@@ -222,8 +216,7 @@ export class AdminAreaComponent implements OnInit {
     else {
       this.theNewCatSuccessMessage += `Its parent Category is: ${this.theParent}`;
     }
-    console.log('this.theNewCatSuccessMessage: ', this.theNewCatSuccessMessage);
-
+    
   }
 
   clearMessages() {

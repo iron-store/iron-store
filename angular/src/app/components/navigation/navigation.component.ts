@@ -36,7 +36,6 @@ export class NavigationComponent implements OnInit {
             let count = 0;
             if (cookie) {
               cookie.forEach(prod => {
-                console.log(prod.repeat);
                 count += parseInt(prod.repeat);
               })
             }
@@ -45,7 +44,6 @@ export class NavigationComponent implements OnInit {
           else {
             let count = 0;
             res.forEach(prod => {
-              console.log("prod.repeat: ", prod.repeat);
               count += parseInt(prod.repeat);
             })
             this.numberofItems = count;
