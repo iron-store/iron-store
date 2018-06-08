@@ -52,6 +52,8 @@
               <div class="row">
                 <div class="col-xs-4 col-sm-4 col-md-4">
                   <h2>Receipt</h2>
+                  <h4>{{order.userName}}</h4>
+                  <h4>{{order.userEmail}}</h4>
                 </div>
               </div>
 
@@ -170,7 +172,7 @@
           <h6>{{theCatErrorMessage}}</h6>
         </div>
       </div>
-        
+
     </div>
   </div>
 </div>
@@ -181,8 +183,7 @@
       <form name="myForm">
         <div class="form-group">
           <label for="name"> *Product Name: </label>
-          <input type="email" ng-model="myInput" [(ngModel)]="newProduct.name" class="form-control" name="category"
-            placeholder="Product Name">
+          <input type="email" ng-model="myInput" [(ngModel)]="newProduct.name" class="form-control" name="category" placeholder="Product Name">
           <!-- <h1 ng-if="!myForm.category.$valid">The value is too short</h1> later -->
         </div>
 

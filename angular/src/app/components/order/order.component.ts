@@ -53,6 +53,8 @@ export class OrderComponent implements OnInit {
 
     const order = {
       userId: this.myCookie.getCookie('user')._id,
+      userName: this.myCookie.getCookie('user').username,
+      userEmail: this.myCookie.getCookie('user').email,
       products: this.myOrder,
       tax: this.tax,
       subtotal: this.subtotal,
