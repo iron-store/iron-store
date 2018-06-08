@@ -4,19 +4,19 @@ const Order   = require('../models/order');
 
 router.get('/', (req, res, next) => {
     console.log("Back-end orders start")
-    Order.find()
+    Order.find().sort({created_at:-1})
     .then( orders => res.json(orders) )
     .catch( err => res.json(err) );
 })
 
 router.get('/user/:id', (req, res, next) => {
-    Order.find({userId: req.params.id})
+    Order.find({userId: req.params.id}).sort({created_at:-1})
     .then( orders => res.json(orders) )
     .catch( err => res.json(err) );
 })
 
 router.get('/:id', (req, res, next) => {
-    Order.findById(req.params.id)
+    Order.findById(req.params.id).sort({created_at:-1})
     .then( order => res.json(order) )
     .catch( err => res.json(err) );
 })
