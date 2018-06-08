@@ -58,7 +58,7 @@ app.locals.title = 'App Store';
 app.use(
   cors({
     credentials: true,                 // allow other domains to send cookies
-    origin: ["http://localhost:4200"]  // these are the domains that are allowed
+    origin: ["http://localhost:4200", "http://localhost:3001"]  // these are the domains that are allowed
   })
 );
 
