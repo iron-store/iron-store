@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 
 const Category = require('../models/category');
 const Product = require('../models/product');
-// const User = require('../models/user');
+const User = require('../models/user');
 
 const dbName = 'iron-store';
 mongoose.connect(`mongodb://localhost/${dbName}`);
 
 Category.collection.drop();
-// User.collection.drop();
+User.collection.drop();
 Product.collection.drop();
 
 
@@ -524,7 +524,7 @@ setTimeout(() => {
 // RECREATING THE USERS EVERY TIME ORPHANS THE USER HSTORY BECAUSE 
 // THE USER HISTORY IS ASSOCIATED BY ID.
 // USER SEEDS
-// const users = [
+const users = [
 //   {
 //     username: 'admin',
 //     // password: 123,
@@ -544,14 +544,21 @@ setTimeout(() => {
 //     password: '$2a$10$rr4iIdIjBUYtnSQ4Tc7GL.AR8f3k9Q7BsSYXaqOH1Zjlx/kLuJZT2',
 //     email: '11@11.com',
 //   },
-// ]
 
-// setTimeout(() => {
-//   User.create(users, (err) => {
-//     if (err) { throw(err) }
-//     console.log(`Created ${users.length} users`)
-//   });
-// }, 1000);
+
+{"_id":"5b0c3b80d8b76b089ad6dc33","username":"user","password":"$2a$10$rRZi5rZN5kjEOCvpt02Ez.Cm09YVx46wNQ5Ab76PrEs4oAeAudRx6","email":"user@user.com","role":"USER","picturePath":"https://res.cloudinary.com/ddibftjux/image/upload/v1526028453/Logo_reddit_white.png","__v":0},
+{"_id":"5b0c3b80d8b76b089ad6dc32","username":"admin","password":"$2a$10$1TAgPLkU2Dv36eltB3veRuUzLo.Ln.XcGTW87S5PZYUWLMHCNj51u","email":"admin@admin.com","role":"ADMIN","picturePath":"https://res.cloudinary.com/ddibftjux/image/upload/v1526028453/Logo_reddit_white.png","__v":0},
+{"_id":"5b0c3b80d8b76b089ad6dc34","username":"11","password":"$2a$10$rr4iIdIjBUYtnSQ4Tc7GL.AR8f3k9Q7BsSYXaqOH1Zjlx/kLuJZT2","email":"11@11.com","role":"USER","picturePath":"https://res.cloudinary.com/ddibftjux/image/upload/v1526028453/Logo_reddit_white.png","__v":0},
+{"_id":"5b0ee4495127d0454dc4a97e","email":"emptycart@emptycart.com","username":"emptycart","password":"$2a$10$2KhM64KBWNvRjsBxTkmwte3ZywkbJw77sPxhMonT/aP0CWKM0OoI.","role":"USER","picturePath":"https://res.cloudinary.com/ddibftjux/image/upload/v1526028453/Logo_reddit_white.png","__v":0},
+{"_id":"5b0f5beb5a61868bab301d81","email":"tester@tester.com","username":"tester","password":"$2a$10$Dn/nlnPzaeB9vYXk1nVtA.k9ZecmYX2sC3VNsyRs7UF14Io/ucmJC","role":"USER","picturePath":"https://res.cloudinary.com/ddibftjux/image/upload/v1526028453/Logo_reddit_white.png","__v":0}
+]
+
+setTimeout(() => {
+  User.create(users, (err) => {
+    if (err) { throw(err) }
+    console.log(`Created ${users.length} users`)
+  });
+}, 1000);
 
 // END USER SEEDS
 
