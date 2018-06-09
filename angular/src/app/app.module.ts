@@ -12,6 +12,7 @@ import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
 import { OrderService } from './services/order.service';
 import { CookieService } from './services/cookie.service';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
@@ -27,11 +28,11 @@ import { AdminAreaComponent } from './components/admin-area/admin-area.component
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HomeComponent } from './components/home/home.component';
 import { UsersInfoComponent } from './components/users-info/users-info.component';
+import { AboutComponent } from './components/about/about.component';
 
 import { SearchPipe } from './pipe/search.pipe';
 import { FilterByCategoryPipe } from './pipe/categoryFilter.pipe';
 
-import { FileUploadModule } from 'ng2-file-upload';
 
 // may need to delete
 import { PaypallButtonsComponent } from './components/paypall-buttons/paypall-buttons.component';
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'history', component: PurchaseHistoryComponent},
   { path: 'admin', component: AdminAreaComponent},
   { path: 'navigation', component: NavigationComponent},
+  { path: 'about', component: AboutComponent},
   // { path: '**', redirectTo: 'home' }
 ];
 
@@ -71,7 +73,8 @@ const routes: Routes = [
     UsersInfoComponent,
     SignupComponent,
     SearchPipe,
-    FilterByCategoryPipe
+    FilterByCategoryPipe,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
