@@ -4,6 +4,7 @@
             <a class="col-md-4" [routerLink]="['home']"> Home </a>
             <a class="col-md-4" *ngIf="user.username" [routerLink]="['history']"> History </a>
             <a class="col-md-4" *ngIf="user.role === 'ADMIN'" [routerLink]="['admin']">Admin</a>
+            <a class="col-md-4" [routerLink]="['about']"> About </a>
         </div>
         <div class="col-md-4 ">
             <img (click)="goHome()" src="https://res.cloudinary.com/ddibftjux/image/upload/v1527824178/iron_store.png" alt="Ironstore Logo" class="site-logo">
