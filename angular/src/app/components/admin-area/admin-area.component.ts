@@ -138,17 +138,18 @@ export class AdminAreaComponent implements OnInit {
     this.myOrders.getAllOrders()
       .subscribe(
         orders => {
-          this.historyArray = orders, this.historyArray.forEach(order => {
-            this.mySession.getUserById(order.userId)
-              .subscribe(
-                user => {
-                  order.userName = user.username;
-                  order.userEmail = user.email;
-                },
-                err => console.log(err)
-              )
-          },
-          )
+          this.historyArray = orders;
+          // this.historyArray.forEach(order => {
+          //   this.mySession.getUserById(order.userId)
+          //     .subscribe(
+          //       user => {
+          //         order.userName = user.username;
+          //         order.userEmail = user.email;
+          //       },
+          //       err => console.log(err)
+          //     )
+          // },
+          // )
         },
         err => console.log(err)
       )
