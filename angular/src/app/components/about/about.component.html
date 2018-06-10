@@ -20,19 +20,25 @@
     Yes, we know...
   </p>
   <p>
-    We want anyone testing this site to have fun with it. Delete every single product and category, and then theme the store around something silly. Go crazy! If you find the site to be empty (or if you empty it out yourself) but want to see how it looks with products, you can click the button bellow and it will go back to how it was when we finished.
+    We want anyone testing this site to have fun with it. Delete every single product and category, and then theme the store around something silly. Go crazy! If you find the site to be empty (or if you empty it out yourself) and want to see how it looks with products, you can click the button bellow and it will go back to how it was when we finished.
   </p>
 
-  <button type="button" class="btn btn-warning">Reset EVERTHING!</button>
+  <button type="button" class="btn btn-warning" (click)="resetEverything()">Reset EVERTHING!</button>
   <br><br>
+
+  <div *ngIf="responseMessage && responseMessage.length !== 0">
+    <div class="alert alert-success" role="alert">
+      <span>{{responseMessage}}</span>
+    </div>
+  </div>
 
   <p>
     If you have any feedback, we would love to hear it. You can email us:
   </p>
 
-  <address>Otton Fernandez:<a href="www.ottongabriel@gmail.com"> www.ottongbriel@gmail.com</a></address>
+  <address>Otton Fernandez:<a href="www.ottongabriel@gmail.com"> ottongbriel@gmail.com</a></address>
   <p>and</p>
-  <!-- <address>Daniel Lozano:<a href="www.somedomain@gmail.com"> www.somedoamin@gmail.com</a></address> -->
+  <address>Daniel Lozano:<a href="www.lozanodaniel02@gmail.com"> lozanodaniel02@gmail.com</a></address>
 
   <h3><i>Have fun with the site!</i></h3>
 
