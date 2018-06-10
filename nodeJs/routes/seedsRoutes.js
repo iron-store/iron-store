@@ -92,7 +92,7 @@ setTimeout(() => {
     Product.create(products, (err) => {
       if (err) { throw(err) }
       console.log(`Created ${products.length} products`)
-      res.json({"message": "success"})
+      res.json({message: "Categories and products have been reset."})
     });
   });
 }, 1000);
