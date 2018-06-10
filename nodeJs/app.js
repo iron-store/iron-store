@@ -107,11 +107,13 @@ const auth = require('./routes/authRoutes');
 const product = require('./routes/productRoutes');
 const category = require('./routes/categoryRoutes');
 const order = require('./routes/orderRoutes');
+const seeds = require('./routes/seedsRoutes');
 app.use('/', index);
 app.use('/', auth);
 app.use('/product', product);
 app.use('/category', category);
 app.use('/order', order);
+app.use('/seeds', seeds);
 
 
 module.exports = app;
