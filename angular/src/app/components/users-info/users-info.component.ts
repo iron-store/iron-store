@@ -32,16 +32,18 @@ export class UsersInfoComponent implements OnInit {
       .subscribe(
         users => { this.users = users; },
         err => console.log(err)
-      )
+      );
   }
 
   deleteUser(userId: string): void {
     this.mySession.deleteUser(userId)
       .subscribe(
-        deletedUser => console.log(deletedUser),
+        deletedUser => {
+          console.log(deletedUser);
+          this.showAllUsers();
+        },
         err => console.log(err)
-      )
-    this.showAllUsers();
+      );
   }
 
   userHistory(userId: string): void {
