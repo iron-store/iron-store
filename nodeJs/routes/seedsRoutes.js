@@ -1,148 +1,12 @@
-const mongoose = require('mongoose');
-
+const express = require('express');
+const router  = express.Router();
 const Category = require('../models/category');
 const Product = require('../models/product');
-// const User = require('../models/user');
 
-const dbName = 'iron-store';
-mongoose.connect(`mongodb://localhost/${dbName}`);
-
-Category.collection.drop();
-// User.collection.drop();
-Product.collection.drop();
-
-
-// CATEGORY SEEDS
-// const categories = [
-//   {
-//     name: 'Electronics',
-//     parent: null
-//   },
-//   {
-//     name: 'Food',
-//     parent: null
-//   },
-//   {
-//     name: 'Clothes',
-//     parent: null
-//   },
-//   {
-//     name: 'Movies',
-//     parent: null
-//   },
-//   {
-//     name: 'Books',
-//     parent: null
-//   },// END OF PARENT CATEGORIES
-// ]
-
-
-// const childCategories = [
-//   {
-//     // electronic
-//     name: 'TVs'
-//   },
-//   {
-//     // electronic
-//     name: 'Video Game Consoles' 
-//   },
-//   {
-//     // electronic
-//     name: 'Cellphones'
-//   },
-//   {
-//     // Food
-//     name: 'Fruits'
-//   },
-//   {
-//     // Food
-//     name: 'Snacks'
-//   },
-//   {
-//     // Food
-//     name: 'Meat'
-//   },
-//   {
-//     // Clothes
-//     name: 'Shirts'
-//   },
-//   {
-//     // Clothes
-//     name: 'Pants'
-//   },
-//   {
-//     // Clothes
-//     name: 'Underwear'
-//   },
-//   {
-//     // Movies
-//     name: 'Romance'
-//   },
-//   {
-//     // Movies
-//     name: 'Horror'
-//   },
-//   {
-//     // Movies
-//     name: 'SciFi'
-//   },
-//   {
-//     // Books
-//     name: 'Biographies'
-//   },
-//   {
-//     // Books
-//     name: 'Fiction'
-//   },
-//   {
-//     // Books
-//     name: 'Mystery'
-//   }
-// ]// END OF CHILD CATEGORIES
-
-/*
-// This populates the catgories collection
-// all the logic is necessary because child categories depend 
-// on the IDs of their parent categories.
-// CRAZY WORKAROUND LOGIC BECAUSE I COULD NOT FIGURE OUT AT THE TIME HOW TO CREATE THE ITEMS WITH AN ID AUTOMATICALLY. WILL SAVE FOR FUTURE LAUGHS
-*/
-// Category.create(categories, (err) => {
-//   if (err) { throw(err) }
-//   console.log(`Created ${categories.length} categories`)
-
-//   for(let i = 0; i < categories.length; i++){
-//     let theName = categories[i].name;
-//     Category.find({name: theName})
-//       .then(response => {
-//         // console.log('response: ', response);
-
-//         let theId = response[0]._id;
-//         // console.log('theId: ', theId);
-
-//         for (let j = 0; j < 3; j++){
-//           childCategories[(i*3) + j].parent = theId;
-//           // console.log('(i*3) + j: ', (i*3) + j);
-//           // console.log('childCategories[i + j]: ', childCategories[i + j]);
-//         }
-
-//       }) 
-//       .catch(err => console.log(err));
-//       setTimeout(() => {
-//       }, 300);
-//     }
-    
-//     setTimeout(() => {
-//       // console.log(childCategories);
-//       Category.create(childCategories, (err) => {
-//         if (err) { throw(err) }
-//         console.log(`Created ${childCategories.length} child categories`)
-//       });
-//     }, 4000);
-// });
-
-
-
-
+/* RESET PRODUCTS AND CATEGORIES */
+router.post('/reset-products-and-categories', (req, res, next) => {
+  Category.collection.drop();
+  Product.collection.drop();
 
 // PRODUCT SEEDS
 const products = [
@@ -193,37 +57,7 @@ const products = [
   {"_id":"5b108b36afb1a6d85009d95d","name":"And then there were None","price":13,"description":"By Agatha Christie","category":"Mystery","picturePath":"https://res.cloudinary.com/ddibftjux/image/upload/v1527610957/And_then_there_were_None.png","__v":0}
 ]
 
-setTimeout(() => {
-  Product.create(products, (err) => {
-    if (err) { throw(err) }
-    console.log(`Created ${products.length} products`)
-    // mongoose.connection.close()
-  });
-}, 1000);
 // END PRODUCT SEEDS
-
-
-
-
-
-// USER SEEDS
-//   const users = [
-//   {"_id":"5b0c3b80d8b76b089ad6dc33","username":"user","password":"$2a$10$rRZi5rZN5kjEOCvpt02Ez.Cm09YVx46wNQ5Ab76PrEs4oAeAudRx6","email":"user@user.com","role":"USER","picturePath":"https://res.cloudinary.com/ddibftjux/image/upload/v1526028453/Logo_reddit_white.png","__v":0},
-//   {"_id":"5b0c3b80d8b76b089ad6dc32","username":"admin","password":"$2a$10$1TAgPLkU2Dv36eltB3veRuUzLo.Ln.XcGTW87S5PZYUWLMHCNj51u","email":"admin@admin.com","role":"ADMIN","picturePath":"https://res.cloudinary.com/ddibftjux/image/upload/v1526028453/Logo_reddit_white.png","__v":0},
-//   {"_id":"5b0c3b80d8b76b089ad6dc34","username":"11","password":"$2a$10$rr4iIdIjBUYtnSQ4Tc7GL.AR8f3k9Q7BsSYXaqOH1Zjlx/kLuJZT2","email":"11@11.com","role":"USER","picturePath":"https://res.cloudinary.com/ddibftjux/image/upload/v1526028453/Logo_reddit_white.png","__v":0},
-//   {"_id":"5b0ee4495127d0454dc4a97e","email":"emptycart@emptycart.com","username":"emptycart","password":"$2a$10$2KhM64KBWNvRjsBxTkmwte3ZywkbJw77sPxhMonT/aP0CWKM0OoI.","role":"USER","picturePath":"https://res.cloudinary.com/ddibftjux/image/upload/v1526028453/Logo_reddit_white.png","__v":0},
-//   {"_id":"5b0f5beb5a61868bab301d81","email":"tester@tester.com","username":"tester","password":"$2a$10$Dn/nlnPzaeB9vYXk1nVtA.k9ZecmYX2sC3VNsyRs7UF14Io/ucmJC","role":"USER","picturePath":"https://res.cloudinary.com/ddibftjux/image/upload/v1526028453/Logo_reddit_white.png","__v":0}
-// ]
-
-// setTimeout(() => {
-//   User.create(users, (err) => {
-//     if (err) { throw(err) }
-//     console.log(`Created ${users.length} users`)
-//   });
-// }, 1000);
-
-// END USER SEEDS
-
 
 
 
@@ -254,10 +88,19 @@ const categories = [
 setTimeout(() => {
   Category.create(categories, (err) => {
     if (err) { throw(err) }
-    console.log(`Created ${categories.length} categories`)
+    console.log(`Created ${categories.length} categories`);
+    Product.create(products, (err) => {
+      if (err) { throw(err) }
+      console.log(`Created ${products.length} products`)
+      res.json({"message": "success"})
+    });
   });
 }, 1000);
 
 // END CATEGORY SEEDS
 
-// // END OF FILE
+
+
+});
+
+module.exports = router;
