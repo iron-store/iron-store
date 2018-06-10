@@ -4,7 +4,7 @@
 <h2 class="text-center">Hello {{username}}</h2>
 <h5 class="text-center light-grey">These are the recepits for all of your transactions:</h5>
 
-<div *ngIf="history === undefined">
+<div *ngIf="history !== undefined">
   <div *ngIf="history.length === 0" class="text-center">
     <h3>You haven't purchased anything with us yet.</h3>
     <h3>Your history is empty :)</h3>

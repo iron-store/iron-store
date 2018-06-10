@@ -51,18 +51,21 @@ export class CartComponent implements OnInit {
 
   createOrderInfo() {
     let cookie = this.myCookie.getCookie('browser__settings');
-    let subtotal = 0;
-    let tax = 6;
-    let taxAmount = 0;
-    let total = 0;
+    if (cookie) {
 
-    cookie.forEach(product => {
-      subtotal += product.price * product.repeat;
-    });
-    taxAmount = subtotal * tax / 100;
-    total = subtotal + taxAmount;
+      let subtotal = 0;
+      let tax = 6;
+      let taxAmount = 0;
+      let total = 0;
 
-    this.orderInfo = { subtotal, tax, taxAmount, total };
+      cookie.forEach(product => {
+        subtotal += product.price * product.repeat;
+      });
+      taxAmount = subtotal * tax / 100;
+      total = subtotal + taxAmount;
+
+      this.orderInfo = { subtotal, tax, taxAmount, total };
+    }
   }
 
 }
