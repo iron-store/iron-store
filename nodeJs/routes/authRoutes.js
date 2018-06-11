@@ -100,9 +100,8 @@ router.post("/edit-user", (req, res, next) => {
 
 
 router.post('/login', passport.authenticate("local"), (req, res) => {
-
     if (req.user){
-        console.log(req.user);
+        console.log("req.user: ", req.user);
         res.json(req.user);
     }
 
