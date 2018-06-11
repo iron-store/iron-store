@@ -24,13 +24,8 @@ export class AboutComponent implements OnInit {
   resetEverything() {
     return this.myHttp.post(`${environment.backendUrl}/seeds/reset-products-and-categories`, {})
       .subscribe(response => {
-        console.log('response: ', response);
-        // this.responseMessage = response._body.message;
-        console.log('response._body: ', response.json().message);
         this.responseMessage = response.json().message;
       });
-      // .map(products => products.json());
-
   }
 
 }

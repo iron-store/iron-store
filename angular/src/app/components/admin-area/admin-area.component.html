@@ -163,13 +163,13 @@
       <div *ngIf="theNewCatSuccessMessage && theNewCatSuccessMessage.length !== 0">
         <br>
         <div class="alert alert-success" role="alert">
-          <h6>{{theNewCatSuccessMessage}}</h6>
+          <span>{{theNewCatSuccessMessage}}</span>
         </div>
       </div>
       <div *ngIf="theCatErrorMessage && theCatErrorMessage.length !== 0">
         <br>
         <div class="alert alert-danger" role="alert">
-          <h6>{{theCatErrorMessage}}</h6>
+          <span>{{theCatErrorMessage}}</span>
         </div>
       </div>
 
@@ -220,13 +220,13 @@
         <div *ngIf="theNewProdSuccessMessage && theNewProdSuccessMessage.length !== 0">
           <br>
           <div class="alert alert-success" role="alert">
-            <h6>{{theNewProdSuccessMessage}}</h6>
+            <span>{{theNewProdSuccessMessage}}</span>
           </div>
         </div>
         <div *ngIf="theProdErrorMessage && theProdErrorMessage.length !== 0">
           <br>
           <div class="alert alert-danger" role="alert">
-            <h6>{{theProdErrorMessage}}</h6>
+            <span>{{theProdErrorMessage}}</span>
           </div>
         </div>
       </form>
