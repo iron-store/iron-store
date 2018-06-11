@@ -10,3 +10,7 @@ article{
 .remove-margin{
   margin: 0;
 }
+
+article{
+  margin-bottom: 10vh;
+}
